@@ -4,15 +4,21 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'main': "url('/assets/planalto.jpg')"
       },
-    },
+      colors: {
+        primary: '#2c455b',
+        secondary: '#15212c',
+        'gray-dark': '#666666',
+        'gray-main': '#808080',
+        'gray-light': '#cccccc'
+      }
+    }
   },
   plugins: [],
 }
