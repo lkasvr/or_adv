@@ -1,3 +1,152 @@
+'use client';
+import Image from 'next/image';
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-cards';
+
+// import required modules
+import { Autoplay, EffectCards, EffectCoverflow, Pagination } from 'swiper/modules';
+
+import { FaPenNib, FaUserGroup, FaCartShopping, FaHandcuffs, FaScrewdriverWrench } from 'react-icons/fa6';
+
+
+const items = [
+  {
+    id: 0,
+    title: 'Administrativo',
+    activityType: ['Contencioso judicial', 'Administrativo'],
+    activities: ['PAD - Processo Administrativo Disciplinar', 'Concursos Públicos', 'INSS – benefícios', 'Improbidade Administrativa', 'Licitações'],
+    icon: <FaPenNib className='w-12 h-12' />,
+    styles: 'bg-gray-dark text-white'
+  },
+  {
+    id: 1,
+    title: 'Cível',
+    activityType: ['Contencioso judicial', 'Consultoria'],
+    activities: ['Inventário (judicial e/ou extrajudicial)', 'Divórcio (judicial e/ou extrajudicial)', 'Guarda de filhos menores', 'Contratos', 'Imobiliário', 'Ações em geral'],
+    icon: <FaUserGroup className='w-12 h-12' />,
+    styles: 'bg-secondary text-white'
+  },
+  {
+    id: 2,
+    title: 'Consumidor',
+    activityType: ['Contencioso judicial', 'Consultoria'],
+    activities: ['Ações judiciais', 'Demandas administrativas'],
+    icon: <FaCartShopping className='w-12 h-12' />,
+    styles: 'bg-white text-black'
+  },
+  {
+    id: 3,
+    title: 'Criminal',
+    activityType: ['Contencioso judicial', 'Administrativo'],
+    activities: ['Ações judiciais', 'Inquéritos'],
+    icon: <FaHandcuffs className='w-12 h-12' />,
+    styles: 'bg-secondary text-white'
+  },
+  {
+    id: 4,
+    title: 'Trabalhista',
+    activityType: ['Contencioso judicial', 'Consultoria'],
+    activities: ['Colaboradores', 'Empregadores'],
+    icon: <FaScrewdriverWrench className='w-12 h-12' />,
+    styles: 'bg-gray-dark text-white'
+  },
+];
+
+const photos = [
+  { url: '/assets/images/coworking-01.webp', width: 600, height: 420 },
+  { url: '/assets/images/brasil21_noturna.jpg', width: 2000, height: 1333 },
+  { url: '/assets/images/coworking-02.webp', width: 660, height: 420 },
+  { url: '/assets/images/coworking-03.webp', width: 554, height: 720 },
+  { url: '/assets/images/brasil21_diurna.jpg', width: 4110, height: 2740 },
+];
+
 export default function Page() {
-  return <h1>Hello, About Page!</h1>;
+  return (
+    <div className="w-full h-full max-h-[781px] flex flex-row flex-nowrap justify-center">
+      <article className="p-10 w-1/3 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
+        <span className="text-lg">
+          Somos o escritório de advocacia
+          <h2 className="mb-8 mt-4 ml-4 text-center text-xl font-bold">OLIVEIRA & RIOS – ADVOGADOS</h2>
+        </span>
+        <p className="mb-6 text-justify indent-8">
+          Atuamos junto aos <b>Tribunais Superiores</b> (STF e STJ), <b>Justiça Federal</b> e <b>Tribunais de Justiça</b>, bem como no âmbito da <b>Administração Pública direta e indireta</b>.
+        </p>
+        <p className="mb-6 text-justify indent-8">
+          O escritório tem sede no Distrito Federal e é coordenado pelos sócios <b>André Viana de Oliveira</b> e <b>Lucimara Vieira Rios</b>.
+        </p>
+        <p className="mb-6 text-justify indent-8">
+          Por ser um escritório <b>full service</b> e manter parceria com outros escritórios e advogados fora do DF, atendemos em todo o território nacional.
+        </p>
+        <Swiper
+          style={{
+            width: '100%',
+            height: '30%',
+          }}
+          grabCursor={true}
+          effect={'cards'}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay, EffectCards]}
+          className="mySwiper"
+        >
+          {items.map((item, i) => (
+            <SwiperSlide key={item.id} className='rounded-xl'>
+              <div className={`${item.styles} font-bold w-full h-full flex flex-row flex-wrap justify-center items-center p-6`}>
+                <h3 className='w-full text-left text-xl'>{item.title}</h3>
+                {item.icon}
+                <div className="w-full p-2 flex flex-row justify-between">
+                  <ul className='w-full text-left text-xs border-l'>
+                    {item.activities.map((activity) => (
+                      <li className='ml-4' key={activity}>{activity}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </article>
+
+      <hr className='w-[1px] h-2/3 place-self-center bg-white' />
+
+      <div className="p-10 w-[66.6%] flex flex-row flex-wrap justify-center items-start">
+        <h2 className='w-full ml-6 self-center text-lg text-white'>
+          Atendemos no Plano Piloto em Brasília, no edifício Brasil 21. Conheça as dependências
+        </h2>
+        <Swiper
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={false}
+          slidesPerView={'auto'}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          modules={[EffectCoverflow]}
+          className='relative'
+        >
+          {photos.map((photo) => (
+            <SwiperSlide key={photo.url} style={{ width: '350px', height: '300px' }}>
+              <Image
+                src={photo.url}
+                width={photo.width}
+                height={photo.height}
+                alt='photo'
+                className='block w-full h-full'
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  );
 }

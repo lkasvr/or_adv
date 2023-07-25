@@ -42,7 +42,7 @@
       "always"
     ],
     "import-helpers/order-imports": [
-      "warn",
+      "war",
       {
         "newlinesBetween": "always",
         "groups": [

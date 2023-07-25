@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'main': "url('/assets/planalto.jpg')"
+        'main': "url('/assets/images/planalto.jpg')"
       },
       colors: {
         primary: '#2c455b',
