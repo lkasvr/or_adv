@@ -10,7 +10,8 @@ export default function Home() {
       >
         <div className="mt-2">
           <p className="text-sm text-gray-500">
-            A Página Inicial conterá conteúdos interessantes e te guiará pelo nosso espaço aqui na web!
+            A Página Inicial conterá conteúdos interessantes e te guiará pelo
+            nosso espaço aqui na web!
           </p>
         </div>
       </WarningCard>

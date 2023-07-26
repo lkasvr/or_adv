@@ -1,4 +1,4 @@
-import WarningCard from "@/components/WarningCard";
+import WarningCard from '@/components/WarningCard';
 
 export default function Page() {
   return (
@@ -9,7 +9,8 @@ export default function Page() {
       >
         <div className="mt-2">
           <p className="text-sm text-gray-500">
-            A página de Pro Bono conterá um formulário para que você possa entrar em contato e nos fornecer informações valiosas!
+            A página de Pro Bono conterá um formulário para que você possa
+            entrar em contato e nos fornecer informações valiosas!
           </p>
         </div>
       </WarningCard>

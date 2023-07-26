@@ -1,10 +1,9 @@
+import Button from '@/components/Button';
 import Image from 'next/image';
 import React from 'react';
+import { FiInstagram, FiPhone, FiMapPin, FiMail } from 'react-icons/fi';
 
 import logoFb from '../../public/assets/logoFb.png';
-import Button from '@/components/Button';
-
-import { FiInstagram, FiPhone, FiMapPin, FiMail } from 'react-icons/fi';
 
 const menuLinks = [
   { text: 'Página Inicial', href: '/' },
@@ -31,7 +30,9 @@ function HeaderWithFooter() {
           alt="Logo OR Advogados"
         />
         <ul className="w-full flex flex-row flex-wrap justify-center text-lg">
-          {menuLinks.map(({ text, href }) => <Button key={text} text={text} href={href} />)}
+          {menuLinks.map(({ text, href }) => (
+            <Button key={text} text={text} href={href} />
+          ))}
         </ul>
       </nav>
       <footer className="w-full border-t border-primary/25 p-4 self-end flex flex-row flex-wrap text-xs">
@@ -67,8 +68,8 @@ function HeaderWithFooter() {
             <div>
               <FiMapPin />
             </div>
-            &nbsp; SHS Quadra 6, conjunto A, bloco A, sala 501, Complexo
-            Brasil 21, Asa Sul, Brasília - DF
+            &nbsp; SHS Quadra 6, conjunto A, bloco A, sala 501, Complexo Brasil
+            21, Asa Sul, Brasília - DF
           </a>
         </div>
         <p className="w-full mt-6 flex justify-center">
@@ -76,7 +77,7 @@ function HeaderWithFooter() {
         </p>
       </footer>
     </header>
-  )
+  );
 }
 
-export default HeaderWithFooter
+export default HeaderWithFooter;

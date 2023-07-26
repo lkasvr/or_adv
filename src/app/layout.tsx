@@ -1,8 +1,8 @@
 import './globals.css';
+import HeaderWithFooter from '@/components/HeaderWithFooter';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import HeaderWithFooter from '@/components/HeaderWithFooter';
 import Template from './template';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -20,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${inter.className} bg-main bg-no-repeat bg-cover flex flex-row flex-wrap`}
+        className={`${inter.className} max-h-screen bg-main bg-no-repeat bg-cover flex flex-row flex-wrap`}
       >
         <HeaderWithFooter />
-        <main className="w-9/12 p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
+        <main className="w-9/12 max-h-screen p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
           <Template>
             <section className="w-full h-full bg-primary bg-opacity-75 rounded-3xl">
               {children}
