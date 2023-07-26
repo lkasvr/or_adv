@@ -2,8 +2,32 @@ import { useField } from 'formik';
 
 import { FieldInputProps } from './types';
 
-const TextField = ({ label, ...props }: FieldInputProps) => {
-  const [field, meta] = useField(props);
+const CPF_CNPJField = ({ label, ...props }: FieldInputProps) => {
+  const [field, meta, helpers] = useField(props);
+  const { setValue } = helpers;
+
+  const formatCNPJ = (value: string) => {
+    value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+    value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    value = value.replace(/(\d{4})(\d)/, '$1-$2');
+    return value;
+  };
+
+  const formatCPF = (value: string) => {
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    return value;
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.replace(/\D/g, '');
+    if (value.length > 11) return setValue(formatCNPJ(value.substring(0, 14)));
+    setValue(formatCPF(value));
+  };
+
   return (
     <div className={`relative z-0 mb-4 group ${props.wraperclass}`}>
       <input
@@ -11,6 +35,7 @@ const TextField = ({ label, ...props }: FieldInputProps) => {
         placeholder=" "
         {...field}
         {...props}
+        onChange={handleChange}
       />
       <label
         htmlFor={props.id ?? props.name}
@@ -25,4 +50,4 @@ const TextField = ({ label, ...props }: FieldInputProps) => {
   );
 };
 
-export default TextField;
+export default CPF_CNPJField;

@@ -8,5 +8,5 @@ export type FieldInputProps = {
   type?: string;
   multiple?: boolean;
   value?: string;
-  wraperClass?: string;
+  wraperclass?: string;
 };

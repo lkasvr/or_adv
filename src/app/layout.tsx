@@ -23,9 +23,9 @@ export default function RootLayout({
         className={`${inter.className} max-h-screen bg-main bg-no-repeat bg-cover flex flex-row flex-wrap`}
       >
         <HeaderWithFooter />
-        <main className="w-9/12 max-h-screen p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
+        <main className="w-full sm:w-9/12 max-h-screen sm:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
           <Template>
-            <section className="w-full h-full bg-primary bg-opacity-75 rounded-3xl">
+            <section className="w-full h-full bg-primary bg-opacity-75 sm:rounded-3xl">
               {children}
             </section>
           </Template>

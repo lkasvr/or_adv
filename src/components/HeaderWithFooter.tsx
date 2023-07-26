@@ -15,7 +15,7 @@ const menuLinks = [
 
 function HeaderWithFooter() {
   return (
-    <header className="z-40 h-screen w-3/12 bg-white p-10 flex flex-row flex-wrap justify-between">
+    <header className="z-40 h-screen w-3/12 bg-white p-10 sm:flex flex-row flex-wrap justify-between hidden">
       <nav className="w-full flex flex-wrap justify-center gap-6">
         <Image
           src={logoFb}

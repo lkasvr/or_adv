@@ -2,8 +2,22 @@ import { useField } from 'formik';
 
 import { FieldInputProps } from './types';
 
-const TextField = ({ label, ...props }: FieldInputProps) => {
-  const [field, meta] = useField(props);
+const PhoneField = ({ label, ...props }: FieldInputProps) => {
+  const [field, meta, helpers] = useField(props);
+  const { setValue } = helpers;
+
+  const formatBRPhoneNumber = (value: string) => {
+    const digits = !value ? '' : value.replace(/[^\d]/g, '');
+    if (!digits || digits.length < 2) return value;
+    const cut = digits.length === 10 ? 6 : 7;
+    const max = digits.length > 11 ? 11 : digits.length;
+    // eslint-disable-next-line prettier/prettier
+    return `(${digits.substring(0, 2)}) ${digits.substring(2, cut)}${digits.length >= 7 ? '-' : ''}${digits.substring(cut, max)}`;
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(formatBRPhoneNumber(event.target.value));
+
   return (
     <div className={`relative z-0 mb-4 group ${props.wraperclass}`}>
       <input
@@ -11,6 +25,7 @@ const TextField = ({ label, ...props }: FieldInputProps) => {
         placeholder=" "
         {...field}
         {...props}
+        onChange={handleChange}
       />
       <label
         htmlFor={props.id ?? props.name}
@@ -25,4 +40,4 @@ const TextField = ({ label, ...props }: FieldInputProps) => {
   );
 };
 
-export default TextField;
+export default PhoneField;

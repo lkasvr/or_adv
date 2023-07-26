@@ -1,7 +1,7 @@
 'use client';
-import { usePathname } from 'next/navigation'
 import Transition from '@/components/Transition';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
