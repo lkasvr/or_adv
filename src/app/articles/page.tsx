@@ -1,4 +1,4 @@
-import WarningCard from "@/components/WarningCard";
+import WarningCard from '@/components/WarningCard';
 
 export default function Page() {
   return (
@@ -9,7 +9,8 @@ export default function Page() {
       >
         <div className="mt-2">
           <p className="text-sm text-gray-500">
-            O recurso de artigos terá como finalidade a produção e divulgação científica de conteúdos na área do direito e relacionadas.
+            O recurso de artigos terá como finalidade a produção e divulgação
+            científica de conteúdos na área do direito e relacionadas.
           </p>
         </div>
       </WarningCard>
