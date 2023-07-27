@@ -14,13 +14,19 @@ const selectedButton =
 
 function Button({ text, href, extendClass }: IButton) {
   const pathname = usePathname();
+
+  const handleClick = () => {
+    console.log('pathname', pathname);
+    console.log('href', href);
+  };
   return (
     <Link
       href={href}
       className={`w-3/4 flex justify-center items-center mb-5 p-2 border border-primary shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-primary hover:text-white
       ${pathname === href ? selectedButton : 'text-primary'} ${extendClass}`}
+      onClick={handleClick}
     >
-      <button>{text}</button>
+      {text}
     </Link>
   );
 }
