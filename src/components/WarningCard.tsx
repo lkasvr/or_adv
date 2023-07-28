@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { AiFillWarning } from 'react-icons/ai';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 

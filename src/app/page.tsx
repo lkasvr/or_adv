@@ -1,5 +1,4 @@
 import WarningCard from '@/components/WarningCard';
-import React from 'react';
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
 import { useField } from 'formik';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 import { FieldInputProps } from './types';
 
