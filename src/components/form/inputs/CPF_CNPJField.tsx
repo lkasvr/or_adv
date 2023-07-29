@@ -1,27 +1,12 @@
 import { useField } from 'formik';
 import React from 'react';
 
+import { formatCNPJ, formatCPF } from '../utils/formatters';
 import { FieldInputProps } from './types';
 
 const CPF_CNPJField = ({ label, ...props }: FieldInputProps) => {
   const [field, meta, helpers] = useField(props);
   const { setValue } = helpers;
-
-  const formatCNPJ = (value: string) => {
-    value = value.replace(/^(\d{2})(\d)/, '$1.$2');
-    value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-    value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
-    value = value.replace(/(\d{4})(\d)/, '$1-$2');
-    return value;
-  };
-
-  const formatCPF = (value: string) => {
-    value = value.replace(/(\d{3})(\d)/, '$1.$2');
-    value = value.replace(/(\d{3})(\d)/, '$1.$2');
-
-    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    return value;
-  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.replace(/\D/g, '');
