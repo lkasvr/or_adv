@@ -107,7 +107,7 @@ export default function Page() {
           validationSchema={validationYupSchema}
           classStyles="flex flex-row flex-wrap sm:grid grid-cols-2 gap-4"
         >
-          <h2 className="col-span-full sm:mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white">
+          <h2 className="col-span-full sm:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
             Fale conosco
           </h2>
           <TextField

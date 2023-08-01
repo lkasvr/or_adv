@@ -8,7 +8,7 @@ const TextField = ({ label, ...props }: FieldInputProps) => {
   return (
     <div className={`relative z-0 mb-4 group ${props.wraperclass}`}>
       <input
-        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-secondary/75 focus:outline-none focus:ring-0 focus:border-secondary/70 peer"
+        className="block py-2.5 px-0 w-full text-gray-300 text-sm bg-transparent border-0 border-b-2 appearance-none border-gray-600 dark:focus:border-secondary/75 focus:outline-none focus:ring-0 focus:border-secondary/70 peer"
         placeholder=" "
         {...field}
         {...props}

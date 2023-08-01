@@ -22,12 +22,12 @@ const TextArea = ({ label, ...props }: ITextArea) => {
     <div className={props.wraperclass}>
       <label
         htmlFor={props.id ?? props.name}
-        className="block mb-2 text-sm font-medium text-gray-400"
+        className="block mb-2 text-sm font-medium text-gray-500"
       >
         {label}
       </label>
       <textarea
-        className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="block w-full p-4 text-gray-300 border border-gray-600 rounded-lg bg-transparent sm:text-md focus:ring-secondary/70 focus:border-secondary/70 placeholder-gray-500"
         {...field}
         {...props}
         onChange={handleChange}

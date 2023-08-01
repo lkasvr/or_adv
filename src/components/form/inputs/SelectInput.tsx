@@ -13,12 +13,12 @@ const SelectInput = ({ label, children, ...props }: ISelectInput) => {
     <div className={props.wraperclass}>
       <label
         htmlFor={props.id ?? props.name}
-        className="block mb-2 text-sm font-medium text-gray-400"
+        className="block mb-2 text-sm font-medium text-gray-500"
       >
         {label}
       </label>
       <select
-        className="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-transparent sm:text-md focus:ring-secondary/70 focus:border-secondary/70 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-secondary/70 dark:focus:border-secondary/70"
+        className="block w-full p-1 text-gray-300 border border-gray-600 rounded-lg bg-transparent sm:text-md focus:ring-secondary/70 focus:border-secondary/70 dark:placeholder-gray-500"
         {...field}
         {...props}
       >
