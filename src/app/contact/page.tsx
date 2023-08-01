@@ -12,6 +12,7 @@ import TextField from '@/components/form/inputs/TextField';
 import sendEmail from '@/services/email/emailjs';
 import { ContactTemplate } from '@/services/email/template/types';
 import { FormikHelpers } from 'formik';
+import React from 'react';
 import * as Yup from 'yup';
 
 type FormData = {
@@ -25,6 +26,8 @@ type FormData = {
 };
 
 export default function Page() {
+  const [isDisabled, setIsDisabled] = React.useState(false);
+
   const validationYupSchema = Yup.object({
     firstName: Yup.string()
       .min(2, 'O primeiro nome deve ser composto de no mínimo 2 caracteres')
@@ -64,6 +67,7 @@ export default function Page() {
     }: FormData,
     actions: FormikHelpers<FormData>,
   ) => {
+    setIsDisabled(true);
     actions.setSubmitting(true);
     const templateParams: ContactTemplate = {
       personNumberRegister: personNumberRegister
@@ -79,11 +83,13 @@ export default function Page() {
       templateID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
       templateParams,
       success: (res) => {
+        setIsDisabled(false);
         actions.resetForm();
         actions.setSubmitting(false);
         console.log('SUCCESS!', res.status, res.text);
       },
       error: (error) => {
+        setIsDisabled(false);
         actions.setSubmitting(false);
         console.error('FAILED...', error);
       },
@@ -163,8 +169,9 @@ export default function Page() {
             rows={4}
           />
           <button
-            className="col-span-full w-2/5 mt-7 mb-6 p-2 justify-self-center flex justify-center items-center bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary text-white"
+            className="col-span-full w-2/5 mt-7 mb-6 p-2 justify-self-center flex justify-center items-center bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary text-gray-300 disabled:text-gray-600 disabled:bg-secondary/20"
             type="submit"
+            disabled={isDisabled}
           >
             Enviar Mensagem
           </button>
