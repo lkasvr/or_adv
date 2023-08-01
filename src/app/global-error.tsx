@@ -8,10 +8,6 @@ export default function GlobalError({
   reset: () => void;
 }) {
   console.log(error);
-  console.log(error.name);
-  console.log(error.message);
-  console.log(error.cause);
-  console.log(error.stack);
   return (
     <html>
       <body>

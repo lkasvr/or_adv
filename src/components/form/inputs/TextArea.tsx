@@ -32,7 +32,7 @@ const TextArea = ({ label, ...props }: ITextArea) => {
         {...props}
         onChange={handleChange}
       />
-      {meta.touched ? (
+      {meta.touched && !meta.error ? (
         <div
           className={`mt-1 ml-4 text-sm
             ${field.value.length === 2000 ? 'text-red-600/70' : 'text-gray-500'}
@@ -40,9 +40,9 @@ const TextArea = ({ label, ...props }: ITextArea) => {
         >
           {field.value.length} de 2000
         </div>
-      ) : meta.touched && meta.error ? (
+      ) : (
         <div className="mt-1 text-red-600/70 text-xs">{meta.error}</div>
-      ) : null}
+      )}
     </div>
   );
 };

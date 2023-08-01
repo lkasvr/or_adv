@@ -1,20 +1,15 @@
 import { useField } from 'formik';
 import React from 'react';
 
+import { formatBRPhoneNumber } from '../utils/formatters';
 import { FieldInputProps } from './types';
+
+export const phoneRegExpMask =
+  /^\((?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\) (?:[2-8]|9[1-9])\d{3}-\d{4}$/;
 
 const PhoneField = ({ label, ...props }: FieldInputProps) => {
   const [field, meta, helpers] = useField(props);
   const { setValue } = helpers;
-
-  const formatBRPhoneNumber = (value: string) => {
-    const digits = !value ? '' : value.replace(/[^\d]/g, '');
-    if (!digits || digits.length < 2) return value;
-    const cut = digits.length === 10 ? 6 : 7;
-    const max = digits.length > 11 ? 11 : digits.length;
-    // eslint-disable-next-line prettier/prettier
-    return `(${digits.substring(0, 2)}) ${digits.substring(2, cut)}${digits.length >= 7 ? '-' : ''}${digits.substring(cut, max)}`;
-  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(formatBRPhoneNumber(event.target.value));

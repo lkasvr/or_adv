@@ -4,6 +4,9 @@ import React from 'react';
 import { formatCNPJ, formatCPF } from '../utils/formatters';
 import { FieldInputProps } from './types';
 
+export const cpfCnpjRegExpMask =
+  /(^\d{3}\.\d{3}\.\d{3}-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$)/;
+
 const CPF_CNPJField = ({ label, ...props }: FieldInputProps) => {
   const [field, meta, helpers] = useField(props);
   const { setValue } = helpers;

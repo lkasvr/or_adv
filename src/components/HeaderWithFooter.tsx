@@ -19,6 +19,7 @@ function HeaderWithFooter() {
       <nav className="w-full flex flex-wrap justify-center gap-6">
         <Image
           src={logoFb}
+          priority
           sizes="100vw"
           style={{
             width: 'auto',

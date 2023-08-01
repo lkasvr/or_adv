@@ -89,7 +89,7 @@ export default function Page() {
     <div className="w-full h-full max-h-[781px] flex flex-row flex-nowrap justify-center">
       <article className="p-10 w-1/3 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
         <span className="text-lg">
-          Somos o escritório de advocacia
+          Somos o escritório
           <h2 className="mb-8 mt-4 ml-4 text-center text-xl font-bold">
             OLIVEIRA & RIOS – ADVOGADOS
           </h2>
@@ -147,10 +147,6 @@ export default function Page() {
       <hr className="w-[1px] h-2/3 place-self-center bg-white" />
 
       <div className="p-10 w-[66.6%] flex flex-row flex-wrap justify-center items-start">
-        <h2 className="w-full ml-6 self-center text-lg text-white">
-          Atendemos no Plano Piloto em Brasília, no edifício Brasil 21. Conheça
-          as dependências
-        </h2>
         <Swiper
           effect={'coverflow'}
           grabCursor={true}
