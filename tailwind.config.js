@@ -5,8 +5,6 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
-    //Flowbite
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -19,8 +17,8 @@ module.exports = {
         'gray-dark': '#666666',
         'gray-main': '#808080',
         'gray-light': '#cccccc'
-      }
+      },
     }
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [],
 }

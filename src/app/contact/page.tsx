@@ -11,8 +11,10 @@ import TextArea from '@/components/form/inputs/TextArea';
 import TextField from '@/components/form/inputs/TextField';
 import sendEmail from '@/services/email/emailjs';
 import { ContactTemplate } from '@/services/email/template/types';
+import { createAlert } from '@/store/alertSlice';
 import { FormikHelpers } from 'formik';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 type FormData = {
@@ -26,6 +28,8 @@ type FormData = {
 };
 
 export default function Page() {
+  const dispatch = useDispatch();
+
   const [isDisabled, setIsDisabled] = React.useState(false);
 
   const validationYupSchema = Yup.object({
@@ -83,10 +87,16 @@ export default function Page() {
       templateID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
       templateParams,
       success: (res) => {
+        dispatch(
+          createAlert({
+            title: 'Mensagem enviada',
+            message: 'Sua mensagem foi enviada com sucesso.',
+            type: 'success',
+          }),
+        );
         setIsDisabled(false);
         actions.resetForm();
         actions.setSubmitting(false);
-        console.log('SUCCESS!', res.status, res.text);
       },
       error: (error) => {
         setIsDisabled(false);
@@ -169,7 +179,7 @@ export default function Page() {
             rows={4}
           />
           <button
-            className="col-span-full w-2/5 mt-7 mb-6 p-2 justify-self-center flex justify-center items-center bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary text-gray-300 disabled:text-gray-600 disabled:bg-secondary/20"
+            className="col-span-full w-2/5 mt-7 mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
             type="submit"
             disabled={isDisabled}
           >

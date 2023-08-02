@@ -13,6 +13,7 @@ const TextArea = ({ label, ...props }: ITextArea) => {
   const { setValue } = helpers;
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    helpers.setTouched(true);
     const { value } = event.target;
     if (value.length > 2000) return setValue(value.substring(0, 2000));
     setValue(value);
@@ -32,17 +33,17 @@ const TextArea = ({ label, ...props }: ITextArea) => {
         {...props}
         onChange={handleChange}
       />
-      {meta.touched && !meta.error ? (
-        <div
-          className={`mt-1 ml-4 text-sm
+      <div
+        className={`mt-1 ml-4 text-md
             ${field.value.length === 2000 ? 'text-red-600/70' : 'text-gray-500'}
             `}
-        >
-          {field.value.length} de 2000
-        </div>
-      ) : (
-        <div className="mt-1 text-red-600/70 text-xs">{meta.error}</div>
-      )}
+      >
+        {meta.touched && !meta.error ? (
+          `${field.value.length} de 2000`
+        ) : (
+          <span className="text-red-600/70 text-xs">{meta.error}</span>
+        )}
+      </div>
     </div>
   );
 };

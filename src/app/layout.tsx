@@ -1,5 +1,7 @@
 import './globals.css';
+import AlertsWrapper from '@/components/AlertsWrapper';
 import HeaderWithFooter from '@/components/HeaderWithFooter';
+import ReduxProvider from '@/providers/ReduxProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -20,16 +22,19 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${inter.className} max-h-screen bg-main bg-no-repeat bg-cover flex flex-row flex-wrap`}
+        className={`${inter.className} max-h-screen overflow-hidden bg-main bg-no-repeat bg-cover flex flex-row flex-wrap`}
       >
-        <HeaderWithFooter />
-        <main className="w-full sm:w-9/12 max-h-screen sm:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
-          <Template>
-            <section className="w-full h-full bg-primary bg-opacity-75 sm:rounded-3xl">
-              {children}
-            </section>
-          </Template>
-        </main>
+        <ReduxProvider>
+          <AlertsWrapper />
+          <HeaderWithFooter />
+          <main className="w-full sm:w-9/12 max-h-screen sm:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
+            <Template>
+              <section className="w-full h-full bg-primary bg-opacity-75 sm:rounded-3xl">
+                {children}
+              </section>
+            </Template>
+          </main>
+        </ReduxProvider>
       </body>
     </html>
   );
