@@ -86,7 +86,7 @@ export default function Page() {
     sendEmail<ContactTemplate>({
       templateID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
       templateParams,
-      success: (res) => {
+      success: (/*res*/) => {
         dispatch(
           createAlert({
             title: 'Mensagem enviada',
@@ -99,9 +99,16 @@ export default function Page() {
         actions.setSubmitting(false);
       },
       error: (error) => {
+        dispatch(
+          createAlert({
+            title: `Erro (${error.status})`,
+            message: 'Algo deu errado no envio da sua mensagem.',
+            type: 'error',
+          }),
+        );
         setIsDisabled(false);
         actions.setSubmitting(false);
-        console.error('FAILED...', error);
+        console.error(error);
       },
     });
   };

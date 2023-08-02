@@ -4,7 +4,7 @@ interface ISendEmail<Template> {
   templateID: string;
   templateParams: Template;
   success: (res: EmailJSResponseStatus) => void;
-  error: (error: unknown) => void;
+  error: (error: EmailJSResponseStatus) => void;
 }
 
 const sendEmail = <Template extends Record<string, unknown> | undefined>({
