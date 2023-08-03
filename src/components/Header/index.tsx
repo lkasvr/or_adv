@@ -50,7 +50,7 @@ function HeaderWithFooter() {
 
   return (
     <motion.header
-      initial={true}
+      initial={isMobile}
       animate={isMobile ? animateVariant : 'open'}
       custom={height}
       variants={sidebar}
