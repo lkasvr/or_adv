@@ -114,86 +114,84 @@ export default function Page() {
   };
 
   return (
-    <div className="p-6 xl:p-10 w-full h-full">
-      <div className="flex flex-row flex-nowrap justify-evenly p-4 xl:p-10 w-full h-full border rounded-2xl">
-        <Form<FormData>
-          initialValues={{
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            personNumberRegister: '',
-            area: '',
-            report: '',
-          }}
-          onSubmit={handleSubmit}
-          validationSchema={validationYupSchema}
-          classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto"
+    <div className="flex flex-row flex-nowrap justify-evenly p-4 xl:p-10 w-full h-full border rounded-2xl">
+      <Form<FormData>
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          personNumberRegister: '',
+          area: '',
+          report: '',
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={validationYupSchema}
+        classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto"
+      >
+        <h2 className="md:col-span-full self-start md:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
+          Fale conosco
+        </h2>
+        <TextField
+          label="Primeiro Nome*"
+          name="firstName"
+          type="text"
+          wraperclass="w-4/5"
+        />
+        <TextField
+          label="Sobrenome*"
+          name="lastName"
+          type="text"
+          wraperclass="w-4/5 justify-self-end"
+        />
+        <TextField
+          label="E-mail*"
+          name="email"
+          type="text"
+          wraperclass="w-4/5"
+        />
+        <PhoneField
+          label="Celular/Telefone*"
+          name="phone"
+          type="text"
+          wraperclass="w-4/5 justify-self-end"
+        />
+        <CPF_CNPJField
+          label="CPF/CNPJ"
+          name="personNumberRegister"
+          type="text"
+          wraperclass="w-4/5"
+        />
+        <SelectInput
+          label="Área relacionada*"
+          name="area"
+          type="text"
+          wraperclass="w-4/5 justify-self-end"
         >
-          <h2 className="md:col-span-full self-start md:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
-            Fale conosco
-          </h2>
-          <TextField
-            label="Primeiro Nome*"
-            name="firstName"
-            type="text"
-            wraperclass="w-4/5"
-          />
-          <TextField
-            label="Sobrenome*"
-            name="lastName"
-            type="text"
-            wraperclass="w-4/5 justify-self-end"
-          />
-          <TextField
-            label="E-mail*"
-            name="email"
-            type="text"
-            wraperclass="w-4/5"
-          />
-          <PhoneField
-            label="Celular/Telefone*"
-            name="phone"
-            type="text"
-            wraperclass="w-4/5 justify-self-end"
-          />
-          <CPF_CNPJField
-            label="CPF/CNPJ"
-            name="personNumberRegister"
-            type="text"
-            wraperclass="w-4/5"
-          />
-          <SelectInput
-            label="Área relacionada*"
-            name="area"
-            type="text"
-            wraperclass="w-4/5 justify-self-end"
-          >
-            <option value="">Selecione uma área do direito ...</option>
-            <option value="Administrativo">Administrativo</option>
-            <option value="Cível">Cível</option>
-            <option value="Consumidor">Consumidor</option>
-            <option value="Criminal">Criminal</option>
-            <option value="Trabalhista">Trabalhista</option>
-            <option value="Outra">Outra</option>
-          </SelectInput>
-          <TextArea
-            label="Relato*"
-            name="report"
-            type="text"
-            placeholder="Digite sua mensagem ..."
-            wraperclass="col-span-full w-full mt-2 justify-self-start flex flex-row flex-wrap text-white"
-            rows={4}
-          />
-          <button
-            className="col-span-full w-2/5 mt-2 mb-1 2xl:mt-7 2xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
-            type="submit"
-            disabled={isDisabled}
-          >
-            Enviar Mensagem
-          </button>
-        </Form>
-      </div>
+          <option value="">Selecione uma área do direito ...</option>
+          <option value="Administrativo">Administrativo</option>
+          <option value="Cível">Cível</option>
+          <option value="Consumidor">Consumidor</option>
+          <option value="Criminal">Criminal</option>
+          <option value="Trabalhista">Trabalhista</option>
+          <option value="Outra">Outra</option>
+        </SelectInput>
+        <TextArea
+          label="Relato*"
+          name="report"
+          type="text"
+          placeholder="Digite sua mensagem ..."
+          wraperclass="col-span-full w-full mt-2 justify-self-start flex flex-row flex-wrap text-white"
+          rows={5}
+        />
+        <button
+          className="col-span-full w-2/5 mt-2 mb-1 2xl:mt-7 2xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
+          type="submit"
+          disabled={isDisabled}
+        >
+          Enviar Mensagem
+        </button>
+      </Form>
     </div>
   );
 }

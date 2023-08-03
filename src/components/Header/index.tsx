@@ -6,7 +6,13 @@ import { motion, useCycle } from 'framer-motion';
 import Image from 'next/image';
 import logoFb from 'public/assets/logoFb.png';
 import React from 'react';
-import { FiInstagram, FiPhone, FiMapPin, FiMail } from 'react-icons/fi';
+import {
+  FiLinkedin,
+  FiInstagram,
+  FiPhone,
+  FiMapPin,
+  FiMail,
+} from 'react-icons/fi';
 
 import { MenuToggle } from './MenuToggle';
 
@@ -55,13 +61,13 @@ function HeaderWithFooter() {
       custom={height}
       variants={sidebar}
       ref={containerRef}
-      className="absolute md:static z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white p-10 flex flex-row flex-wrap justify-between"
+      className="absolute md:static z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white p-10 flex flex-row flex-wrap justify-between overflow-auto max-md:scrollbar-none"
     >
       <MenuToggle
         className="absolute md:hidden top-[31px] left-[29px]"
         toggle={() => toggleOpen()}
       />
-      <nav className="w-full flex flex-wrap justify-center gap-6">
+      <nav className="w-full max-sm:h-[85%] flex flex-wrap justify-center gap-14">
         <Image
           src={logoFb}
           priority
@@ -86,12 +92,15 @@ function HeaderWithFooter() {
           ))}
         </ul>
       </nav>
-      <footer className="w-full overflow-hidden border-t border-primary/25 p-4 self-end flex flex-row flex-wrap text-xs">
-        <div className="w-full h-6 mb-6 flex flex-row flex-nowrap justify-center">
-          <FiInstagram className="w-6 h-6" />
-        </div>
-        <div className="w-1/2 mb-2">
-          <b>Telefone:</b>
+
+      <div className="w-full max-sm:h-[15%] max-sm:mb-0 mt-12 h-6 mb-6 p-4 flex flex-row flex-nowrap justify-center border-t border-primary/25">
+        <FiLinkedin className="w-6 h-6 mr-4" />
+        <FiInstagram className="w-6 h-6" />
+      </div>
+
+      <footer className="w-full overflow-hidden p-4 self-end flex flex-row flex-wrap text-xs">
+        <div className="w-full lg:w-1/2 mb-2">
+          <b className="w-full text-center">Telefone:</b>
           <div className="flex flex-row flex-nowrap">
             <div>
               <FiPhone />
@@ -99,17 +108,19 @@ function HeaderWithFooter() {
             &nbsp;(61) 2107-9419
           </div>
         </div>
-        <div className="w-1/2 mb-2">
-          <b>Email:</b>
-          <div className="flex flex-row flex-nowrap">
+
+        <div className="w-full lg:w-1/2 mb-2">
+          <b className="w-full text-center">Email:</b>
+          <span className="flex flex-row flex-nowrap">
             <div>
               <FiMail />
             </div>
             &nbsp;atendimento@oliveirarios.adv.br
-          </div>
+          </span>
         </div>
+
         <div className="w-full">
-          <b>Endereço:</b>{' '}
+          <b className="w-full text-center">Endereço:</b>{' '}
           <a
             href="https://goo.gl/maps/1Zm88MR5VpABwLVe6"
             target="_blank"
@@ -123,7 +134,8 @@ function HeaderWithFooter() {
             21, Asa Sul, Brasília - DF
           </a>
         </div>
-        <p className="w-full mt-6 flex justify-center">
+
+        <p className="w-full mt-4 md:mt-6 flex justify-center">
           Copyright &copy; 2023 | Oliveira Rios Advogados
         </p>
       </footer>

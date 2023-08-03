@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+//import Image from 'next/image';
 import {
   FaPenNib,
   FaUserGroup,
@@ -11,8 +11,8 @@ import {
 import {
   Autoplay,
   EffectCards,
-  EffectCoverflow,
-  Pagination,
+  //  EffectCoverflow,
+  //  Pagination,
 } from 'swiper/modules';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -76,21 +76,21 @@ const items = [
   },
 ];
 
-const photos = [
-  { url: '/assets/images/coworking-01.webp', width: 600, height: 420 },
-  { url: '/assets/images/brasil21_noturna.jpg', width: 2000, height: 1333 },
-  { url: '/assets/images/coworking-02.webp', width: 660, height: 420 },
-  { url: '/assets/images/coworking-03.webp', width: 554, height: 720 },
-  { url: '/assets/images/brasil21_diurna.jpg', width: 4110, height: 2740 },
-];
+// const photos = [
+//   { url: '/assets/images/coworking-01.webp', width: 600, height: 420 },
+//   { url: '/assets/images/brasil21_noturna.jpg', width: 2000, height: 1333 },
+//   { url: '/assets/images/coworking-02.webp', width: 660, height: 420 },
+//   { url: '/assets/images/coworking-03.webp', width: 554, height: 720 },
+//   { url: '/assets/images/brasil21_diurna.jpg', width: 4110, height: 2740 },
+// ];
 
 export default function Page() {
   return (
-    <div className="w-full h-full max-h-[781px] flex flex-row flex-nowrap justify-center">
-      <article className="p-10 w-1/3 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
+    <div className="w-full h-full flex flex-row flex-wrap justify-center overflow-auto max-md:scrollbar-none">
+      <article className="p-10 w-full md:w-2/5 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
         <span className="text-lg">
           Somos o escritório
-          <h2 className="mb-8 mt-4 ml-4 text-center text-xl font-bold">
+          <h2 className="mb-6 mt-2 ml-4 text-center text-lg md:text-xl font-bold">
             OLIVEIRA & RIOS – ADVOGADOS
           </h2>
         </span>
@@ -143,41 +143,8 @@ export default function Page() {
           ))}
         </Swiper>
       </article>
-
-      <hr className="w-[1px] h-2/3 place-self-center bg-white" />
-
-      <div className="p-10 w-[66.6%] flex flex-row flex-wrap justify-center items-start">
-        <Swiper
-          effect={'coverflow'}
-          grabCursor={true}
-          centeredSlides={false}
-          slidesPerView={'auto'}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          modules={[EffectCoverflow, Pagination]}
-          className="relative"
-        >
-          {photos.map((photo) => (
-            <SwiperSlide
-              key={photo.url}
-              style={{ width: '350px', height: '300px' }}
-            >
-              <Image
-                src={photo.url}
-                width={photo.width}
-                height={photo.height}
-                alt="photo"
-                className="block w-full h-full"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <hr className="w-10/12 h-[1px] md:w-[1px] md:h-2/3 place-self-center bg-white" />
+      <div className="p-10 w-[66.6%] flex flex-row flex-wrap justify-center items-start"></div>
     </div>
   );
 }
