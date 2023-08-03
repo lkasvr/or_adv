@@ -39,17 +39,12 @@ const menuLinks = [
 ];
 
 function HeaderWithFooter() {
-  const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = React.useRef(null);
   const { height } = useDimensions(containerRef);
-
-  React.useEffect(() => {
-    if (!isMobile) {
-      toggleOpen();
-    }
-  }, []);
-
   const isMobile = useMediaQuery('(max-width: 767px)');
+  const [isOpen, toggleOpen] = useCycle(false, true);
+
+  React.useEffect(() => (!isMobile ? toggleOpen() : () => {}), []);
 
   const animateVariant = isOpen ? 'open' : 'closed';
 
