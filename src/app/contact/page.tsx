@@ -182,11 +182,11 @@ export default function Page() {
             name="report"
             type="text"
             placeholder="Digite sua mensagem ..."
-            wraperclass="col-span-full w-full mt-3 justify-self-start flex flex-row flex-wrap text-white"
+            wraperclass="col-span-full w-full mt-2 justify-self-start flex flex-row flex-wrap text-white"
             rows={4}
           />
           <button
-            className="col-span-full w-2/5 mt-2 mb-1 xl:mt-7 xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
+            className="col-span-full w-2/5 mt-2 mb-1 2xl:mt-7 2xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
             type="submit"
             disabled={isDisabled}
           >

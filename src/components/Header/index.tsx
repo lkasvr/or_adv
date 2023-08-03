@@ -43,14 +43,20 @@ function HeaderWithFooter() {
   const containerRef = React.useRef(null);
   const { height } = useDimensions(containerRef);
 
+  React.useEffect(() => {
+    if (!isMobile) {
+      toggleOpen();
+    }
+  }, []);
+
   const isMobile = useMediaQuery('(max-width: 767px)');
 
-  const animateVariant = isMobile ? (isOpen ? 'open' : 'closed') : 'open';
+  const animateVariant = isOpen ? 'open' : 'closed';
 
   return (
     <motion.header
-      initial={false}
-      animate={animateVariant}
+      initial={true}
+      animate={isMobile ? animateVariant : 'open'}
       custom={height}
       variants={sidebar}
       ref={containerRef}
@@ -130,4 +136,4 @@ function HeaderWithFooter() {
   );
 }
 
-export default HeaderWithFooter;
+
