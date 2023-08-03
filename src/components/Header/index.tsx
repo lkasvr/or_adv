@@ -136,4 +136,4 @@ function HeaderWithFooter() {
   );
 }
 
-
+export default HeaderWithFooter;
