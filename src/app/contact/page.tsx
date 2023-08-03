@@ -114,8 +114,8 @@ export default function Page() {
   };
 
   return (
-    <div className="p-6 sm:p-10 w-full h-full">
-      <div className="p-4 sm:p-10 w-full h-full border rounded-2xl">
+    <div className="p-6 xl:p-10 w-full h-full">
+      <div className="flex flex-row flex-nowrap justify-evenly p-4 xl:p-10 w-full h-full border rounded-2xl">
         <Form<FormData>
           initialValues={{
             firstName: '',
@@ -128,9 +128,9 @@ export default function Page() {
           }}
           onSubmit={handleSubmit}
           validationSchema={validationYupSchema}
-          classStyles="flex flex-row flex-wrap sm:grid grid-cols-2 gap-4"
+          classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto"
         >
-          <h2 className="col-span-full sm:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
+          <h2 className="md:col-span-full self-start md:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
             Fale conosco
           </h2>
           <TextField
@@ -186,7 +186,7 @@ export default function Page() {
             rows={4}
           />
           <button
-            className="col-span-full w-2/5 mt-7 mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
+            className="col-span-full w-2/5 mt-2 mb-1 xl:mt-7 xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
             type="submit"
             disabled={isDisabled}
           >

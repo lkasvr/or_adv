@@ -23,7 +23,9 @@ const Form = <T extends object>({
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      <FormikFormComponent className={classStyles ? classStyles : ''}>
+      <FormikFormComponent
+        className={`${classStyles ? classStyles : ''} max-md:scrollbar-none`}
+      >
         {children}
       </FormikFormComponent>
     </Formik>

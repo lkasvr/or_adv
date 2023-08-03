@@ -7,3 +7,29 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 25px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 2px;
+
+  box-shadow: inset 0 0 10px 10px white;
+  border: solid 10px transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+
+  box-shadow: inset 0 0 10px 10px #15212c;
+  border: solid 10px transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2c455b;
+}

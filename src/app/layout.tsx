@@ -27,7 +27,7 @@ export default function RootLayout({
         <ReduxProvider>
           <AlertsWrapper />
           <HeaderWithFooter />
-          <main className="w-full md:w-9/12 max-h-screen sm:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
+          <main className="w-full md:w-8/12 xl:w-9/12 h-screen md:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
             <Template>
               <section className="w-full h-full bg-primary bg-opacity-75 md:rounded-3xl">
                 {children}

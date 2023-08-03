@@ -54,7 +54,7 @@ function HeaderWithFooter() {
       custom={height}
       variants={sidebar}
       ref={containerRef}
-      className="absolute md:static z-40 h-screen w-full md:w-3/12 bg-white p-10 flex flex-row flex-wrap justify-between"
+      className="absolute md:static z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white p-10 flex flex-row flex-wrap justify-between"
     >
       <MenuToggle
         className="absolute md:hidden top-[31px] left-[29px]"
