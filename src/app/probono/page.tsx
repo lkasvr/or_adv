@@ -5,6 +5,8 @@ import PhoneField from '@/components/form/inputs/PhoneField';
 import SelectInput from '@/components/form/inputs/SelectInput';
 import TextArea from '@/components/form/inputs/TextArea';
 import TextField from '@/components/form/inputs/TextField';
+import { IRootState } from '@/store';
+import { useSelector } from 'react-redux';
 
 type FormData = {
   firstName: string;
@@ -17,11 +19,29 @@ type FormData = {
 };
 
 export default function Page() {
+  const { isMobile } = useSelector((state: IRootState) => state.app);
+
+  const toggleTitle = (flag: boolean) => {
+    if (flag) {
+      return (
+        <h2 className="md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
+          Conte-nos sua história
+        </h2>
+      );
+    }
+    return (
+      <h2 className="mt-16 md:mt-0 md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
+        Programa &nbsp; OR Pro Bono
+      </h2>
+    );
+  };
+
   return (
-    <div className="flex flex-row flex-nowrap justify-evenly w-full h-full">
-      <div className="w-1/2">
-        <article className="p-10 w-full flex flex-row flex-wrap justify-center content-center gap-0 text-sm text-white">
-          <p className="mb-4 text-justify indent-8">
+    <div className="flex flex-row flex-wrap 2xl:flex-nowrap justify-evenly w-full h-full overflow-auto">
+      <div className="w-full 2xl:w-1/2">
+        <article className="px-2 xl:px-10 w-full flex flex-row flex-wrap justify-center content-center gap-0 text-sm text-white">
+          {isMobile ? toggleTitle(!isMobile) : toggleTitle(isMobile)}
+          <p className="max-md:mt-4 mb-4 text-justify indent-8">
             A <b>Constituição Federal promulgada em 1988</b> reservou à
             advocacia o múnus público, ao destacar o advogado como indispensável
             à administração da Justiça, sendo inviolável por seus atos e
@@ -65,11 +85,11 @@ export default function Page() {
             político-partidários ou eleitorais.
           </p>
           <p>
-            <b>Conte-nos a sua história.</b>
+            <b>{!isMobile ? 'Conte-nos sua história' : ''}</b>
           </p>
         </article>
       </div>
-      <div className="w-1/2 h-full p-4 xl:p-10 flex flex-row flex-nowrap justify-evenly border rounded-2xl">
+      <div className="w-full 2xl:w-1/2 h-full p-4 2xl:p-10 flex flex-row flex-nowrap justify-evenly border rounded-2xl">
         <Form<FormData>
           initialValues={{
             firstName: '',
@@ -80,11 +100,9 @@ export default function Page() {
             area: '',
             report: '',
           }}
-          classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto"
+          classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto md:scrollbar-none"
         >
-          <h2 className="md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
-            Programa &nbsp;&nbsp; OR Pro Bono
-          </h2>
+          {isMobile ? toggleTitle(isMobile) : ''}
           <TextField
             label="Primeiro Nome*"
             name="firstName"

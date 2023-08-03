@@ -1,6 +1,7 @@
 import './globals.css';
 import AlertsWrapper from '@/components/AlertsWrapper';
 import HeaderWithFooter from '@/components/Header';
+import InitialAppStateProvider from '@/providers/InitialAppStateProvider';
 import ReduxProvider from '@/providers/ReduxProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -25,17 +26,19 @@ export default function RootLayout({
         className={`${inter.className} max-h-screen overflow-hidden bg-main bg-no-repeat bg-cover flex flex-row flex-nowrap`}
       >
         <ReduxProvider>
-          <AlertsWrapper />
-          <HeaderWithFooter />
-          <main className="w-full md:w-8/12 xl:w-9/12 h-screen md:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
-            <Template>
-              <section className="w-full h-full bg-primary bg-opacity-75 md:rounded-3xl">
-                <div className="p-4 xl:p-6 2xl:p-10 w-full h-full">
-                  {children}
-                </div>
-              </section>
-            </Template>
-          </main>
+          <InitialAppStateProvider>
+            <AlertsWrapper />
+            <HeaderWithFooter />
+            <main className="w-full md:w-8/12 xl:w-9/12 h-screen p-6 xl:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
+              <Template>
+                <section className="w-full h-full bg-primary bg-opacity-75 md:rounded-3xl">
+                  <div className="p-4 xl:p-6 2xl:p-10 w-full h-full">
+                    {children}
+                  </div>
+                </section>
+              </Template>
+            </main>
+          </InitialAppStateProvider>
         </ReduxProvider>
       </body>
     </html>
