@@ -49,7 +49,7 @@ export default function Page() {
       .required('O celular/telefone para contato é requerido'),
     personNumberRegister: Yup.string().matches(
       cpfCnpjRegExpMask,
-      'CPF ou CNP inválido',
+      'CPF ou CNPJ inválido',
     ),
     report: Yup.string()
       .max(
@@ -114,7 +114,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-row flex-nowrap justify-evenly p-4 xl:p-10 w-full h-full border rounded-2xl">
+    <div className="flex flex-row flex-nowrap justify-evenly p-4 xl:px-9 w-full h-full border rounded-2xl">
       <Form<FormData>
         initialValues={{
           firstName: '',
@@ -164,11 +164,11 @@ export default function Page() {
         />
         <SelectInput
           label="Área relacionada*"
+          placeholder="Selecione uma área do direito ..."
           name="area"
           type="text"
           wraperclass="w-4/5 justify-self-end"
         >
-          <option value="">Selecione uma área do direito ...</option>
           <option value="Administrativo">Administrativo</option>
           <option value="Cível">Cível</option>
           <option value="Consumidor">Consumidor</option>

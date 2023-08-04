@@ -137,7 +137,7 @@ function HeaderWithFooter() {
         </div>
 
         <p className="w-full mt-4 md:mt-6 flex justify-center">
-          Copyright &copy; 2023 | Oliveira Rios Advogados
+          Copyright &copy; {new Date().getFullYear()} | Oliveira Rios Advogados
         </p>
       </footer>
     </motion.header>

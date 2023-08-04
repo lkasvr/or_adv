@@ -23,7 +23,7 @@ const TextArea = ({ label, ...props }: ITextArea) => {
     <div className={props.wraperclass}>
       <label
         htmlFor={props.id ?? props.name}
-        className="block mb-2 text-sm font-medium text-gray-500"
+        className="block mb-2 text-sm font-medium text-gray-400"
       >
         {label}
       </label>

@@ -11,7 +11,5 @@ export interface ContactTemplate extends Template {
 }
 
 export interface ProbonoTemplate extends Template {
-  identityNumber: string;
   personNumberRegister: string;
-  incomeRange: string;
 }

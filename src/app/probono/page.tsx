@@ -1,12 +1,23 @@
 'use client';
 import Form from '@/components/form';
-import CPF_CNPJField from '@/components/form/inputs/CPF_CNPJField';
-import PhoneField from '@/components/form/inputs/PhoneField';
+import CPF_CNPJField, {
+  cpfCnpjRegExpMask,
+} from '@/components/form/inputs/CPF_CNPJField';
+import PhoneField, {
+  phoneRegExpMask,
+} from '@/components/form/inputs/PhoneField';
 import SelectInput from '@/components/form/inputs/SelectInput';
 import TextArea from '@/components/form/inputs/TextArea';
 import TextField from '@/components/form/inputs/TextField';
+import sendEmail from '@/services/email/emailjs';
+import { ProbonoTemplate } from '@/services/email/template/types';
 import { IRootState } from '@/store';
+import { createAlert } from '@/store/alertSlice';
+import { FormikHelpers } from 'formik';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
 
 type FormData = {
   firstName: string;
@@ -18,29 +29,114 @@ type FormData = {
   report: string;
 };
 
-export default function Page() {
-  const { isMobile } = useSelector((state: IRootState) => state.app);
-
-  const toggleTitle = (flag: boolean) => {
-    if (flag) {
-      return (
-        <h2 className="md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
-          Conte-nos sua história
-        </h2>
-      );
-    }
+const ToggleTitle = ({ flag }: { flag: boolean }) => {
+  if (flag) {
     return (
-      <h2 className="mt-16 md:mt-0 md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
-        Programa &nbsp; OR Pro Bono
+      <h2 className="md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
+        Conte-nos sua história
       </h2>
     );
+  }
+  return (
+    <h2 className="mt-16 md:mt-0 md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
+      Programa &nbsp; OR Pro Bono
+    </h2>
+  );
+};
+
+export default function Page() {
+  const { isMobile } = useSelector((state: IRootState) => state.app);
+  const dispatch = useDispatch();
+
+  const [isDisabled, setIsDisabled] = React.useState(false);
+
+  const validationYupSchema = Yup.object({
+    firstName: Yup.string()
+      .min(2, 'O primeiro nome deve ser composto de no mínimo 2 caracteres')
+      .max(25, 'O primeiro nome deve ser composto de no máximo 25 caracteres')
+      .required('O primeiro nome é requerido'),
+    lastName: Yup.string()
+      .min(2, 'O sobrenome nome deve ser composto de no mínimo 2 caracteres')
+      .max(50, 'O sobre nome deve ser composto de no máximo 50 caracteres')
+      .required('O sobrenome é requerido'),
+    email: Yup.string()
+      .email('Endereço de email inválido')
+      .required('O email é requerido'),
+    phone: Yup.string()
+      .matches(phoneRegExpMask, 'Formato de celular/telefone inválido')
+      .required('O celular/telefone para contato é requerido'),
+    personNumberRegister: Yup.string()
+      .matches(cpfCnpjRegExpMask, 'CPF ou CNPJ inválido')
+      .required('O CPF ou CNPJ é requerido'),
+    report: Yup.string()
+      .max(
+        2000,
+        'O seu relato deve ser resumido, e conter no máximo 2000 caracteres',
+      )
+      .required('O relato é requerido'),
+  });
+
+  const handleSubmit = (
+    {
+      personNumberRegister,
+      firstName,
+      lastName,
+      email,
+      phone,
+      area,
+      report,
+    }: FormData,
+    actions: FormikHelpers<FormData>,
+  ) => {
+    setIsDisabled(true);
+    actions.setSubmitting(true);
+    const templateParams: ProbonoTemplate = {
+      personNumberRegister: personNumberRegister,
+      from_name: `${firstName} ${lastName}`,
+      email,
+      phone,
+      area,
+      message: report,
+    };
+    sendEmail<ProbonoTemplate>({
+      templateID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
+      templateParams,
+      success: (/*res*/) => {
+        dispatch(
+          createAlert({
+            title: 'Mensagem enviada',
+            message: 'Sua mensagem foi enviada com sucesso.',
+            type: 'success',
+          }),
+        );
+        setIsDisabled(false);
+        actions.resetForm();
+        actions.setSubmitting(false);
+      },
+      error: (error) => {
+        dispatch(
+          createAlert({
+            title: `Erro (${error.status})`,
+            message: 'Algo deu errado no envio da sua mensagem.',
+            type: 'error',
+          }),
+        );
+        setIsDisabled(false);
+        actions.setSubmitting(false);
+        console.error(error);
+      },
+    });
   };
 
   return (
     <div className="flex flex-row flex-wrap 2xl:flex-nowrap justify-evenly w-full h-full overflow-auto">
       <div className="w-full 2xl:w-1/2">
-        <article className="px-2 xl:px-10 w-full flex flex-row flex-wrap justify-center content-center gap-0 text-sm text-white">
-          {isMobile ? toggleTitle(!isMobile) : toggleTitle(isMobile)}
+        <article className="px-2 xl:px-9 w-full flex flex-row flex-wrap justify-center content-center gap-0 text-sm text-white">
+          {isMobile ? (
+            <ToggleTitle flag={!isMobile} />
+          ) : (
+            <ToggleTitle flag={isMobile} />
+          )}
           <p className="max-md:mt-4 mb-4 text-justify indent-8">
             A <b>Constituição Federal promulgada em 1988</b> reservou à
             advocacia o múnus público, ao destacar o advogado como indispensável
@@ -89,7 +185,7 @@ export default function Page() {
           </p>
         </article>
       </div>
-      <div className="w-full 2xl:w-1/2 h-full p-4 2xl:p-10 flex flex-row flex-nowrap justify-evenly border rounded-2xl">
+      <div className="w-full 2xl:w-1/2 h-full p-4 2xl:p-9 flex flex-row flex-nowrap justify-evenly border rounded-2xl">
         <Form<FormData>
           initialValues={{
             firstName: '',
@@ -100,9 +196,11 @@ export default function Page() {
             area: '',
             report: '',
           }}
+          validationSchema={validationYupSchema}
+          onSubmit={handleSubmit}
           classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto md:scrollbar-none"
         >
-          {isMobile ? toggleTitle(isMobile) : ''}
+          {isMobile ? <ToggleTitle flag={isMobile} /> : ''}
           <TextField
             label="Primeiro Nome*"
             name="firstName"
@@ -135,11 +233,11 @@ export default function Page() {
           />
           <SelectInput
             label="Área relacionada*"
+            placeholder="Selecione uma área do direito ..."
             name="area"
             type="text"
             wraperclass="w-4/5 justify-self-end"
           >
-            <option value="">Selecione uma área do direito ...</option>
             <option value="Administrativo">Administrativo</option>
             <option value="Cível">Cível</option>
             <option value="Consumidor">Consumidor</option>
@@ -158,6 +256,7 @@ export default function Page() {
           <button
             className="col-span-full w-2/5 mt-2 mb-1 2xl:mt-7 2xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
             type="submit"
+            disabled={isDisabled}
           >
             Enviar Mensagem
           </button>
