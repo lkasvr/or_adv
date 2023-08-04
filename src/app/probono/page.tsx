@@ -117,7 +117,7 @@ export default function Page() {
       message: report,
     };
     sendEmail<ProbonoTemplate>({
-      templateID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
+      templateID: process.env.NEXT_PUBLIC_EMAILJS_PROBONO_TEMPLATE_ID ?? '',
       templateParams,
       success: (/*res*/) => {
         dispatch(
