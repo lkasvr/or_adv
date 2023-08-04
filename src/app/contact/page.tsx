@@ -1,5 +1,6 @@
 'use client';
 import Form from '@/components/form';
+import FormButton from '@/components/form/buttons/FormButton';
 import CPF_CNPJField, {
   cpfCnpjRegExpMask,
 } from '@/components/form/inputs/CPF_CNPJField';
@@ -138,7 +139,7 @@ export default function Page() {
         }}
         onSubmit={handleSubmit}
         validationSchema={validationYupSchema}
-        classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto"
+        classStyles="w-full flex flex-row flex-wrap justify-center gap-2 lg:grid lg:grid-cols-2 overflow-y-auto"
       >
         <h2 className="md:col-span-full self-start md:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
           Fale conosco
@@ -194,13 +195,11 @@ export default function Page() {
           wraperclass="col-span-full w-full mt-2 justify-self-start flex flex-row flex-wrap text-white"
           rows={5}
         />
-        <button
-          className="col-span-full w-2/5 mt-2 mb-1 2xl:mt-7 2xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
-          type="submit"
-          disabled={isDisabled}
-        >
-          Enviar Mensagem
-        </button>
+        <FormButton
+          text="Enviar Mensagem"
+          isDisabled={isDisabled}
+          extendClass="col-span-full w-2/5"
+        />
       </Form>
     </div>
   );

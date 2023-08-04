@@ -1,5 +1,7 @@
 'use client';
 import Form from '@/components/form';
+import FormButton from '@/components/form/buttons/FormButton';
+import Checkbox from '@/components/form/inputs/Checkbox';
 import CPF_CNPJField, {
   cpfCnpjRegExpMask,
 } from '@/components/form/inputs/CPF_CNPJField';
@@ -26,6 +28,7 @@ type FormData = {
   phone: string;
   personNumberRegister: string;
   area: string;
+  checked: false;
   report: string;
 };
 
@@ -79,6 +82,10 @@ export default function Page() {
     area: Yup.string()
       .required('A área do direito é requerida')
       .oneOf([...selectOptions]),
+    checked: Yup.boolean().oneOf(
+      [true],
+      'Você deve concordar com os termos do programa OR Probono para prosseguir',
+    ),
     report: Yup.string()
       .max(
         2000,
@@ -205,11 +212,12 @@ export default function Page() {
             phone: '',
             personNumberRegister: '',
             area: '',
+            checked: false,
             report: '',
           }}
           validationSchema={validationYupSchema}
           onSubmit={handleSubmit}
-          classStyles="w-full flex flex-row flex-wrap justify-center gap-4 lg:grid lg:grid-cols-2 overflow-y-auto md:scrollbar-none"
+          classStyles="w-full flex flex-row flex-wrap justify-center gap-2 lg:grid lg:grid-cols-2 overflow-y-auto md:scrollbar-none"
         >
           {isMobile ? <ToggleTitle flag={isMobile} /> : ''}
           <TextField
@@ -263,13 +271,17 @@ export default function Page() {
             wraperclass="col-span-full w-full mt-2 justify-self-start flex flex-row flex-wrap text-white"
             rows={5}
           />
-          <button
-            className="col-span-full w-2/5 mt-2 mb-1 2xl:mt-7 2xl:mb-6 p-2 justify-self-center flex justify-center items-center text-gray-300 bg-secondary/30 shadow-sm shadow-primary/50 hover:shadow-none duration-300 hover:cursor-pointer transition ease-in-out delay-150 hover:bg-secondary disabled:text-gray-600 disabled:bg-secondary/20"
-            type="submit"
-            disabled={isDisabled}
-          >
-            Enviar Mensagem
-          </button>
+          <Checkbox
+            label="Concordo com os termos do Progrma OR Probono"
+            name="checked"
+            wraperclass="col-span-full"
+          />
+
+          <FormButton
+            text="Enviar Mensagem"
+            isDisabled={isDisabled}
+            extendClass="col-span-full w-2/5"
+          />
         </Form>
       </div>
     </div>

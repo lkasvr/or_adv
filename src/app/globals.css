@@ -8,10 +8,6 @@
   box-sizing: border-box;
 }
 
-input {
-  appearance: none !important;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
