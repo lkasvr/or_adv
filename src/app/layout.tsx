@@ -3,6 +3,7 @@ import AlertsWrapper from '@/components/AlertsWrapper';
 import HeaderWithFooter from '@/components/Header';
 import InitialAppStateProvider from '@/providers/InitialAppStateProvider';
 import ReduxProvider from '@/providers/ReduxProvider';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -40,6 +41,7 @@ export default function RootLayout({
             </main>
           </InitialAppStateProvider>
         </ReduxProvider>
+        <Analytics />
       </body>
     </html>
   );
