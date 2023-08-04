@@ -96,7 +96,7 @@ export default function Page() {
       message: report,
     };
     sendEmail<ContactTemplate>({
-      templateID: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
+      templateID: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID ?? '',
       templateParams,
       success: (/*res*/) => {
         dispatch(
