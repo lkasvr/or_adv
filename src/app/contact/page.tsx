@@ -27,6 +27,14 @@ type FormData = {
   report: string;
 };
 
+const selectOptions = [
+  'Administrativo',
+  'Cível',
+  'Consumidor',
+  'Criminal',
+  'Trabalhista',
+];
+
 export default function Page() {
   const dispatch = useDispatch();
 
@@ -51,6 +59,9 @@ export default function Page() {
       cpfCnpjRegExpMask,
       'CPF ou CNPJ inválido',
     ),
+    area: Yup.string()
+      .required('A área do direito é requerida')
+      .oneOf([...selectOptions]),
     report: Yup.string()
       .max(
         2000,
@@ -169,12 +180,11 @@ export default function Page() {
           type="text"
           wraperclass="w-4/5 justify-self-end"
         >
-          <option value="Administrativo">Administrativo</option>
-          <option value="Cível">Cível</option>
-          <option value="Consumidor">Consumidor</option>
-          <option value="Criminal">Criminal</option>
-          <option value="Trabalhista">Trabalhista</option>
-          <option value="Outra">Outra</option>
+          {selectOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </SelectInput>
         <TextArea
           label="Relato*"
