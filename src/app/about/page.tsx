@@ -78,11 +78,11 @@ const items = [
 
 export default function Page() {
   return (
-    <div className="w-full h-full flex flex-row flex-wrap 2xl:flex-nowrap justify-center gap-y-32 sm:gap-y-0 overflow-auto scrollbar-none 2xl:overflow-hidden">
+    <div className="w-full h-full flex flex-row flex-wrap 2xl:flex-nowrap justify-center gap-y-32 sm:gap-y-0 overflow-auto scrollbar-none">
       <article className="p-4 2xl:p-9 w-full h-full 2xl:w-2/5 flex flex-row flex-wrap justify-center text-white">
-        <h2 className="mb-6 ml-4 text-center text-lg">
+        <h2 className="mb-6 ml-4 text-center text-base">
           <span>Somos o escritório</span>&nbsp;
-          <span className="md:text-xl font-bold">
+          <span className="lg:text-xl font-bold">
             OLIVEIRA & RIOS &ndash; ADVOGADOS
           </span>
         </h2>
@@ -135,8 +135,8 @@ export default function Page() {
           ))}
         </Swiper>
       </article>
-      <hr className="w-10/12 h-[1px] my-4 2xl:w-[1px] 2xl:h-full bg-white" />
-      <div className="p-4 2xl:p-9 w-full h-full 2xl:w-[66.6%] flex flex-row flex-wrap justify-center">
+      <hr className="max-2xl:px-4 2xl:py-9 w-10/12 h-[1px] max-2xl:my-4 2xl:w-[1px] 2xl:h-full bg-white" />
+      <div className="p-4 2xl:p-9 w-full h-full 2xl:w-[66.6%] max-[280px]:mt-96 flex flex-row flex-wrap justify-center">
         <div className="mb-6 max-h-max flex flex-row flex-wrap justify-center">
           <Image
             alt="Brasil 21"

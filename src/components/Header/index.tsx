@@ -69,19 +69,16 @@ function HeaderWithFooter() {
         className="absolute md:hidden top-[31px] left-[29px]"
         toggle={() => toggleOpen()}
       />
-      <nav className="w-full max-sm:h-[85%] flex flex-wrap justify-center gap-14">
-        <Link href="/">
+      <nav className="w-full max-md:h-4/5 flex flex-wrap justify-center md:gap-14">
+        <Link
+          href="/"
+          className="grow w-auto h-auto max-w-[260px] max-h-[149px]"
+        >
           <Image
             src={logoFb}
             priority
             sizes="100vw"
-            style={{
-              width: 'auto',
-              height: 'auto',
-              maxWidth: '260px',
-              maxHeight: '149px',
-            }}
-            className="grow"
+            className="appearance-none"
             alt="Logo OR Advogados"
           />
         </Link>
