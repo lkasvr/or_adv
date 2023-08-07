@@ -1,5 +1,5 @@
 'use client';
-//import Image from 'next/image';
+import Image from 'next/image';
 import {
   FaPenNib,
   FaUserGroup,
@@ -19,7 +19,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-cards';
-import Image from 'next/image';
 
 const items = [
   {
@@ -79,32 +78,32 @@ const items = [
 
 export default function Page() {
   return (
-    <div className="w-full h-full flex flex-row flex-wrap xl:flex-nowrap justify-center overflow-auto max-md:scrollbar-none">
-      <article className="p-4 2xl:p-9 w-full md:w-2/5 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
-        <span className="text-lg">
-          Somos o escritório
-          <h2 className="mb-6 mt-2 ml-4 text-center text-lg md:text-xl font-bold">
-            OLIVEIRA & RIOS – ADVOGADOS
-          </h2>
-        </span>
-        <p className="mb-6 text-justify indent-8">
+    <div className="w-full h-full flex flex-row flex-wrap 2xl:flex-nowrap justify-center overflow-auto max-2xl:scrollbar-none">
+      <article className="p-4 2xl:p-9 w-full h-full 2xl:w-2/5 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
+        <h2 className="mb-6 mt-6 ml-4 text-center text-lg">
+          <span className="mt-4">Somos o escritório</span>&nbsp;
+          <span className="md:text-xl font-bold">
+            OLIVEIRA & RIOS &ndash; ADVOGADOS
+          </span>
+        </h2>
+
+        <p className="max-md:mt-4 mb-4 text-justify indent-8">
           Atuamos junto aos <b>Tribunais Superiores</b> (STF e STJ),{' '}
           <b>Justiça Federal</b> e <b>Tribunais de Justiça</b>, bem como no
           âmbito da <b>Administração Pública direta e indireta</b>.
         </p>
-        <p className="mb-6 text-justify indent-8">
+        <p className="max-md:mt-4 mb-4 text-justify indent-8">
           O escritório tem sede no Distrito Federal e é coordenado pelos sócios{' '}
           <b>André Viana de Oliveira</b> e <b>Lucimara Vieira Rios</b>.
         </p>
-        <p className="mb-6 text-justify indent-8">
+        <p className="max-md:mt-4 mb-6 text-justify indent-8">
           Por ser um escritório <b>full service</b> e manter parceria com outros
           escritórios e advogados fora do DF, atendemos em todo o território
           nacional.
         </p>
         <Swiper
           style={{
-            width: '100%',
-            height: '30%',
+            width: '96%',
           }}
           grabCursor={true}
           effect={'cards'}
@@ -123,7 +122,7 @@ export default function Page() {
                 <h3 className="w-full text-left text-xl">{item.title}</h3>
                 {item.icon}
                 <div className="w-full p-2 flex flex-row justify-between">
-                  <ul className="w-full text-left text-xs border-l">
+                  <ul className="w-full max-h-max text-left text-xs border-l">
                     {item.activities.map((activity) => (
                       <li className="ml-4" key={activity}>
                         {activity}
@@ -136,8 +135,8 @@ export default function Page() {
           ))}
         </Swiper>
       </article>
-      <hr className="w-10/12 h-[1px] md:w-[1px] md:h-2/3 place-self-center bg-white" />
-      <div className="p-10 w-[66.6%] flex flex-row flex-wrap justify-center items-start">
+      <hr className="w-10/12 h-[1px]  my-4 2xl:w-[1px] 2xl:h-2/3 place-self-center bg-white" />
+      <div className="p-4 2xl:p-9 w-full h-full 2xl:w-[66.6%] flex flex-row flex-wrap justify-center items-start">
         <a href="#" className="block mt-2">
           <Image
             alt="Brasil 21"
