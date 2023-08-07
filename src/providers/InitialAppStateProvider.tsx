@@ -12,7 +12,9 @@ export default function InitialAppStateProvider({
   const isMobile = useMediaQuery('(max-width: 767px)');
   const dispatch = useDispatch();
 
-  dispatch(setIsMobile(isMobile));
+  React.useEffect(() => {
+    dispatch(setIsMobile(isMobile));
+  }, [isMobile, dispatch]);
 
   return <React.Fragment>{children}</React.Fragment>;
 }
