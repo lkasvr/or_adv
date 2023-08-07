@@ -19,6 +19,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-cards';
+import Image from 'next/image';
 
 const items = [
   {
@@ -76,18 +77,10 @@ const items = [
   },
 ];
 
-// const photos = [
-//   { url: '/assets/images/coworking-01.webp', width: 600, height: 420 },
-//   { url: '/assets/images/brasil21_noturna.jpg', width: 2000, height: 1333 },
-//   { url: '/assets/images/coworking-02.webp', width: 660, height: 420 },
-//   { url: '/assets/images/coworking-03.webp', width: 554, height: 720 },
-//   { url: '/assets/images/brasil21_diurna.jpg', width: 4110, height: 2740 },
-// ];
-
 export default function Page() {
   return (
-    <div className="w-full h-full flex flex-row flex-wrap justify-center overflow-auto max-md:scrollbar-none">
-      <article className="p-10 w-full md:w-2/5 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
+    <div className="w-full h-full flex flex-row flex-wrap xl:flex-nowrap justify-center overflow-auto max-md:scrollbar-none">
+      <article className="p-4 2xl:p-9 w-full md:w-2/5 flex flex-row flex-wrap justify-center content-center gap-0 text-white">
         <span className="text-lg">
           Somos o escritório
           <h2 className="mb-6 mt-2 ml-4 text-center text-lg md:text-xl font-bold">
@@ -123,7 +116,7 @@ export default function Page() {
           className="mySwiper"
         >
           {items.map((item) => (
-            <SwiperSlide key={item.id} className="rounded-xl">
+            <SwiperSlide key={item.id} className="rounded-xl min-h-min">
               <div
                 className={`${item.styles} font-bold w-full h-full flex flex-row flex-wrap justify-center items-center p-6`}
               >
@@ -144,7 +137,25 @@ export default function Page() {
         </Swiper>
       </article>
       <hr className="w-10/12 h-[1px] md:w-[1px] md:h-2/3 place-self-center bg-white" />
-      <div className="p-10 w-[66.6%] flex flex-row flex-wrap justify-center items-start"></div>
+      <div className="p-10 w-[66.6%] flex flex-row flex-wrap justify-center items-start">
+        <a href="#" className="block mt-2">
+          <Image
+            alt="Brasil 21"
+            src="/assets/images/brasil21_diurna.jpg"
+            width={4110}
+            height={2740}
+            className="h-56 w-full rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72"
+          />
+
+          <div className="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4 text-white">
+            <strong className="font-medium">Complexo Brasil 21</strong>
+
+            <span className="hidden sm:block sm:h-[2px] sm:w-8 sm:bg-secondary"></span>
+
+            <p className="mt-0.5 opacity-50 sm:mt-0">Plano Piloto</p>
+          </div>
+        </a>
+      </div>
     </div>
   );
 }

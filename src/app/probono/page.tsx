@@ -17,8 +17,7 @@ import { IRootState } from '@/store';
 import { createAlert } from '@/store/alertSlice';
 import { FormikHelpers } from 'formik';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 type FormData = {
@@ -164,10 +163,10 @@ export default function Page() {
           </p>
           <p className="mb-4 text-justify indent-8">
             <b>Nós, do escritório Oliveira e Rios Advogados,</b> acreditamos que
-            um dos deveres dos entes – públicos e privados – é devolver à
-            sociedade o que ela nos oferta. Deste modo, contribuir com o acesso
-            democrático da pessoa hipossuficiente ao Poder Judiciário, torna-se
-            um dos deveres da advocacia.
+            um dos deveres dos entes &ndash; públicos e privados &ndash; é
+            devolver à sociedade o que ela nos oferta. Deste modo, contribuir
+            com o acesso democrático da pessoa hipossuficiente ao Poder
+            Judiciário, torna-se um dos deveres da advocacia.
           </p>
           <p className="mb-4 text-justify indent-8">
             Por tal motivo, mantemos o <b>programa “OR - Pro Bono”</b> como um
@@ -176,7 +175,7 @@ export default function Page() {
             estabelecidos, se inscrevam no programa.
           </p>
           <p className="mb-4 text-justify indent-8">
-            O <b>“OR – Pro Bono”</b> está disponível aos cidadãos que se
+            O <b>“OR &ndash; Pro Bono”</b> está disponível aos cidadãos que se
             encontrem em vulnerabilidade social, podendo, conforme análise do
             caso concreto, ser estendido às entidades sem fins lucrativos que,
             comprovadamente, não possuam condições de arcar com serviços
@@ -193,7 +192,7 @@ export default function Page() {
           <p className="mb-4 text-justify indent-8">
             É importante destacar que, por força do Código de Ética e Disciplina
             do Conselho Federal da Ordem dos Advogados do Brasil (CED-CFOAB),{' '}
-            <b>o programa “OR – Pro Bono”</b> não pode ser oferecido com
+            <b>o programa “OR &ndash; Pro Bono”</b> não pode ser oferecido com
             objetivo político-partidário ou eleitoral, de forma que é vedado o
             exercício do programa para instituições que tenham objetivos
             político-partidários ou eleitorais.

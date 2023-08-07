@@ -4,8 +4,10 @@ import { useDimensions } from '@/hooks/use-dimensions';
 import { IRootState } from '@/store';
 import { motion, useCycle } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import logoFb from 'public/assets/logoFb.png';
 import React from 'react';
+import { BsWhatsapp } from 'react-icons/bs';
 import {
   FiLinkedin,
   FiInstagram,
@@ -38,7 +40,6 @@ const sidebar = {
 };
 
 const menuLinks = [
-  { text: 'Página Inicial', href: '/' },
   { text: 'Escritório', href: '/about' },
   { text: 'Artigos', href: '/articles' },
   { text: 'Pro Bono', href: '/probono' },
@@ -69,19 +70,22 @@ function HeaderWithFooter() {
         toggle={() => toggleOpen()}
       />
       <nav className="w-full max-sm:h-[85%] flex flex-wrap justify-center gap-14">
-        <Image
-          src={logoFb}
-          priority
-          sizes="100vw"
-          style={{
-            width: 'auto',
-            height: 'auto',
-            maxWidth: '260px',
-            maxHeight: '149px',
-          }}
-          className="grow"
-          alt="Logo OR Advogados"
-        />
+        <Link href="/">
+          <Image
+            src={logoFb}
+            priority
+            sizes="100vw"
+            style={{
+              width: 'auto',
+              height: 'auto',
+              maxWidth: '260px',
+              maxHeight: '149px',
+            }}
+            className="grow"
+            alt="Logo OR Advogados"
+          />
+        </Link>
+
         <ul className="w-full flex flex-row flex-wrap justify-center text-lg">
           {menuLinks.map(({ text, href }) => (
             <Button
@@ -95,8 +99,17 @@ function HeaderWithFooter() {
       </nav>
 
       <div className="w-full max-sm:h-[15%] max-sm:mb-0 mt-12 h-6 mb-6 p-4 flex flex-row flex-nowrap justify-center border-t border-primary/25">
+        <a href="https://wa.link/ma6kwv" target="_blank" rel="noreferrer">
+          <BsWhatsapp className="w-6 h-6 mr-4" />
+        </a>
         <FiLinkedin className="w-6 h-6 mr-4" />
-        <FiInstagram className="w-6 h-6" />
+        <a
+          href="https://www.instagram.com/oliveirariosadvogados/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FiInstagram className="w-6 h-6" />
+        </a>
       </div>
 
       <footer className="w-full overflow-hidden p-4 self-end flex flex-row flex-wrap text-xs">
