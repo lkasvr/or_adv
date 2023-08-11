@@ -12,6 +12,7 @@ import Template from './template';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.VERCEL_URL ?? ''),
   title: {
     default: 'Oliveira Rios Advogados',
     template: '%s | Oliveira Rios Advogados',
@@ -22,12 +23,26 @@ export const metadata: Metadata = {
   authors: { name: 'Lucas Vieira', url: 'https://github.com/lkasvr' },
   creator: 'Lucas Vieira',
   openGraph: {
-    images: {
-      url: '/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoFb.2024f082.png&w=1920&q=75',
-      width: 260,
-      height: 149,
-      alt: 'Logo Oliveira Rios Advogados',
-    },
+    images: [
+      {
+        url: '/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoFb.2024f082.png&w=1920&q=75',
+        width: 260,
+        height: 149,
+        alt: 'Logo Oliveira Rios Advogados',
+      },
+      {
+        url: '/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoFb.2024f082.png&w=1920&q=75',
+        width: 260,
+        height: 149,
+        alt: 'Logo Oliveira Rios Advogados sem fundo',
+      },
+      {
+        url: '/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoFb.2024f082.png&w=1920&q=75',
+        width: 128,
+        height: 128,
+        alt: 'Image apenas das letras OR da logo Oliveira Rios Advogados',
+      },
+    ],
     locale: 'pt_BR',
     type: 'website',
   },
