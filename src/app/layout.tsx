@@ -12,6 +12,7 @@ import Template from './template';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.oliveirarios.adv.br'),
   title: {
     default: 'Oliveira Rios Advogados',
     template: '%s | Oliveira Rios Advogados',
