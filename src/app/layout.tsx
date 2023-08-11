@@ -12,7 +12,9 @@ import Template from './template';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL ?? ''),
+  metadataBase: new URL(
+    process.env.VERCEL_URL ?? 'https://www.oliveirarios.adv.br',
+  ),
   title: {
     default: 'Oliveira Rios Advogados',
     template: '%s | Oliveira Rios Advogados',
