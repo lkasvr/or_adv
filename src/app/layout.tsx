@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   creator: 'Lucas Vieira',
   openGraph: {
     images: {
-      url: '/assets/images',
+      url: '/assets/images/logoFb',
       width: 260,
       height: 149,
       alt: 'Logo Oliveira Rios Advogados',
