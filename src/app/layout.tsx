@@ -17,12 +17,14 @@ export const metadata: Metadata = {
     default: 'Oliveira Rios Advogados',
     template: '%s | Oliveira Rios Advogados',
   },
-  description: 'Escritório de Advocia em Brasília-DF, Plano Piloto',
+  description:
+    process.env.WEBSITE_DESCRIPTION ??
+    'Escritório de Advocia em Brasília-DF, Plano Piloto',
   authors: { name: 'Lucas Vieira', url: 'https://github.com/lkasvr' },
   creator: 'Lucas Vieira',
   openGraph: {
     images: {
-      url: '/assets/images/logoFb',
+      url: '/assets/images/logoFb.png',
       width: 260,
       height: 149,
       alt: 'Logo Oliveira Rios Advogados',
