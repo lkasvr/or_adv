@@ -12,10 +12,10 @@ import Template from './template';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.WEBSITE_URL ?? ''),
+  metadataBase: new URL(`https://www.${process.env.WEBSITE_DOMAIN}`),
   title: {
     default: 'Oliveira & Rios Advogados',
-    template: '%s | Oliveira Rios Advogados',
+    template: '%s | Oliveira & Rios Advogados',
   },
   description:
     process.env.WEBSITE_DESCRIPTION ??

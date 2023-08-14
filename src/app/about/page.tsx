@@ -80,11 +80,8 @@ export default function Page() {
   return (
     <div className="w-full h-full flex flex-row flex-wrap 2xl:flex-nowrap justify-center gap-y-32 sm:gap-y-0 overflow-auto scrollbar-none">
       <article className="p-4 2xl:p-9 w-full h-full 2xl:w-2/5 flex flex-row flex-wrap justify-center text-white">
-        <h2 className="mb-6 ml-4 text-center text-base">
-          <span>Somos o escritório</span>&nbsp;
-          <span className="lg:text-xl font-bold">
-            OLIVEIRA & RIOS &ndash; ADVOGADOS
-          </span>
+        <h2 className="mb-6 ml-4 lg:text-xl font-bold text-center text-base">
+          <span className="">OLIVEIRA & RIOS &ndash; ADVOGADOS</span>
         </h2>
 
         <p className="max-md:mt-4 mb-4 text-justify indent-8">
