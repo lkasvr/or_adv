@@ -85,12 +85,14 @@ function HeaderWithFooter() {
 
         <ul className="w-full flex flex-row flex-wrap justify-center text-lg">
           {menuLinks.map(({ text, href }) => (
-            <Button
-              key={text}
-              onClick={() => (isMobile ? toggleOpen() : null)}
-              text={text}
-              href={href}
-            />
+            <li key={text}>
+              <Button
+                key={text}
+                onClick={() => (isMobile ? toggleOpen() : null)}
+                text={text}
+                href={href}
+              />
+            </li>
           ))}
         </ul>
       </nav>
