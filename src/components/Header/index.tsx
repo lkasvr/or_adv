@@ -96,7 +96,12 @@ function HeaderWithFooter() {
       </nav>
 
       <div className="w-full max-sm:h-[15%] max-sm:mb-0 mt-12 h-6 mb-6 p-4 flex flex-row flex-nowrap justify-center border-t border-primary/25">
-        <a href="https://wa.link/ma6kwv" target="_blank" rel="noreferrer">
+        <a
+          href="https://wa.link/ma6kwv"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Acesse nossas mídias sociais - LinkedIn"
+        >
           <BsWhatsapp className="w-6 h-6 mr-4" />
         </a>
         <FiLinkedin className="w-6 h-6 mr-4" />
@@ -104,6 +109,7 @@ function HeaderWithFooter() {
           href="https://www.instagram.com/oliveirariosadvogados/"
           target="_blank"
           rel="noreferrer"
+          aria-label="Acesse nossas mídias sociais - Instagram"
         >
           <FiInstagram className="w-6 h-6" />
         </a>
@@ -137,6 +143,7 @@ function HeaderWithFooter() {
             target="_blank"
             rel="noreferrer"
             className="flex flex-row flex-nowrap"
+            aria-label="Endereço no Google Maps"
           >
             <div>
               <FiMapPin />
