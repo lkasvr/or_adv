@@ -6,6 +6,7 @@ import ReduxProvider from '@/providers/ReduxProvider';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { StrictMode } from 'react';
 
 import Template from './template';
 
@@ -51,15 +52,17 @@ export default function RootLayout({
           <InitialAppStateProvider>
             <AlertsWrapper />
             <HeaderWithFooter />
-            <main className="w-full md:w-8/12 xl:w-9/12 h-screen p-6 xl:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
-              <Template>
-                <section className="w-full h-full bg-primary bg-opacity-75 rounded-3xl">
-                  <div className="p-4 xl:p-6 2xl:p-10 w-full h-full">
-                    {children}
-                  </div>
-                </section>
-              </Template>
-            </main>
+            <StrictMode>
+              <main className="w-full md:w-8/12 xl:w-9/12 h-screen p-6 xl:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
+                <Template>
+                  <section className="w-full h-full bg-primary bg-opacity-75 rounded-3xl">
+                    <div className="p-4 xl:p-6 2xl:p-10 w-full h-full">
+                      {children}
+                    </div>
+                  </section>
+                </Template>
+              </main>
+            </StrictMode>
           </InitialAppStateProvider>
         </ReduxProvider>
         <Analytics />
