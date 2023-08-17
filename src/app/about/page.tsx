@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { Suspense } from 'react';
 import {
   FaPenNib,
   FaUserGroup,
@@ -19,7 +20,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-cards';
-import Script from 'next/script';
+import GoogleMapsSkeleton from '@/components/Skeletons/GoogleMaps';
 
 const items = [
   {
@@ -139,8 +140,8 @@ export default function Page() {
           <Image
             alt="Brasil 21"
             src="/assets/images/brasil21_diurna.jpg"
-            width={4110}
-            height={2740}
+            width={1024}
+            height={300}
             priority
             className="h-56 w-11/12 rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72"
           />
@@ -153,14 +154,19 @@ export default function Page() {
             <p className="mt-0.5 opacity-50 sm:mt-0">Plano Piloto</p>
           </div>
         </div>
-
-        <iframe
-          title="Mapa da Localização do Escritório"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.213940049345!2d-47.8938863!3d-15.7926693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b1cad790387%3A0xaccac326c5d6d844!2sSetor%20Hoteleiro%20Sul%2C%20Quadra%2006%2C%20Edif%C3%ADcio%20Brasil%2021%2C%20Bloco%20A%2C%20Sala%20501!5e0!3m2!1spt-BR!2sus!4v1691416903640!5m2!1spt-BR!2sus"
-          className="w-[98%] h-[45%]"
-          loading="eager"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+        <Suspense
+          fallback={
+            <GoogleMapsSkeleton width={98} height={45} percent={true} />
+          }
+        >
+          <iframe
+            title="Mapa da Localização do Escritório"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.213940049345!2d-47.8938863!3d-15.7926693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b1cad790387%3A0xaccac326c5d6d844!2sSetor%20Hoteleiro%20Sul%2C%20Quadra%2006%2C%20Edif%C3%ADcio%20Brasil%2021%2C%20Bloco%20A%2C%20Sala%20501!5e0!3m2!1spt-BR!2sus!4v1691416903640!5m2!1spt-BR!2sus"
+            className="w-[98%] h-[45%]"
+            loading="eager"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </Suspense>
       </div>
     </div>
   );
