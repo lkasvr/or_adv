@@ -50,3 +50,10 @@ select option {
 ::-webkit-scrollbar-thumb:hover {
   background: #2c455b !important;
 }
+
+/* Preset's */
+/* @layer components {
+  .wrapperSectionContent {
+    @apply p-4 xl:p-6 2xl:p-10 w-full h-full bg-primary bg-opacity-75 rounded-3xl
+  }
+} */

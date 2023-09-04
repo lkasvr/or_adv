@@ -1,16 +1,16 @@
 'use client';
-import Form from '@/components/form';
-import FormButton from '@/components/form/buttons/FormButton';
-import Checkbox from '@/components/form/inputs/Checkbox';
+import Form from '@/components/Form';
+import FormButton from '@/components/Form/buttons/FormButton';
+import Checkbox from '@/components/Form/inputs/Checkbox';
 import CPF_CNPJField, {
   cpfCnpjRegExpMask,
-} from '@/components/form/inputs/CPF_CNPJField';
+} from '@/components/Form/inputs/CPF_CNPJField';
 import PhoneField, {
   phoneRegExpMask,
-} from '@/components/form/inputs/PhoneField';
-import SelectInput from '@/components/form/inputs/SelectInput';
-import TextArea from '@/components/form/inputs/TextArea';
-import TextField from '@/components/form/inputs/TextField';
+} from '@/components/Form/inputs/PhoneField';
+import SelectInput from '@/components/Form/inputs/SelectInput';
+import TextArea from '@/components/Form/inputs/TextArea';
+import TextField from '@/components/Form/inputs/TextField';
 import sendEmail from '@/services/email/emailjs';
 import { ProbonoTemplate } from '@/services/email/template/types';
 import { IRootState } from '@/store';

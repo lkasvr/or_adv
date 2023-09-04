@@ -54,13 +54,7 @@ export default function RootLayout({
             <HeaderWithFooter />
             <StrictMode>
               <main className="w-full md:w-8/12 xl:w-9/12 h-screen p-6 xl:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
-                <Template>
-                  <section className="w-full h-full bg-primary bg-opacity-75 rounded-3xl">
-                    <div className="p-4 xl:p-6 2xl:p-10 w-full h-full">
-                      {children}
-                    </div>
-                  </section>
-                </Template>
+                <Template>{children}</Template>
               </main>
             </StrictMode>
           </InitialAppStateProvider>

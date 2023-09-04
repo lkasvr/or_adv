@@ -4,11 +4,11 @@ interface IGoogleMapsSkeleton {
   percent?: boolean;
 }
 
-function GoogleMapsSkeleton({
+const GoogleMapsSkeleton = ({
   width,
   height,
   percent = false,
-}: IGoogleMapsSkeleton) {
+}: IGoogleMapsSkeleton) => {
   const tailwindWidth = percent ? `w-[${width}%]` : `w-[${width}px]`;
   const tailwindHeight = percent ? `h-[${height}%]` : `h-[${height}px]`;
   return (
@@ -37,6 +37,6 @@ function GoogleMapsSkeleton({
       <span className="sr-only">Loading...</span>
     </div>
   );
-}
+};
 
 export default GoogleMapsSkeleton;

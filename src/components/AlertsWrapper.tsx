@@ -5,7 +5,7 @@ import React from 'react';
 import { BiCheckCircle, BiInfoCircle, BiErrorCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 
-export default function AlertsWrapper() {
+const AlertsWrapper = () => {
   const { alerts } = useSelector((state: IRootState) => state.alert);
   const [alert, setAlert] = React.useState({
     type: '',
@@ -106,4 +106,6 @@ export default function AlertsWrapper() {
       </AnimatePresence>
     </div>
   );
-}
+};
+
+export default AlertsWrapper;

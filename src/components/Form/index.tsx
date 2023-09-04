@@ -24,7 +24,7 @@ const Form = <T extends object>({
       validationSchema={validationSchema}
     >
       <FormikFormComponent
-        className={`${classStyles ? classStyles : ''} max-md:scrollbar-none`}
+        className={`${classStyles ?? ''} max-md:scrollbar-none`}
       >
         {children}
       </FormikFormComponent>

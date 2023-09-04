@@ -46,7 +46,7 @@ const menuLinks = [
   { text: 'Contato', href: '/contact' },
 ];
 
-function HeaderWithFooter() {
+const HeaderWithFooter = () => {
   const { isMobile } = useSelector((state: IRootState) => state.app);
   const containerRef = React.useRef(null);
   const { height } = useDimensions(containerRef);
@@ -159,6 +159,6 @@ function HeaderWithFooter() {
       </footer>
     </motion.header>
   );
-}
+};
 
 export default HeaderWithFooter;

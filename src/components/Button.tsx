@@ -13,7 +13,7 @@ interface IButton {
 const selectedButton =
   'shadow-none cursor-pointer bg-primary text-white -translate-y-1 scale-110';
 
-function Button({ text, href, extendClass, onClick }: IButton) {
+const Button = ({ text, href, extendClass, onClick }: IButton) => {
   const pathname = usePathname();
 
   return (
@@ -30,6 +30,6 @@ function Button({ text, href, extendClass, onClick }: IButton) {
       </Link>
     </li>
   );
-}
+};
 
 export default Button;

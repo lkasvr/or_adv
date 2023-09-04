@@ -21,5 +21,11 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <div className="py-16 px-24 w-full h-full bg-white flex flex-col flex-nowrap rounded-3xl overflow-auto scrollbar-none">
+      {children}
+      {children}
+      {children}
+    </div>
+  );
 }
