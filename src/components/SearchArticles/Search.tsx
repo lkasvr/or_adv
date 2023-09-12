@@ -1,14 +1,20 @@
 'use client';
 import { IRootState } from '@/store';
+import { toggleSelectFilter } from '@/store/appSlice';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Search = () => {
+  const dispatch = useDispatch();
+
   const { userMenu } = useSelector((state: IRootState) => state.app);
+  const {
+    searchFilters: { isSelectOpen },
+  } = useSelector((state: IRootState) => state.app);
 
   return (
     !userMenu.isOpen && (
-      <div className="p-2 w-full h-1/6 bg-gradient-to-r from-primary/95 to-secondary/95 rounded-b-[100px] flex flex-row flex-wrap">
+      <div className="relative p-2 w-full h-1/6 bg-gradient-to-r from-primary/95 to-secondary/95 rounded-b-[100px] flex flex-row flex-wrap">
         <div className="relative w-full">
           <label className="sr-only" htmlFor="search">
             {' '}
@@ -49,6 +55,20 @@ export const Search = () => {
             ARTIGOS JURÍDICOS
           </h1>
         </div>
+        {/* CHECKBOX */}
+        <label className="absolute top-[75%] right-[5%] inline-flex items-center mr-5 cursor-pointer">
+          <input
+            type="checkbox"
+            value=""
+            className="sr-only peer"
+            checked={isSelectOpen}
+            onClick={() => dispatch(toggleSelectFilter(!isSelectOpen))}
+          />
+          <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-400 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          <span className="ml-3 text-sm font-medium text-gray-300">
+            Filtros
+          </span>
+        </label>
       </div>
     )
   );
