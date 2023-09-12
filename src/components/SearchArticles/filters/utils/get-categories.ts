@@ -8,7 +8,9 @@ export const preload = () => {
 };
 
 export const getCategories = cache(async () => {
-  const res = await fetch('http://127.0.0.1:1337/api/categories?populate=icon');
+  const res = await fetch(
+    `${process.env.ARTICLES_API_BASE_URL}/categories?populate=icon`,
+  );
 
   const { data }: { data: Category[] } = await res.json();
   return data;

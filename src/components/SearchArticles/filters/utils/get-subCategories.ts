@@ -8,7 +8,9 @@ export const preload = () => {
 };
 
 export const getSubCategories = cache(async () => {
-  const res = await fetch('http://127.0.0.1:1337/api/sub-categories');
+  const res = await fetch(
+    `${process.env.ARTICLES_API_BASE_URL}/sub-categories`,
+  );
 
   const { data }: { data: SubCategory[] } = await res.json();
   return data;
