@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="px-28 py-14 w-full h-full bg-white flex flex-col flex-nowrap rounded-3xl">
+    <div className="pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-t-lg rounded-b-3xl">
       {children}
     </div>
   );

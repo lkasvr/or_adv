@@ -1,8 +1,8 @@
 import { useField } from 'formik';
 import React from 'react';
 
-import { formatBRPhoneNumber } from '../utils/formatters';
 import { FieldInputProps } from './types';
+import { formatBRPhoneNumber } from './utils/formatters';
 
 export const phoneRegExpMask =
   /^\((?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\) (?:[2-8]|9[1-9])\d{3}-\d{4}$/;

@@ -27,28 +27,20 @@ select option {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 25px !important;
+  width: 6px !important;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 2px !important;
-
-  box-shadow: inset 0 0 10px 10px #2c455b !important;
-  border: solid 10px transparent !important;
+  border-radius: 9999px !important;
+  border: solid 6px rgb(44 69 91 / 0.2) !important;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  border-radius: 1px !important;
+  border-radius: 9999px !important;
 
-  box-shadow: inset 0 0 10px 10px #15212c !important;
-  border: solid 10px transparent !important;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #2c455b !important;
+  box-shadow: inset 0 0 6px 6px #2c455b !important;
 }
 
 /* Preset's */
