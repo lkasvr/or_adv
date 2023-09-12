@@ -52,12 +52,11 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
                 <option
                   key={id}
                   value={slug}
-                  selected={selected}
                   className={`ml-1 max-w-max inline-flex items-center justify-center px-2.5 py-0.5 m-1 rounded-full ${
                     selected ? '!hidden' : ''
                   }`}
                 >
-                  <p className="whitespace-nowrap truncate">{displayName}</p>
+                  {displayName}
                 </option>
               );
             })}
