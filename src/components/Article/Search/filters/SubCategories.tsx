@@ -1,17 +1,11 @@
 'use client';
 import { IRootState } from '@/store';
 import { toggleSelectFilter } from '@/store/appSlice';
+import { setSlugsSubCategories } from '@/store/articlesSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export type SubCategory = {
-  id: string;
-  attributes: {
-    name: string;
-    displayName: string;
-    slug: string;
-  };
-};
+import { SubCategory } from './domain/SubCategories';
 
 interface ISubCategories {
   subCategories: SubCategory[];
@@ -20,37 +14,42 @@ interface ISubCategories {
 const SubCategories = ({ subCategories }: ISubCategories) => {
   const dispatch = useDispatch();
 
-  const [selectedOptions, setSelectedOptions] = React.useState<string[]>([]);
+  const { slugsSubCategories } = useSelector(
+    (state: IRootState) => state.articles.filters,
+  );
   const {
     searchFilters: { isSelectOpen },
   } = useSelector((state: IRootState) => state.app);
 
   const toggleOption = (slug: string) => {
-    if (selectedOptions.includes(slug)) {
-      setSelectedOptions(
-        selectedOptions.filter(
-          (selectedOptionSlug) => selectedOptionSlug !== slug,
+    if (slugsSubCategories.includes(slug))
+      return dispatch(
+        setSlugsSubCategories(
+          slugsSubCategories.filter(
+            (selectedOptionSlug) => selectedOptionSlug !== slug,
+          ),
         ),
       );
-    } else setSelectedOptions([...selectedOptions, slug]);
+
+    dispatch(setSlugsSubCategories([...slugsSubCategories, slug]));
   };
 
   return (
     <React.Fragment>
       <div className="relative w-1/2 grid grid-cols-2">
         {/* SELECT */}
-        {isSelectOpen && subCategories.length !== selectedOptions.length && (
+        {isSelectOpen && subCategories.length !== slugsSubCategories.length && (
           <select
             className="p-1 absolute max-w-max h-full flex flex-row flex-wrap bg-transparent cursor-pointer overflow-y-auto scrollbar-none"
             multiple
-            value={selectedOptions}
+            value={slugsSubCategories}
             onChange={(e) => toggleOption(e.target.value)}
           >
             <option className="text-sm text-slate-400 !bg-transparent">
               Selecione uma sub-categoria
             </option>
             {subCategories.map(({ id, attributes: { displayName, slug } }) => {
-              const selected = selectedOptions.includes(slug);
+              const selected = slugsSubCategories.includes(slug);
               return (
                 <option
                   key={id}
@@ -68,16 +67,16 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
         {/* SELECTED OPTIONS */}
         <div
           className={`h-full ${
-            isSelectOpen && subCategories.length !== selectedOptions.length
+            isSelectOpen && subCategories.length !== slugsSubCategories.length
               ? 'col-start-2 w-full bg-white flex flex-row flex-wrap justify-end'
               : 'col-span-full bg-transparent'
           } ${
-            !isSelectOpen && selectedOptions.length < 1
+            !isSelectOpen && slugsSubCategories.length < 1
               ? 'bg-slate-50 border border-dashed border-slate-200 rounded-3xl'
               : ''
           }`}
         >
-          {!isSelectOpen && selectedOptions.length < 1 ? (
+          {!isSelectOpen && slugsSubCategories.length < 1 ? (
             <div
               className="w-full h-full flex justify-center items-center cursor-pointer"
               onClick={() => dispatch(toggleSelectFilter(true))}
@@ -90,12 +89,12 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
             ''
           )}
           <p className="text-sm text-slate-400">
-            {((!isSelectOpen && selectedOptions.length !== 0) ||
-              (selectedOptions.length > 0 &&
-                selectedOptions.length === subCategories.length)) &&
+            {((!isSelectOpen && slugsSubCategories.length !== 0) ||
+              (slugsSubCategories.length > 0 &&
+                slugsSubCategories.length === subCategories.length)) &&
               'Subcategorias'}
           </p>
-          {selectedOptions.map((value) => (
+          {slugsSubCategories.map((value) => (
             <span
               key={value}
               className="h-max inline-flex items-center justify-center bg-primary/30 rounded-full px-2.5 py-0.5 text-primary/90 m-1"

@@ -1,4 +1,5 @@
 import { Category } from '@/components/Article/Search/filters/domain/Categories';
+import { SubCategory } from '@/components/Article/Search/filters/domain/SubCategories';
 
 // MAIN
 export type Articles = { data: Article[] };
@@ -15,6 +16,7 @@ export type Attributes = {
   content: string;
   imageRelated: string;
   categories: { data: Category[] };
+  subCategories: { data: SubCategory[] };
   publishedAt: string;
   createdAt: string;
   updatedAt: string;

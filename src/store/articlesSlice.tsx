@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IArticlesInitialState {
-  slugsCategories: string[];
+  filters: {
+    slugsCategories: string[];
+    slugsSubCategories: string[];
+  };
 }
 
 const initialState: IArticlesInitialState = {
-  slugsCategories: [],
+  filters: {
+    slugsCategories: [],
+    slugsSubCategories: [],
+  },
 };
 
 const articlesSlice = createSlice({
@@ -13,11 +19,15 @@ const articlesSlice = createSlice({
   initialState,
   reducers: {
     setSlugsCategories(state, { payload }: PayloadAction<string[]>) {
-      state.slugsCategories = payload;
+      state.filters.slugsCategories = payload;
+    },
+    setSlugsSubCategories(state, { payload }: PayloadAction<string[]>) {
+      state.filters.slugsSubCategories = payload;
     },
   },
 });
 
-export const { setSlugsCategories } = articlesSlice.actions;
+export const { setSlugsCategories, setSlugsSubCategories } =
+  articlesSlice.actions;
 
 export default articlesSlice.reducer;

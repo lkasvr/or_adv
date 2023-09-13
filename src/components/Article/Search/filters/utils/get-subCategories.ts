@@ -1,7 +1,7 @@
 import { cache } from 'react';
-import 'server-only';
 
-import { SubCategory } from '../SubCategories';
+import 'server-only';
+import { SubCategory } from '../domain/SubCategories';
 
 export const preload = () => {
   void getSubCategories();

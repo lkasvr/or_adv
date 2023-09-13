@@ -10,8 +10,8 @@ interface IFiltrered {
 }
 
 const Filtered = ({ articles }: IFiltrered) => {
-  const { slugsCategories } = useSelector(
-    (state: IRootState) => state.articles,
+  const { slugsCategories, slugsSubCategories } = useSelector(
+    (state: IRootState) => state.articles.filters,
   );
 
   const [filteredArticles, setFilteredArticles] = React.useState<
@@ -19,19 +19,35 @@ const Filtered = ({ articles }: IFiltrered) => {
   >([]);
 
   React.useEffect(() => {
-    if (slugsCategories.length > 0) {
+    if (slugsCategories.length > 0 || slugsSubCategories.length > 0) {
       setFilteredArticles(
         articles.filter((article) => {
-          let hasCategory = false;
-          article.attributes.categories.data.forEach((articleCategory) => {
+          let matchFilters,
+            hasCategory,
+            hasSubCategory = false;
+          const { categories, subCategories } = article.attributes;
+
+          categories.data.forEach((articleCategory) => {
             if (slugsCategories.includes(articleCategory.attributes.slug))
               hasCategory = true;
           });
-          return hasCategory;
+          matchFilters = hasCategory;
+
+          if (slugsSubCategories.length > 0) {
+            subCategories.data.forEach((articleSubCategory) => {
+              if (
+                slugsSubCategories.includes(articleSubCategory.attributes.slug)
+              )
+                hasSubCategory = true;
+            });
+            matchFilters = hasCategory && hasSubCategory;
+          }
+
+          return matchFilters;
         }),
       );
     } else setFilteredArticles(articles);
-  }, [slugsCategories]);
+  }, [slugsCategories, slugsSubCategories]);
 
   return (
     <div>

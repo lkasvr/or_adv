@@ -15,7 +15,7 @@ const Categories = ({ categories }: ICategories) => {
   const dispatch = useDispatch();
 
   const { slugsCategories } = useSelector(
-    (state: IRootState) => state.articles,
+    (state: IRootState) => state.articles.filters,
   );
 
   const handleCategoryChange = (slug: string) => {

@@ -10,7 +10,7 @@ export default async function Page() {
   return (
     <React.Fragment>
       <Search />
-      <div className="mt-8 px-28 w-full h-3/5 overflow-auto scrollbar-none">
+      <div className="mt-8 px-28 w-full h-3/5 overflow-auto">
         <Filtered articles={articlesPreview} />
       </div>
     </React.Fragment>

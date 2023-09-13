@@ -8,6 +8,7 @@ const query = qs.stringify(
   {
     populate: {
       categories: true,
+      subCategories: true,
     },
     fields: ['slug', 'title', 'description', 'imageRelated', 'updatedAt'],
   },
