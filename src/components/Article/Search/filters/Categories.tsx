@@ -2,17 +2,7 @@
 import ReactIcon from '@/components/ReactIcon';
 import React from 'react';
 
-export type Category = {
-  id: string;
-  attributes: {
-    slug: string;
-    displayName: string;
-    icon: {
-      name: string;
-      lib: string;
-    };
-  };
-};
+import { Category } from './domain/Categories';
 
 interface ICategories {
   categories: Category[];

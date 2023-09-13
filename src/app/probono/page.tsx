@@ -14,7 +14,7 @@ import TextField from '@/components/Form/inputs/TextField';
 import sendEmail from '@/services/email/emailjs';
 import { ProbonoTemplate } from '@/services/email/template/types';
 import { IRootState } from '@/store';
-import { createAlert } from '@/store/alertSlice';
+import { createAlert } from '@/store/appSlice';
 import { FormikHelpers } from 'formik';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';

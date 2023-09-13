@@ -1,29 +1,17 @@
-export type ArticleAttributes = {
-  slug: string;
-  title: string;
-  description: string;
-};
+import qs from 'qs';
 
-export type AttributeSlug = Omit<
-  Omit<ArticleAttributes, 'title'>,
-  'description'
->;
+import { ArticlesSlug } from '../domain/Articles';
 
-export type Articles = {
-  data: {
-    id: number;
-    attributes: AttributeSlug;
-  }[];
-};
+const query = qs.stringify({ fields: ['slug'] }, { encodeValuesOnly: true });
 
 export async function generateStaticParams() {
-  const articlesSlugs: Omit<Articles, 'id'> = await fetch(
-    `${process.env.ARTICLES_API_BASE_URL}/articles?fields[0]=slug`,
+  const articlesSlugs: Omit<ArticlesSlug, 'id'> = await fetch(
+    `${process.env.ARTICLES_API_BASE_URL}/articles?${query}`,
   ).then((res) => res.json());
 
   return articlesSlugs.data.map(({ attributes: { slug } }) => ({ slug }));
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
-  return <div>My Article: {params.slug}</div>;
+  return <div className="px-28">My Article: {params.slug}</div>;
 }

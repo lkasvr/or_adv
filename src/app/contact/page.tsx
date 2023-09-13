@@ -12,7 +12,7 @@ import TextArea from '@/components/Form/inputs/TextArea';
 import TextField from '@/components/Form/inputs/TextField';
 import sendEmail from '@/services/email/emailjs';
 import { ContactTemplate } from '@/services/email/template/types';
-import { createAlert } from '@/store/alertSlice';
+import { createAlert } from '@/store/appSlice';
 import { FormikHelpers } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';

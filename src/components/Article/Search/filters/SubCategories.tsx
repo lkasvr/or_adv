@@ -1,7 +1,8 @@
 'use client';
 import { IRootState } from '@/store';
+import { toggleSelectFilter } from '@/store/appSlice';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export type SubCategory = {
   id: string;
@@ -17,6 +18,8 @@ interface ISubCategories {
 }
 
 const SubCategories = ({ subCategories }: ISubCategories) => {
+  const dispatch = useDispatch();
+
   const [selectedOptions, setSelectedOptions] = React.useState<string[]>([]);
   const {
     searchFilters: { isSelectOpen },
@@ -75,7 +78,10 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
           }`}
         >
           {!isSelectOpen && selectedOptions.length < 1 ? (
-            <div className="w-full h-full flex justify-center items-center">
+            <div
+              className="w-full h-full flex justify-center items-center cursor-pointer"
+              onClick={() => dispatch(toggleSelectFilter(true))}
+            >
               <p className="text-sm text-slate-400">
                 Selecionar sub-categorias
               </p>

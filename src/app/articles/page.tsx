@@ -1,21 +1,22 @@
-import Card from '@/components/Card';
-import SearchArticles from '@/components/SearchArticles';
+import Filtered from '@/components/Article/Filtered';
+import Search from '@/components/Article/Search';
 import React from 'react';
 
-export default function Page() {
+import { getArticlesPreview } from './utils/get-articlesPreview';
+
+export default async function Page() {
+  const articlesPreview = await getArticlesPreview();
+
   return (
     <React.Fragment>
-      <SearchArticles />
+      <Search />
       <div className="mt-8 px-28 w-full h-3/5 overflow-auto scrollbar-none">
-        <div className="h-full mb-8">
-          <Card />
-        </div>
-        <div className="h-full mb-8">
-          <Card />
-        </div>
-        <div className="h-full mb-8">
-          <Card />
-        </div>
+        <Filtered {...articlesPreview} />
+        {/* {articlesPreview.map(({ id, attributes }) => (
+          <section key={id} className="h-full mb-8">
+            <Preview {...attributes} />
+          </section>
+        ))} */}
       </div>
     </React.Fragment>
   );

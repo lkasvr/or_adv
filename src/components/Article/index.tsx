@@ -1,6 +1,11 @@
+import { Article as TypeArticle } from '@/app/articles/domain/Articles';
 import React from 'react';
 
-const Card = () => {
+interface IArticle {
+  article: TypeArticle;
+}
+
+const Article = ({ article: { attributes } }: IArticle) => {
   return (
     <article className="group">
       <img
@@ -12,16 +17,12 @@ const Card = () => {
       <div className="p-4">
         <a href="#">
           <h3 className="text-lg font-medium text-gray-900">
-            Finding the Journey to Mordor
+            {attributes.title}
           </h3>
         </a>
 
         <p className="mt-2 ml-2 line-clamp-3 text-sm/relaxed text-gray-500">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
-          dolores, possimus pariatur animi temporibus nesciunt praesentium
-          dolore sed nulla ipsum eveniet corporis quidem, mollitia itaque minus
-          soluta, voluptates neque explicabo tempora nisi culpa eius atque
-          dignissimos. Molestias explicabo corporis voluptatem?
+          {attributes.description}
         </p>
 
         <a
@@ -43,4 +44,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default Article;

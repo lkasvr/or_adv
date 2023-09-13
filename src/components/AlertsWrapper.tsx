@@ -6,7 +6,7 @@ import { BiCheckCircle, BiInfoCircle, BiErrorCircle } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 
 const AlertsWrapper = () => {
-  const { alerts } = useSelector((state: IRootState) => state.alert);
+  const { alerts } = useSelector((state: IRootState) => state.app);
   const [alert, setAlert] = React.useState({
     type: '',
     title: '',

@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import 'server-only';
 
-import { Category } from '../Categories';
+import { Category } from '../domain/Categories';
 
 export const preload = () => {
   void getCategories();
