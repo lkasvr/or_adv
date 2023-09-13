@@ -11,12 +11,7 @@ export default async function Page() {
     <React.Fragment>
       <Search />
       <div className="mt-8 px-28 w-full h-3/5 overflow-auto scrollbar-none">
-        <Filtered {...articlesPreview} />
-        {/* {articlesPreview.map(({ id, attributes }) => (
-          <section key={id} className="h-full mb-8">
-            <Preview {...attributes} />
-          </section>
-        ))} */}
+        <Filtered articles={articlesPreview} />
       </div>
     </React.Fragment>
   );
