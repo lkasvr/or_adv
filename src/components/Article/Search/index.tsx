@@ -19,14 +19,9 @@ const Search = async () => {
       {/* SEARCH */}
       <SearchBar />
 
-      {/* CATEGORIES AND SUB-CATEGORIES */}
-      <div className="mt-1 px-28 w-full h-1/6 flex flex-row flex-nowrap pb-1 border-b border-gray-100 overflow-auto">
+      <div className="mt-1 px-1 md:px-10 lg:px-24 xl:px-28 w-full h-1/6 flex flex-row flex-wrap xl:flex-nowrap pb-1 border-b border-gray-100 overflow-x-hidden overflow-y-auto">
         {/* CATEGORY */}
-        <fieldset className="w-1/2 flex flex-row flex-wrap justify-start content-center">
-          <legend className="sr-only">Categorias</legend>
-          <Categories categories={categories} />
-        </fieldset>
-
+        <Categories categories={categories} />
         {/* SUB-CATEGORY */}
         <SubCategories subCategories={subCategories} />
       </div>

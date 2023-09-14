@@ -26,7 +26,7 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-t-lg rounded-b-3xl">
+    <div className="mt-14 md:mt-0 pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-t-lg rounded-b-3xl">
       {children}
     </div>
   );

@@ -60,8 +60,8 @@ export const SearchBar = () => {
             ARTIGOS JURÍDICOS
           </h1>
         </div>
-        {/* CHECKBOX */}
-        <label className="absolute top-[75%] right-[5%] inline-flex items-center mr-5 cursor-pointer">
+        {/* FILTERS CHECKBOX */}
+        <label className="absolute top-[80%] right-[25%] sm:top-[75%] sm:right-[5%] inline-flex items-center mr-5 cursor-pointer">
           <input
             type="checkbox"
             value=""
@@ -74,8 +74,8 @@ export const SearchBar = () => {
               dispatch(toggleSelectFilter(!selectSubCategories.isOpen))
             }
           />
-          <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-400 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-          <span className="ml-3 text-sm font-medium text-gray-300">
+          <div className="w-8 h-3 sm:w-11 sm:h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-400 after:border after:rounded-full after:h-3 after:w-3 sm:after:h-5 sm:after:w-5 after:transition-all peer-checked:bg-primary"></div>
+          <span className="ml-3 text-xs sm:text-sm font-medium text-gray-300">
             Filtros
           </span>
         </label>

@@ -32,43 +32,46 @@ const Categories = ({ categories }: ICategories) => {
   };
 
   return (
-    <React.Fragment>
-      {categories.map(({ attributes: { slug, displayName, icon } }) => {
-        const checked = slugsSelectedCategories.includes(slug);
-        return (
-          <div key={slug} className={'m-1'}>
-            <input
-              type="checkbox"
-              name={slug}
-              value={slug}
-              id={slug}
-              className="peer hidden"
-              checked={checked}
-              onChange={() => handleCategoryChange(slug)}
-            />
-
-            <label
-              htmlFor={slug}
-              className="flex cursor-pointer items-center justify-start rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:ring-1 peer-checked:border-primary peer-checked:ring-primary"
-            >
-              {/* ICON */}
-              <ReactIcon
-                nameicon={icon.name}
-                lib={icon.lib}
-                className={`h-6 w-6 ${checked ? 'text-primary' : ''}`}
+    <fieldset className="w-full h-full xl:w-1/2">
+      <section className="w-full flex flex-row flex-wrap justify-center sm:justify-start content-center">
+        <legend className="sr-only">Categorias</legend>
+        {categories.map(({ attributes: { slug, displayName, icon } }) => {
+          const checked = slugsSelectedCategories.includes(slug);
+          return (
+            <div key={slug} className="m-1">
+              <input
+                type="checkbox"
+                name={slug}
+                value={slug}
+                id={slug}
+                className="peer hidden"
+                checked={checked}
+                onChange={() => handleCategoryChange(slug)}
               />
-              <p
-                className={`ml-4 text-gray-900 ${
-                  checked ? 'font-bold text-primary' : ''
-                }`}
+
+              <label
+                htmlFor={slug}
+                className="flex cursor-pointer items-center justify-start rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:ring-1 peer-checked:border-primary peer-checked:ring-primary"
               >
-                {displayName}
-              </p>
-            </label>
-          </div>
-        );
-      })}
-    </React.Fragment>
+                {/* ICON */}
+                <ReactIcon
+                  nameicon={icon.name}
+                  lib={icon.lib}
+                  className={`h-6 w-6 ${checked ? 'text-primary' : ''}`}
+                />
+                <p
+                  className={`ml-4 text-gray-900 ${
+                    checked ? 'font-bold text-primary' : ''
+                  }`}
+                >
+                  {displayName}
+                </p>
+              </label>
+            </div>
+          );
+        })}
+      </section>
+    </fieldset>
   );
 };
 
