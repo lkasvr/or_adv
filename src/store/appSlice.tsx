@@ -6,16 +6,12 @@ interface IAppInitialState {
   isMobile: boolean;
   alerts: Alert[];
   userMenu: { isOpen: boolean };
-  searchFilters: { isSelectOpen: boolean };
 }
 
 const initialState: IAppInitialState = {
   isMobile: false,
   alerts: [],
   userMenu: { isOpen: false },
-  searchFilters: {
-    isSelectOpen: false,
-  },
 };
 
 const appSlice = createSlice({
@@ -38,19 +34,10 @@ const appSlice = createSlice({
       const { userMenu } = state;
       userMenu.isOpen = payload;
     },
-    // SEARCH FILTERS
-    toggleSelectFilter(state, { payload }) {
-      const { searchFilters } = state;
-      searchFilters.isSelectOpen = payload;
-    },
   },
 });
 
-export const {
-  setIsMobile,
-  createAlert,
-  toggleArticleUserMenu,
-  toggleSelectFilter,
-} = appSlice.actions;
+export const { setIsMobile, createAlert, toggleArticleUserMenu } =
+  appSlice.actions;
 
 export default appSlice.reducer;

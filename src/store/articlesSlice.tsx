@@ -1,16 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 interface IArticlesInitialState {
-  filters: {
-    slugsCategories: string[];
-    slugsSubCategories: string[];
+  searchFilters: {
+    selectSubCategories: { isOpen: boolean };
+    slugsSelectedCategories: string[];
+    slugsSelectedSubCategories: string[];
+    subCategoriesTotal: number;
+    searchByTitle: string;
   };
 }
 
 const initialState: IArticlesInitialState = {
-  filters: {
-    slugsCategories: [],
-    slugsSubCategories: [],
+  searchFilters: {
+    selectSubCategories: { isOpen: false },
+    slugsSelectedCategories: [],
+    slugsSelectedSubCategories: [],
+    subCategoriesTotal: 0,
+    searchByTitle: '',
   },
 };
 
@@ -18,16 +23,32 @@ const articlesSlice = createSlice({
   name: 'articlesSlice',
   initialState,
   reducers: {
-    setSlugsCategories(state, { payload }: PayloadAction<string[]>) {
-      state.filters.slugsCategories = payload;
+    setSlugsSelectedCategories(state, { payload }: PayloadAction<string[]>) {
+      state.searchFilters.slugsSelectedCategories = payload;
     },
-    setSlugsSubCategories(state, { payload }: PayloadAction<string[]>) {
-      state.filters.slugsSubCategories = payload;
+    setSlugsSelectedSubCategories(state, { payload }: PayloadAction<string[]>) {
+      state.searchFilters.slugsSelectedSubCategories = payload;
+    },
+    setSubCategoriesTotalAmount(state, { payload }: PayloadAction<number>) {
+      state.searchFilters.subCategoriesTotal = payload;
+    },
+    setSearchByTitle(state, { payload }: PayloadAction<string>) {
+      state.searchFilters.searchByTitle = payload;
+    },
+    // SEARCH FILTERS
+    toggleSelectFilter(state, { payload }: PayloadAction<boolean>) {
+      const { searchFilters } = state;
+      searchFilters.selectSubCategories.isOpen = payload;
     },
   },
 });
 
-export const { setSlugsCategories, setSlugsSubCategories } =
-  articlesSlice.actions;
+export const {
+  toggleSelectFilter,
+  setSlugsSelectedCategories,
+  setSlugsSelectedSubCategories,
+  setSubCategoriesTotalAmount,
+  setSearchByTitle,
+} = articlesSlice.actions;
 
 export default articlesSlice.reducer;

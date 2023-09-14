@@ -1,7 +1,7 @@
 'use client';
 import ReactIcon from '@/components/ReactIcon';
 import { IRootState } from '@/store';
-import { setSlugsCategories } from '@/store/articlesSlice';
+import { setSlugsSelectedCategories } from '@/store/articlesSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,25 +14,27 @@ interface ICategories {
 const Categories = ({ categories }: ICategories) => {
   const dispatch = useDispatch();
 
-  const { slugsCategories } = useSelector(
-    (state: IRootState) => state.articles.filters,
+  const { slugsSelectedCategories } = useSelector(
+    (state: IRootState) => state.articles.searchFilters,
   );
 
   const handleCategoryChange = (slug: string) => {
-    if (slugsCategories.includes(slug))
+    if (slugsSelectedCategories.includes(slug))
       return dispatch(
-        setSlugsCategories(
-          slugsCategories.filter((categorySlug) => categorySlug !== slug),
+        setSlugsSelectedCategories(
+          slugsSelectedCategories.filter(
+            (categorySlug) => categorySlug !== slug,
+          ),
         ),
       );
 
-    dispatch(setSlugsCategories([...slugsCategories, slug]));
+    dispatch(setSlugsSelectedCategories([...slugsSelectedCategories, slug]));
   };
 
   return (
     <React.Fragment>
       {categories.map(({ attributes: { slug, displayName, icon } }) => {
-        const checked = slugsCategories.includes(slug);
+        const checked = slugsSelectedCategories.includes(slug);
         return (
           <div key={slug} className={'m-1'}>
             <input

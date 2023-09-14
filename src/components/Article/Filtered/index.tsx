@@ -2,7 +2,7 @@
 import { ArticlePreview } from '@/app/articles/domain/Articles';
 import { IRootState } from '@/store';
 import Link from 'next/link';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 interface IFiltrered {
@@ -10,50 +10,58 @@ interface IFiltrered {
 }
 
 const Filtered = ({ articles }: IFiltrered) => {
-  const { slugsCategories, slugsSubCategories } = useSelector(
-    (state: IRootState) => state.articles.filters,
+  const { searchByTitle, slugsSelectedCategories, slugsSelectedSubCategories } =
+    useSelector((state: IRootState) => state.articles.searchFilters);
+
+  const filteredArticles = useMemo(
+    () =>
+      articles.filter((article) => {
+        const { title, categories, subCategories } = article.attributes;
+
+        const hasCategory =
+          slugsSelectedCategories.length === 0 ||
+          categories.data.some((articleCategory) =>
+            slugsSelectedCategories.includes(articleCategory.attributes.slug),
+          );
+
+        const hasSubCategory =
+          slugsSelectedSubCategories.length === 0 ||
+          subCategories.data.some((articleSubCategory) =>
+            slugsSelectedSubCategories.includes(
+              articleSubCategory.attributes.slug,
+            ),
+          );
+
+        const matchTitle =
+          searchByTitle.length === 0 ||
+          title
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/\s/g, '')
+            .toUpperCase()
+            .includes(
+              searchByTitle
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/\s/g, '')
+                .toUpperCase(),
+            );
+
+        return hasCategory && hasSubCategory && matchTitle;
+      }),
+    [
+      articles,
+      searchByTitle,
+      slugsSelectedCategories,
+      slugsSelectedSubCategories,
+    ],
   );
-
-  const [filteredArticles, setFilteredArticles] = React.useState<
-    ArticlePreview[]
-  >([]);
-
-  React.useEffect(() => {
-    if (slugsCategories.length > 0 || slugsSubCategories.length > 0) {
-      setFilteredArticles(
-        articles.filter((article) => {
-          let matchFilters,
-            hasCategory,
-            hasSubCategory = false;
-          const { categories, subCategories } = article.attributes;
-
-          categories.data.forEach((articleCategory) => {
-            if (slugsCategories.includes(articleCategory.attributes.slug))
-              hasCategory = true;
-          });
-          matchFilters = hasCategory;
-
-          if (slugsSubCategories.length > 0) {
-            subCategories.data.forEach((articleSubCategory) => {
-              if (
-                slugsSubCategories.includes(articleSubCategory.attributes.slug)
-              )
-                hasSubCategory = true;
-            });
-            matchFilters = hasCategory && hasSubCategory;
-          }
-
-          return matchFilters;
-        }),
-      );
-    } else setFilteredArticles(articles);
-  }, [slugsCategories, slugsSubCategories]);
 
   return (
     <div>
       {filteredArticles.map(
         ({ id, attributes: { slug, imageRelated, title, description } }) => (
-          <section key={id} className="h-full mb-8">
+          <section key={id} className="h-full mb-12">
             <article className="group">
               <img
                 alt="Lava"

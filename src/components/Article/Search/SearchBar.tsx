@@ -1,6 +1,6 @@
 'use client';
 import { IRootState } from '@/store';
-import { toggleSelectFilter } from '@/store/appSlice';
+import { toggleSelectFilter, setSearchByTitle } from '@/store/articlesSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,8 +9,11 @@ export const SearchBar = () => {
 
   const { userMenu } = useSelector((state: IRootState) => state.app);
   const {
-    searchFilters: { isSelectOpen },
-  } = useSelector((state: IRootState) => state.app);
+    slugsSelectedSubCategories,
+    subCategoriesTotal,
+    selectSubCategories,
+    searchByTitle,
+  } = useSelector((state: IRootState) => state.articles.searchFilters);
 
   return (
     !userMenu.isOpen && (
@@ -25,6 +28,8 @@ export const SearchBar = () => {
             className="w-full h-full rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm"
             id="search"
             type="search"
+            value={searchByTitle}
+            onChange={(e) => dispatch(setSearchByTitle(e.target.value))}
             placeholder="Título do artigo ..."
           />
 
@@ -61,8 +66,13 @@ export const SearchBar = () => {
             type="checkbox"
             value=""
             className="sr-only peer"
-            checked={isSelectOpen}
-            onChange={() => dispatch(toggleSelectFilter(!isSelectOpen))}
+            checked={
+              selectSubCategories.isOpen &&
+              slugsSelectedSubCategories.length !== subCategoriesTotal
+            }
+            onChange={() =>
+              dispatch(toggleSelectFilter(!selectSubCategories.isOpen))
+            }
           />
           <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-secondary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-400 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
           <span className="ml-3 text-sm font-medium text-gray-300">
