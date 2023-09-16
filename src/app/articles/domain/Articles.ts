@@ -1,5 +1,5 @@
-import { Category } from '@/components/Article/Search/filters/domain/Categories';
-import { SubCategory } from '@/components/Article/Search/filters/domain/SubCategories';
+import { Categories } from '@/components/Article/Search/filters/domain/Categories';
+import { SubCategories } from '@/components/Article/Search/filters/domain/SubCategories';
 
 // MAIN
 export type Articles = { data: Article[] };
@@ -15,14 +15,49 @@ export type Attributes = {
   description: string;
   content: string;
   imageRelated: string;
-  categories: { data: Category[] };
-  subCategories: { data: SubCategory[] };
+  authors: authors;
+  categories: Categories;
+  subCategories: SubCategories;
+  metadata: metadata;
+  updatedAt: string;
   publishedAt: string;
   createdAt: string;
-  updatedAt: string;
 };
 
-// SPECIFIC TYPE USE CASE
+export type authors = {
+  data: author[];
+};
+
+export type author = {
+  id: number;
+  attributes: {
+    slug: string;
+    name: string;
+    displayName: string;
+    email: string;
+    url: string;
+    updatedAt: string;
+    createdAt: string;
+  };
+};
+
+export type metadata = {
+  data: {
+    id: number;
+    attributes: {
+      createdAt: string;
+      updatedAt: string;
+      applicationName: string;
+      keywords: string;
+      creator: string;
+      referrer: string;
+      publisher: string;
+      category: string;
+    };
+  };
+};
+
+// SPECIFIC TYPE FOR USE CASE'S
 export type ArticlesSlug = {
   data: {
     id: number;

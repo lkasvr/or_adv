@@ -1,11 +1,25 @@
-import { Article as TypeArticle } from '@/app/articles/domain/Articles';
+import { getArticle } from '@/app/articles/utils/get-article';
 import React from 'react';
 
-interface IArticle {
-  article: TypeArticle;
-}
+import Badge from '../Badge';
+import DateIndicator from '../DateIndicator';
 
-const Article = ({ article: { attributes } }: IArticle) => {
+export const preload = (slug: string) => {
+  void getArticle(slug);
+};
+
+const Article = async ({ slug }: { slug: string }) => {
+  const {
+    attributes: {
+      title,
+      content,
+      publishedAt,
+      updatedAt,
+      categories,
+      subCategories,
+    },
+  } = await getArticle(slug);
+
   return (
     <article className="group">
       <img
@@ -14,32 +28,44 @@ const Article = ({ article: { attributes } }: IArticle) => {
         className="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%]"
       />
 
-      <div className="p-4">
-        <a href="#">
-          <h3 className="text-lg font-medium text-gray-900">
-            {attributes.title}
-          </h3>
-        </a>
+      <div className="p-2 w-full">
+        <div className="w-full flex flex-row flex-wrap justify-end items-start">
+          <DateIndicator legend="última atualização" date={updatedAt} />
+        </div>
+        <div className="flex flex-row flex-wrap">
+          <h3 className="text-3xl font-medium text-gray-900">{title}</h3>
+          &nbsp;&nbsp;
+          {categories.data.map(({ attributes: { slug, displayName } }) => (
+            <Badge
+              key={slug}
+              text={displayName}
+              extendedClass="font-bold bg-slate-200 text-slate-600"
+            />
+          ))}
+          <div className="ml-6 mt-2 w-full flex flex-row flex-wrap justify-start">
+            <span className="w-full text-base text-primary">
+              Temas relacionados:
+            </span>
+            <div className="py-2 px-10">
+              {subCategories.data.map(
+                ({ attributes: { slug, displayName } }) => (
+                  <Badge
+                    key={slug}
+                    text={displayName}
+                    extendedClass="bg-transparent text-slate-500"
+                  />
+                ),
+              )}
+            </div>
+          </div>
+        </div>
 
-        <p className="mt-2 ml-2 line-clamp-3 text-sm/relaxed text-gray-500">
-          {attributes.description}
-        </p>
-
-        <a
-          href="#"
-          className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary"
-        >
-          Find out more
-          <span
-            aria-hidden="true"
-            className="block transition-all group-hover:ms-0.5 rtl:rotate-180"
-          >
-            &rarr;
-          </span>
-        </a>
+        <div
+          className="mt-4 p-4 text-justify text-lg/relaxed text-gray-500"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+        <DateIndicator legend="publicado" date={publishedAt} />
       </div>
-
-      <hr className="mt-1 mb-6 h-[1px] w-full text-gray-400" />
     </article>
   );
 };

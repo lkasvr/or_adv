@@ -1,3 +1,7 @@
+export type Categories = {
+  data: Category[];
+};
+
 export type Category = {
   id: string;
   attributes: {
