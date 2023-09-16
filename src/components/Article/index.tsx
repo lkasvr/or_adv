@@ -3,6 +3,7 @@ import React from 'react';
 
 import Badge from '../Badge';
 import DateIndicator from '../DateIndicator';
+import ShareButtons from '../ShareButtons';
 
 export const preload = (slug: string) => {
   void getArticle(slug);
@@ -13,15 +14,19 @@ const Article = async ({ slug }: { slug: string }) => {
     attributes: {
       title,
       content,
-      publishedAt,
-      updatedAt,
+      authors,
       categories,
       subCategories,
+      updatedAt,
+      publishedAt,
     },
   } = await getArticle(slug);
 
   return (
-    <article className="group">
+    <article className="group flex flex-col">
+      <div className="m-2 pr-1 w-1/5 self-end">
+        <ShareButtons title={title} />
+      </div>
       <img
         alt="Lava"
         src="https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -46,7 +51,7 @@ const Article = async ({ slug }: { slug: string }) => {
             <span className="w-full text-base text-primary">
               Temas relacionados:
             </span>
-            <div className="py-2 px-10">
+            <div className="py-2 px-10 w-full flex flex-row flex-wrap justify-start">
               {subCategories.data.map(
                 ({ attributes: { slug, displayName } }) => (
                   <Badge
@@ -64,7 +69,21 @@ const Article = async ({ slug }: { slug: string }) => {
           className="mt-4 p-4 text-justify text-lg/relaxed text-gray-500"
           dangerouslySetInnerHTML={{ __html: content }}
         />
-        <DateIndicator legend="publicado" date={publishedAt} />
+        <div className="w-full flex flex-row justify-between items-end ">
+          <DateIndicator
+            legend="publicado"
+            date={publishedAt}
+            wrapperClass="text-primary/75"
+          />
+          <div className="w-1/3 flex flex-row flex-wrap justify-end">
+            {authors.data.map(({ attributes: { slug, displayName } }, i) => (
+              <span key={slug} className="text-slate-500 text-sm italic">
+                {!displayName ? 'desconhecido' : displayName}
+                {authors.data.length === i + 1 ? '' : ','}&nbsp;
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </article>
   );

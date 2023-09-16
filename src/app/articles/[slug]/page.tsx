@@ -9,7 +9,6 @@ const query = qs.stringify({ fields: ['slug'] }, { encodeValuesOnly: true });
 
 type Props = {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export async function generateMetadata(

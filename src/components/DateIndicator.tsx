@@ -5,11 +5,16 @@ import React from 'react';
 interface ILastUpdate {
   legend: string;
   date: string;
+  wrapperClass?: string;
 }
 
-const DateIndicator = ({ legend, date }: ILastUpdate) => {
+const DateIndicator = ({ legend, date, wrapperClass }: ILastUpdate) => {
   return (
-    <span className="mt-4 text-sm font-medium text-primary">
+    <span
+      className={`mt-4 text-sm font-medium  ${
+        !wrapperClass ? 'text-primary' : wrapperClass
+      }`}
+    >
       {legend}{' '}
       {formatDistance(new Date(date), new Date(), {
         addSuffix: true,
