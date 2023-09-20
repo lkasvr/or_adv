@@ -20,7 +20,8 @@ const UserAuth = ({ title }: { title: string }) => {
       const response = await signIn('credentials', {
         identifier,
         password,
-        redirect: false,
+        redirect: true,
+        callbackUrl: '/register',
       });
 
       if (response?.error) setError(response.error);
@@ -43,7 +44,7 @@ const UserAuth = ({ title }: { title: string }) => {
       // validationSchema={validationYupSchema}
       classStyles="w-full flex flex-row flex-wrap justify-center gap-2 overflow-y-auto md:scrollbar-none"
     >
-      <h2 className="flex flex-row flex-wrap md:mb-4 text-2xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-3xl">
+      <h2 className="md:mb-4 w-full flex flex-row flex-wrap justify-center text-2xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-3xl">
         {title}
       </h2>
       <TextField

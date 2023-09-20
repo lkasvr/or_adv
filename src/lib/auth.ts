@@ -1,3 +1,4 @@
+import { add, getTime } from 'date-fns';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
@@ -12,8 +13,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ trigger, user, token }) {
       if (trigger === 'signIn' && user) {
-        const actualDateInSeconds = Math.floor(Date.now() / 1000);
-        const tokenExpirationInSeconds = Math.floor(4 * 60 * 60);
+        const tokenExpirationTimestamp = getTime(add(new Date(), { hours: 4 }));
 
         const {
           jwt,
@@ -39,9 +39,7 @@ export const authOptions: NextAuthOptions = {
           confirmed,
           isAuthorizedPost,
           isAuthorizedEditSiteContent,
-          expiration: Math.floor(
-            actualDateInSeconds + tokenExpirationInSeconds,
-          ).toString(),
+          expiration: tokenExpirationTimestamp.toString(),
         };
       }
 

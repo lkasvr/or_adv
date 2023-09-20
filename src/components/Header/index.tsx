@@ -1,5 +1,5 @@
 'use client';
-import Button from '@/components/Button';
+import MenuButton from '@/components/MenuButton';
 import { useDimensions } from '@/hooks/use-dimensions';
 import { IRootState } from '@/store';
 import { motion, useCycle } from 'framer-motion';
@@ -85,7 +85,7 @@ const HeaderWithFooter = () => {
 
         <ul className="w-full flex flex-row flex-wrap justify-center text-lg">
           {menuLinks.map(({ text, href }) => (
-            <Button
+            <MenuButton
               key={text}
               onClick={() => (isMobile ? toggleOpen() : null)}
               text={text}

@@ -13,11 +13,10 @@ import TextArea from '@/components/Form/inputs/TextArea';
 import TextField from '@/components/Form/inputs/TextField';
 import sendEmail from '@/services/email/emailjs';
 import { ProbonoTemplate } from '@/services/email/template/types';
-import { IRootState } from '@/store';
 import { createAlert } from '@/store/appSlice';
 import { FormikHelpers } from 'formik';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 type ProbonoForm = {
@@ -41,8 +40,6 @@ const selectOptions = [
 
 const Probono = () => {
   const dispatch = useDispatch();
-
-  const { isMobile } = useSelector((state: IRootState) => state.app);
   const [isDisabled, setIsDisabled] = React.useState(false);
 
   const validationYupSchema = Yup.object({
@@ -146,13 +143,10 @@ const Probono = () => {
       onSubmit={handleSubmit}
       classStyles="w-full flex flex-row flex-wrap justify-center gap-2 lg:grid lg:grid-cols-2 overflow-y-auto md:scrollbar-none"
     >
-      {isMobile ? (
-        <h2 className="md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
-          Conte-nos sua história
-        </h2>
-      ) : (
-        ''
-      )}
+      <h2 className="min-[767px]:hidden md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
+        Conte-nos sua história
+      </h2>
+
       <TextField
         label="Primeiro Nome*"
         name="firstName"

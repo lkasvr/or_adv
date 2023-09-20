@@ -13,7 +13,7 @@ const Search = async () => {
 
   return (
     <React.Fragment>
-      {/* USER MENU  */}
+      {/* AUTHENTICATE USER MENU  */}
       <Menu />
 
       {/* SEARCH */}

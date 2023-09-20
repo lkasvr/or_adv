@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 export const Menu = () => {
   const { userMenu } = useSelector((state: IRootState) => state.app);
 
+  //if (!session) redirect(authOptions?.pages?.signIn ?? '/login');
+
   return (
     userMenu.isOpen && (
       <header className="bg-gray-50 rounded-3xl h-1/3">
