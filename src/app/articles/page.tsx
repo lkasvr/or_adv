@@ -29,11 +29,11 @@ export default async function Page() {
   const articlesPreview = await getArticlesPreview();
 
   return (
-    <div className="mt-14 md:mt-0 pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-t-lg rounded-b-3xl">
+    <section className="articles-preview mt-14 md:mt-0 pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-t-lg rounded-b-3xl">
       <Search />
       <div className="px-4 md:px-24 xl:px-28 w-full h-4/6 overflow-auto">
         <Filtered articles={articlesPreview} />
       </div>
-    </div>
+    </section>
   );
 }

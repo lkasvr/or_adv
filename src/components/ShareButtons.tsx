@@ -1,27 +1,23 @@
 'use client';
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
-import { FiInstagram, FiFacebook, FiTwitter, FiLinkedin } from 'react-icons/fi';
+import { FiFacebook, FiTwitter, FiLinkedin } from 'react-icons/fi';
 import {
   FacebookShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-  InstapaperShareButton,
   LinkedinShareButton,
 } from 'react-share';
 
 interface Props {
+  slug: string;
   title?: string;
 }
 
-const ShareButtons = ({ title }: Props) => {
-  const url = typeof window !== 'undefined' ? window.location.href : '/';
+const ShareButtons = ({ slug, title }: Props) => {
+  const url = `${process.env.NEXTAUTH_URL}/${slug}`;
   return (
     <div className="flex flex-row flex-nowrap justify-end gap-2">
-      <InstapaperShareButton url={url} title={title}>
-        <FiInstagram />
-      </InstapaperShareButton>
-
       <FacebookShareButton url={url} title={title}>
         <FiFacebook />
       </FacebookShareButton>

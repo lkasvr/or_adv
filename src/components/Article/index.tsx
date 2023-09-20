@@ -25,7 +25,7 @@ const Article = async ({ slug }: { slug: string }) => {
   return (
     <article className="group flex flex-col">
       <div className="m-2 pr-1 w-1/5 self-end">
-        <ShareButtons title={title} />
+        <ShareButtons slug={slug} title={title} />
       </div>
       <img
         alt="Lava"
