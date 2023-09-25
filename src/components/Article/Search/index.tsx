@@ -1,3 +1,4 @@
+import UserSessionProvider from '@/providers/UserSessionProvider';
 import React from 'react';
 
 import { Menu } from '../../User/Menu';
@@ -14,7 +15,9 @@ const Search = async () => {
   return (
     <React.Fragment>
       {/* AUTHENTICATE USER MENU  */}
-      <Menu />
+      <UserSessionProvider>
+        <Menu />
+      </UserSessionProvider>
 
       {/* SEARCH */}
       <SearchBar />

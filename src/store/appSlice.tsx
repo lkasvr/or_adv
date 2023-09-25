@@ -30,7 +30,7 @@ const appSlice = createSlice({
       });
     },
     // USER MENU
-    toggleArticleUserMenu(state, { payload }) {
+    toggleArticleUserMenu(state, { payload }: { payload: boolean }) {
       const { userMenu } = state;
       userMenu.isOpen = payload;
     },

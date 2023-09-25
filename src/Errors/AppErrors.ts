@@ -1,10 +1,16 @@
 export default class AppError {
   public readonly message: string;
-  public readonly statusCode: number;
+  public readonly httpStatusCode: number;
+  public readonly internalErrorCode: number;
 
-  constructor(message: string, statusCode: number) {
+  constructor(
+    message: string,
+    httpStatusCode: number,
+    internalErrorCode: number,
+  ) {
     this.message = message;
-    this.statusCode = statusCode;
+    this.httpStatusCode = httpStatusCode;
+    this.internalErrorCode = internalErrorCode;
   }
 }
 
@@ -13,8 +19,19 @@ export class UnknownError extends AppError {
   public readonly error: unknown;
 
   constructor(error: unknown, message?: string) {
-    super(`${message ?? 'Unknown Error'}`, 0);
+    super(`${message ?? 'Unknown Error'}`, 404, 2111);
     this.error = error;
+  }
+
+  public toString() {
+    return `
+    INTERNAL APP ERROR CODE:
+    ${this.internalErrorCode} |
+    HTTP CODE: ${this.httpStatusCode} |
+    MESSAGE: ${this.message} |
+    UNKNOWN ERROR:
+    ${JSON.stringify(this.error)}
+    `;
   }
 }
 
@@ -27,33 +44,34 @@ export class ExpiredException extends AppError {
   constructor(
     expiredEntity: ExpiredExceptionEntities,
     message: string,
+    httpStatusCode: number,
     expirationDate: Date,
   ) {
-    super(message, 5);
+    super(message, httpStatusCode, 5);
     this.entity = expiredEntity;
     this.expirationDate = expirationDate;
   }
 }
 
 export class UnauthenticatedException extends AppError {
-  constructor(message: string) {
-    super(message, 401);
+  constructor(message: string, httpStatusCode: number) {
+    super(message, httpStatusCode, 211);
   }
 }
 
 /**
- * ATTENTION
- * Existing errors like Http will follow the respective codes.
  * ___________________________________________________________
  *
  * STATUS CODE ERRORS/EXCEPTIONS GLOSSARY
  * + AppError - 1
  *    Description: generic and global application know error
  *
- *
- * + ExpiredError - 5
+ * + ExpiredException - 5
  *    Description: time expiration error
  *
- * + UnknownError - 0
+ * + UnauthenticatedException - 211
+ *    Description: unauthenticated
+ *
+ * + UnknownError - 2111
  *    Description: Any kind unknow error
  */

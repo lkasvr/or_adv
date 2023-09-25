@@ -14,10 +14,10 @@ export async function GET() {
       session instanceof UnauthenticatedException ||
       session instanceof ExpiredException
     )
-      return new Response(session.message, { status: session.statusCode });
+      return new Response(session.message, { status: session.httpStatusCode });
 
-    return NextResponse.json({ user: session.user });
+    return NextResponse.json({ session });
   } catch (error) {
-    return new Response(JSON.stringify(new UnknownError(error)));
+    return new Response(new UnknownError(error).toString());
   }
 }

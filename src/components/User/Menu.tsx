@@ -1,12 +1,18 @@
 'use client';
+import { SessionContext } from '@/providers/UserSessionProvider';
 import { IRootState } from '@/store';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { toggleArticleUserMenu } from '@/store/appSlice';
+import React, { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Menu = () => {
+  const dispatch = useDispatch();
+  const session = useContext(SessionContext);
+  if (session) dispatch(toggleArticleUserMenu(true));
   const { userMenu } = useSelector((state: IRootState) => state.app);
 
-  //if (!session) redirect(authOptions?.pages?.signIn ?? '/login');
+  console.log('session no componente menu (client)');
+  console.log(session);
 
   return (
     userMenu.isOpen && (

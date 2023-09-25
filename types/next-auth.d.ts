@@ -30,17 +30,7 @@ declare module 'next-auth' {
   export interface Session {
     token: string;
     expiration: string;
-    user: {
-      slug: string;
-      username: string;
-      name: string;
-      email: string;
-      role: string;
-      author: Author;
-      confirmed: boolean;
-      isAuthorizedPost: boolean;
-      isAuthorizedEditSiteContent: boolean;
-    };
+    user: IUserSession;
   }
 }
 
@@ -59,6 +49,18 @@ declare module 'next-auth/jwt' {
     isAuthorizedEditSiteContent: boolean;
     expiration: string;
   }
+}
+
+export interface IUserSession {
+  slug: string;
+  username: string;
+  name: string;
+  email: string;
+  role: string;
+  author: Author;
+  confirmed: boolean;
+  isAuthorizedPost: boolean;
+  isAuthorizedEditSiteContent: boolean;
 }
 
 type Author = {
