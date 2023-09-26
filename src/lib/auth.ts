@@ -19,7 +19,8 @@ export const authOptions: NextAuthOptions = {
           jwt,
           slug,
           username,
-          name,
+          firstName,
+          lastName,
           email,
           role,
           author,
@@ -29,16 +30,19 @@ export const authOptions: NextAuthOptions = {
         } = user;
 
         return {
+          user: {
+            slug,
+            username,
+            firstName,
+            lastName,
+            email,
+            role,
+            author,
+            confirmed,
+            isAuthorizedPost,
+            isAuthorizedEditSiteContent,
+          },
           jwt,
-          slug,
-          username,
-          name,
-          email,
-          role,
-          author,
-          confirmed,
-          isAuthorizedPost,
-          isAuthorizedEditSiteContent,
           expiration: tokenExpirationTimestamp.toString(),
         };
       }
@@ -48,35 +52,11 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      const {
-        jwt,
-        expiration,
-        slug,
-        username,
-        name,
-        email,
-        role,
-        author,
-        confirmed,
-        isAuthorizedPost,
-        isAuthorizedEditSiteContent,
-      } = token;
-      session.token = jwt;
-      session.expiration = expiration;
+      session.user = token.user;
+      session.token = token.jwt;
+      session.expiration = token.expiration;
 
-      session.user = {
-        slug,
-        username,
-        name,
-        email,
-        role,
-        author,
-        confirmed,
-        isAuthorizedPost,
-        isAuthorizedEditSiteContent,
-      };
-
-      return session;
+      return session ?? undefined;
     },
   },
   providers: [
@@ -102,10 +82,9 @@ export const authOptions: NextAuthOptions = {
             return { jwt, ...user };
           }
 
-          throw new Error('Authentication failure. User data not available');
+          throw JSON.stringify(response.body);
         } catch (error) {
-          console.error(error);
-          return null;
+          return error;
         }
       },
     }),

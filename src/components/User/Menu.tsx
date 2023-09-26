@@ -1,109 +1,115 @@
 'use client';
-import { SessionContext } from '@/providers/UserSessionProvider';
-import { IRootState } from '@/store';
-import { toggleArticleUserMenu } from '@/store/appSlice';
-import React, { useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+import type { Variants, MotionProps } from 'framer-motion';
+import { signOut } from 'next-auth/react';
+import React from 'react';
+import { AiOutlineLogout } from 'react-icons/ai';
 
-export const Menu = () => {
-  const dispatch = useDispatch();
-  const session = useContext(SessionContext);
-  if (session) dispatch(toggleArticleUserMenu(true));
-  const { userMenu } = useSelector((state: IRootState) => state.app);
+const menu = {
+  closed: {
+    scale: 0,
+    transition: {
+      delay: 0.15,
+    },
+  },
+  open: {
+    scale: 1,
+    transition: {
+      type: 'spring',
+      duration: 0.4,
+      delayChildren: 0.2,
+      staggerChildren: 0.05,
+    },
+  },
+} satisfies Variants;
 
-  console.log('session no componente menu (client)');
-  console.log(session);
+const item = {
+  variants: {
+    closed: { x: -16, opacity: 0 },
+    open: { x: 0, opacity: 1 },
+  },
+  transition: { opacity: { duration: 0.2 } },
+} satisfies MotionProps;
 
+const Menu = () => {
+  const [open, setOpen] = React.useState(false);
   return (
-    userMenu.isOpen && (
-      <header className="bg-gray-50 rounded-3xl h-1/3">
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-end gap-4">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <label className="sr-only" htmlFor="search">
-                  {' '}
-                  Search{' '}
-                </label>
+    <section className="user-menu relative">
+      <div
+        className="backdrop:inline-flex items-center overflow-hidden"
+        onClick={() => setOpen((prevState) => !prevState)}
+        onMouseOver={() => setOpen(true)}
+      >
+        <a href="#" className="block shrink-0">
+          <span className="sr-only">Profile</span>
+          <img
+            alt="Man"
+            src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+            className="h-10 w-10 rounded-full object-cover"
+          />
+        </a>
+      </div>
 
-                <input
-                  className="h-10 w-full rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
-                  id="search"
-                  type="search"
-                  placeholder="Search website..."
-                />
+      <motion.div
+        className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+        role="menu"
+        initial="closed"
+        animate={open ? 'open' : 'closed'}
+        exit="closed"
+        variants={menu}
+        onMouseLeave={() => setOpen(false)}
+      >
+        <div className="p-2">
+          <motion.button
+            {...item}
+            className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+            role="menuitem"
+          >
+            Perfil
+          </motion.button>
 
-                <button
-                  type="button"
-                  className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
-                >
-                  <span className="sr-only">Search</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </button>
-              </div>
+          <motion.button
+            {...item}
+            className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+            role="menuitem"
+          >
+            View Warehouse Info
+          </motion.button>
 
-              <a
-                href="#"
-                className="block shrink-0 rounded-full bg-white p-2.5 text-gray-600 shadow-sm hover:text-gray-700"
-              >
-                <span className="sr-only">Notifications</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  />
-                </svg>
-              </a>
-            </div>
+          <motion.button
+            {...item}
+            className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+            role="menuitem"
+          >
+            Duplicate Product
+          </motion.button>
 
-            <span
-              aria-hidden="true"
-              className="block h-6 w-px rounded-full bg-gray-200"
-            ></span>
-
-            <a href="#" className="block shrink-0">
-              <span className="sr-only">Profile</span>
-              <img
-                alt="Man"
-                src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                className="h-10 w-10 rounded-full object-cover"
-              />
-            </a>
-          </div>
-
-          <div className="mt-8">
-            <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-              Welcome Back, Barry!
-            </h1>
-
-            <p className="mt-1.5 text-sm text-gray-500">
-              Your website has seen a 52% increase in traffic in the last month.
-              Keep it up! 🚀
-            </p>
-          </div>
+          <motion.button
+            {...item}
+            className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+            role="menuitem"
+          >
+            Unpublish Product
+          </motion.button>
         </div>
-      </header>
-    )
+
+        <div className="p-2">
+          <motion.button
+            {...item}
+            type="submit"
+            className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50"
+            role="menuitem"
+            onClick={() =>
+              signOut({ redirect: true, callbackUrl: '/articles' })
+            }
+          >
+            <AiOutlineLogout className="h-5 w-5" />
+            Sair
+          </motion.button>
+        </div>
+      </motion.div>
+    </section>
   );
 };
+
+export default Menu;

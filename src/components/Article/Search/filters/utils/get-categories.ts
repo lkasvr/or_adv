@@ -10,6 +10,7 @@ export const preload = () => {
 export const getCategories = cache(async () => {
   const res = await fetch(
     `${process.env.ARTICLES_API_BASE_URL}/categories?populate=icon`,
+    { cache: 'no-store' },
   );
 
   const { data }: { data: Category[] } = await res.json();

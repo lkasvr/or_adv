@@ -15,7 +15,7 @@ export default function UserSessionProvider({
 
   const fetchUserSession = async () => {
     try {
-      const response = await fetch('/api/auth/session');
+      const response = await fetch('/api/auth/session', { cache: 'no-store' });
       const newSession = await response.json();
       setSession(newSession);
     } catch (error) {
@@ -36,9 +36,6 @@ export default function UserSessionProvider({
 
   React.useEffect(() => {
     fetchUserSession();
-
-    console.log('session no provider (client)');
-    console.log(session);
   }, []);
 
   React.useEffect(() => {

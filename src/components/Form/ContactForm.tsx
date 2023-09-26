@@ -1,32 +1,27 @@
 'use client';
-import Form from '@/components/Form';
-import FormButton from '@/components/Form/buttons/FormButton';
-import Checkbox from '@/components/Form/inputs/Checkbox';
-import CPF_CNPJField, {
-  cpfCnpjRegExpMask,
-} from '@/components/Form/inputs/CPF_CNPJField';
-import PhoneField, {
-  phoneRegExpMask,
-} from '@/components/Form/inputs/PhoneField';
-import SelectInput from '@/components/Form/inputs/SelectInput';
-import TextArea from '@/components/Form/inputs/TextArea';
-import TextField from '@/components/Form/inputs/TextField';
 import sendEmail from '@/services/email/emailjs';
-import { ProbonoTemplate } from '@/services/email/template/types';
+import { ContactTemplate } from '@/services/email/template/types';
 import { createAlert } from '@/store/appSlice';
 import { FormikHelpers } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
-type ProbonoForm = {
+import Form from '.';
+import FormButton from './buttons/FormButton';
+import CPF_CNPJField, { cpfCnpjRegExpMask } from './inputs/CPF_CNPJField';
+import PhoneField, { phoneRegExpMask } from './inputs/PhoneField';
+import SelectInput from './inputs/SelectInput';
+import TextArea from './inputs/TextArea';
+import TextField from './inputs/TextField';
+
+type ContactDataForm = {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
   personNumberRegister: string;
   area: string;
-  checked: false;
   report: string;
 };
 
@@ -38,8 +33,9 @@ const selectOptions = [
   'Trabalhista',
 ];
 
-const Probono = () => {
+const ContactForm = ({ title }: { title: string }) => {
   const dispatch = useDispatch();
+
   const [isDisabled, setIsDisabled] = React.useState(false);
 
   const validationYupSchema = Yup.object({
@@ -57,16 +53,13 @@ const Probono = () => {
     phone: Yup.string()
       .matches(phoneRegExpMask, 'Formato de celular/telefone inválido')
       .required('O celular/telefone para contato é requerido'),
-    personNumberRegister: Yup.string()
-      .matches(cpfCnpjRegExpMask, 'CPF ou CNPJ inválido')
-      .required('O CPF ou CNPJ é requerido'),
+    personNumberRegister: Yup.string().matches(
+      cpfCnpjRegExpMask,
+      'CPF ou CNPJ inválido',
+    ),
     area: Yup.string()
       .required('A área do direito é requerida')
       .oneOf([...selectOptions]),
-    checked: Yup.boolean().oneOf(
-      [true],
-      'Você deve concordar com os termos do programa OR Probono para prosseguir',
-    ),
     report: Yup.string()
       .max(
         2000,
@@ -84,21 +77,21 @@ const Probono = () => {
       phone,
       area,
       report,
-    }: ProbonoForm,
-    actions: FormikHelpers<ProbonoForm>,
+    }: ContactDataForm,
+    actions: FormikHelpers<ContactDataForm>,
   ) => {
     setIsDisabled(true);
     actions.setSubmitting(true);
-    const templateParams: ProbonoTemplate = {
-      personNumberRegister: personNumberRegister,
+    const templateParams: ContactTemplate = {
+      personNumberRegister: personNumberRegister ?? 'Não informado',
       from_name: `${firstName} ${lastName}`,
       email,
       phone,
       area,
       message: report,
     };
-    sendEmail<ProbonoTemplate>({
-      templateID: process.env.NEXT_PUBLIC_EMAILJS_PROBONO_TEMPLATE_ID ?? '',
+    sendEmail<ContactTemplate>({
+      templateID: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID ?? '',
       templateParams,
       success: (/*res*/) => {
         dispatch(
@@ -128,7 +121,7 @@ const Probono = () => {
   };
 
   return (
-    <Form<ProbonoForm>
+    <Form<ContactDataForm>
       initialValues={{
         firstName: '',
         lastName: '',
@@ -136,17 +129,15 @@ const Probono = () => {
         phone: '',
         personNumberRegister: '',
         area: '',
-        checked: false,
         report: '',
       }}
-      validationSchema={validationYupSchema}
       onSubmit={handleSubmit}
-      classStyles="w-full flex flex-row flex-wrap justify-center gap-2 lg:grid lg:grid-cols-2 overflow-y-auto md:scrollbar-none"
+      validationSchema={validationYupSchema}
+      classStyles="w-full flex flex-row flex-wrap justify-center gap-2 lg:grid lg:grid-cols-2 overflow-y-auto"
     >
-      <h2 className="min-[767px]:hidden md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
-        Conte-nos sua história
+      <h2 className="md:col-span-full self-start md:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
+        {title}
       </h2>
-
       <TextField
         label="Primeiro Nome*"
         name="firstName"
@@ -167,7 +158,7 @@ const Probono = () => {
         wraperclass="w-4/5 justify-self-end"
       />
       <CPF_CNPJField
-        label="CPF/CNPJ*"
+        label="CPF/CNPJ"
         name="personNumberRegister"
         type="text"
         wraperclass="w-4/5"
@@ -192,13 +183,8 @@ const Probono = () => {
         placeholder="Digite sua mensagem ..."
         wraperclass="col-span-full w-full mt-2 justify-self-start flex flex-row flex-wrap text-white"
         rows={5}
+        maxCharacters={2000}
       />
-      <Checkbox
-        label="Concordo com os termos do Progrma OR Probono"
-        name="checked"
-        wraperclass="col-span-full"
-      />
-
       <FormButton
         text="Enviar Mensagem"
         isDisabled={isDisabled}
@@ -208,4 +194,4 @@ const Probono = () => {
   );
 };
 
-export default Probono;
+export default ContactForm;

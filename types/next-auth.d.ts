@@ -11,7 +11,8 @@ declare module 'next-auth' {
     id: number;
     slug: string;
     username: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     role: string;
     author: Author;
@@ -30,31 +31,24 @@ declare module 'next-auth' {
   export interface Session {
     token: string;
     expiration: string;
-    user: IUserSession;
+    user: IUser;
   }
 }
 
 declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
   interface JWT {
+    user: IUser;
     jwt: string;
-    slug: string;
-    username: string;
-    name: string;
-    email: string;
-    role: string;
-    author: Author;
-    confirmed: boolean;
-    isAuthorizedPost: boolean;
-    isAuthorizedEditSiteContent: boolean;
     expiration: string;
   }
 }
 
-export interface IUserSession {
+export interface IUser {
   slug: string;
   username: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   role: string;
   author: Author;

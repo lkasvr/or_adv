@@ -1,4 +1,4 @@
-import Probono from '@/components/Form/Probono';
+import ProbonoForm from '@/components/Form/ProbonoForm';
 import React from 'react';
 
 export default function Page() {
@@ -59,7 +59,7 @@ export default function Page() {
         </article>
       </div>
       <div className="w-full 2xl:w-1/2 h-full p-4 2xl:p-9 flex flex-row flex-nowrap justify-evenly border rounded-2xl">
-        <Probono />
+        <ProbonoForm />
       </div>
     </div>
   );

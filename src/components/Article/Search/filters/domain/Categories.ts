@@ -3,7 +3,7 @@ export type Categories = {
 };
 
 export type Category = {
-  id: string;
+  id: number;
   attributes: {
     slug: string;
     displayName: string;

@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 
 import Preview from '../Preview';
 
-interface IFiltrered {
+interface Props {
   articles: ArticlePreview[];
 }
 
-const Filtered = ({ articles }: IFiltrered) => {
+const Filtered = ({ articles }: Props) => {
   const { searchByTitle, slugsSelectedCategories, slugsSelectedSubCategories } =
     useSelector((state: IRootState) => state.articles.searchFilters);
 

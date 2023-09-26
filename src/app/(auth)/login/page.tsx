@@ -1,16 +1,17 @@
+import StrapiRestAPIResponseError, {
+  ExpiredException,
+} from '@/app/api/Errors/types';
 import UserAuth from '@/components/Form/UserAuth';
-import { ExpiredException, UnauthenticatedException } from '@/Errors/AppErrors';
 import { getSession } from '@/lib/session';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
 export default async function Page() {
   const session = await getSession();
-  console.log('session pagina login (server)');
-  console.log(session);
+
   if (
     !(session instanceof ExpiredException) &&
-    !(session instanceof UnauthenticatedException)
+    !(session instanceof StrapiRestAPIResponseError)
   )
     redirect('/articles');
 

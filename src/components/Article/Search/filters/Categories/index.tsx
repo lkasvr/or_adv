@@ -5,7 +5,7 @@ import { setSlugsSelectedCategories } from '@/store/articlesSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Category } from './domain/Categories';
+import { Category } from '../domain/Categories';
 
 interface ICategories {
   categories: Category[];

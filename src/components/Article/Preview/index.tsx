@@ -5,7 +5,7 @@ import React from 'react';
 import Badge from '../../Badge';
 import DateIndicator from '../../DateIndicator';
 
-interface IPreview extends ArticlePreviewAttributes {
+interface Props extends ArticlePreviewAttributes {
   wrapperClass?: string;
 }
 
@@ -17,7 +17,7 @@ const Preview = ({
   description,
   updatedAt,
   wrapperClass,
-}: IPreview) => {
+}: Props) => {
   return (
     <article className={`group ${wrapperClass} `}>
       <img
