@@ -1,6 +1,6 @@
 import './globals.css';
-import AlertsWrapper from '@/components/AlertsWrapper';
 import HeaderWithFooter from '@/components/Header';
+import AlertsWrapper from '@/components/Notifications/AlertsWrapper';
 import InitialAppStateProvider from '@/providers/InitialAppStateProvider';
 import ReduxProvider from '@/providers/ReduxProvider';
 import { Analytics } from '@vercel/analytics/react';

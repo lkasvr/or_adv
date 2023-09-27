@@ -1,56 +1,38 @@
 'use client';
-import { StrapiRestAPIResponse } from '@/app/api/sub-categories/route';
-import { StrapiRestAPIResponseError } from '@/app/api/types';
+import { SubCategory } from '@/app/api/sub-categories/domain';
 import { SessionContext } from '@/providers/UserSessionProvider';
-import { createAlert } from '@/store/appSlice';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import CreatableSelect from 'react-select/creatable';
+import React, { useContext } from 'react';
+import useSWR from 'swr';
 import * as Yup from 'yup';
 
 import Form from '.';
-import { Categories } from '../Article/Search/filters/domain/Categories';
-import { SubCategories } from '../Article/Search/filters/domain/SubCategories';
+import { getSubCategories } from '../Article/Search/filters/utils/fetchers';
 import TinyMCE from '../RichTextEditor';
+import CreateSelect, { CreatableSelectOptions } from './inputs/CreateSelect';
 import InputText from './inputs/InputText';
 import TextArea from './inputs/TextArea';
 
-interface Props {
-  categories: Categories;
-  subCategories: SubCategories;
-}
+function ArticleForm() {
+  const session = useContext(SessionContext);
+  const { data, error, isLoading } = useSWR<SubCategory[]>(
+    '/api/sub-categories',
+    getSubCategories,
+  );
 
-function ArticleForm({ categories, subCategories }: Props) {
-  const dispatch = useDispatch();
-  const session = React.useContext(SessionContext);
+  const [subCategoryOptions, setSubCategoryOptions] =
+    React.useState<CreatableSelectOptions>([]);
+  const [selectedSubCategoryOptions, setSelectedSubCategoryOptions] =
+    React.useState<CreatableSelectOptions>([]);
 
-  const onCreateOption = async (inputValue: string) => {
-    try {
-      const response = await fetch('/api/sub-categories', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${session?.token}`,
-        },
-        body: JSON.stringify({ name: inputValue }),
-      });
-      const newSubCategory: StrapiRestAPIResponse | StrapiRestAPIResponseError =
-        await response.json();
-
-      if (!newSubCategory?.data) throw newSubCategory;
-      console.log(newSubCategory);
-    } catch (error) {
-      const {
-        error: { name, message, status },
-      } = error;
-      dispatch(
-        createAlert({
-          title: `Erro ${name} (${status})`,
-          message,
-          type: 'error',
-        }),
+  React.useEffect(() => {
+    if (data && !error)
+      setSubCategoryOptions(
+        data.map(({ id, attributes: { displayName } }) => ({
+          value: id,
+          label: displayName,
+        })),
       );
-    }
-  };
+  }, [isLoading]);
 
   const validationYupSchema = Yup.object();
 
@@ -64,14 +46,20 @@ function ArticleForm({ categories, subCategories }: Props) {
       classStyles="w-full flex flex-row flex-wrap justify-center scrollbar-none"
     >
       <InputText label="Título" name="lastName" type="text" />
-      <CreatableSelect
-        placeholder="Selecione uma sub-categoria ..."
+      <CreateSelect
+        endpoint="sub-categories"
         isMulti
-        onCreateOption={onCreateOption}
-        options={subCategories.map(({ attributes: { slug, displayName } }) => ({
-          value: slug,
-          label: displayName,
-        }))}
+        options={subCategoryOptions}
+        selectedOptions={selectedSubCategoryOptions}
+        setOptions={setSubCategoryOptions}
+        setSelectedOptions={setSelectedSubCategoryOptions}
+        placeholder={
+          !isLoading && error
+            ? 'Algo deu errado ...'
+            : 'Selecione uma sub-categoria ...'
+        }
+        session={session}
+        isLoading={isLoading}
       />
       <TextArea
         label="Descrição"

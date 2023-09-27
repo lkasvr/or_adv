@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Alert } from './domain/Alert';
 
@@ -22,11 +23,22 @@ const appSlice = createSlice({
       state.isMobile = payload;
     },
     // ALERT
-    createAlert(state, action: PayloadAction<Alert>) {
+    createAlert(
+      state,
+      action: PayloadAction<Omit<Omit<Alert, 'id'>, 'status'>>,
+    ) {
       state.alerts.push({
+        id: uuidv4(),
         title: action.payload.title,
         message: action.payload.message,
         type: action.payload.type,
+        status: 'display',
+        duration: action.payload.duration ?? 5000,
+      });
+    },
+    setDisplayedAlert(state, { payload }: { payload: string }) {
+      state.alerts.forEach((alert) => {
+        if (alert.id === payload) alert.status = 'displayed';
       });
     },
     // USER MENU
@@ -37,7 +49,11 @@ const appSlice = createSlice({
   },
 });
 
-export const { setIsMobile, createAlert, toggleArticleUserMenu } =
-  appSlice.actions;
+export const {
+  setIsMobile,
+  createAlert,
+  setDisplayedAlert,
+  toggleArticleUserMenu,
+} = appSlice.actions;
 
 export default appSlice.reducer;

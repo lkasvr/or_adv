@@ -1,4 +1,6 @@
 'use client';
+import { SubCategory } from '@/app/api/sub-categories/domain';
+import Loading from '@/components/Loading';
 import { IRootState } from '@/store';
 import {
   toggleSelectFilter,
@@ -7,21 +9,24 @@ import {
 } from '@/store/articlesSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import useSWR from 'swr';
 
-import { SubCategory } from '../domain/SubCategories';
+import { getSubCategories } from '../utils/fetchers';
 
-interface ISubCategories {
-  subCategories: SubCategory[];
-}
-
-const SubCategories = ({ subCategories }: ISubCategories) => {
+const SubCategories = () => {
   const dispatch = useDispatch();
+  const { data, error, isLoading } = useSWR<SubCategory[]>(
+    '/api/sub-categories',
+    getSubCategories,
+  );
 
   const { selectSubCategories, slugsSelectedSubCategories } = useSelector(
     (state: IRootState) => state.articles.searchFilters,
   );
 
-  dispatch(setSubCategoriesTotalAmount(subCategories.length));
+  React.useEffect(() => {
+    if (data) dispatch(setSubCategoriesTotalAmount(data.length));
+  }, [isLoading]);
 
   const toggleOption = (slug: string) => {
     if (slugsSelectedSubCategories.includes(slug))
@@ -42,7 +47,7 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
     <fieldset className="relative max-md:mt-1 w-full h-full xl:w-1/2">
       {/* SELECT */}
       {selectSubCategories.isOpen &&
-        subCategories.length !== slugsSelectedSubCategories.length && (
+        data?.length !== slugsSelectedSubCategories.length && (
           <select
             className="p-1 absolute w-full h-full flex flex-row flex-wrap bg-transparent cursor-pointer overflow-y-auto scrollbar-none"
             multiple
@@ -52,14 +57,14 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
             <option className="text-sm text-slate-400 !bg-transparent">
               Selecione uma sub-categoria
             </option>
-            {subCategories.map(({ id, attributes: { displayName, slug } }) => {
+            {data?.map(({ id, attributes: { displayName, slug } }) => {
               const selected = slugsSelectedSubCategories.includes(slug);
               return (
                 <option
                   key={id}
                   value={slug}
                   className={`ml-1 inline-flex items-center justify-center px-2.5 py-0.5 m-1 ${
-                    selected ? '!hidden' : ''
+                    selected && '!hidden'
                   }`}
                 >
                   {displayName}
@@ -70,32 +75,37 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
         )}
       {/* SELECTED OPTIONS */}
       {(!selectSubCategories.isOpen ||
-        subCategories.length === slugsSelectedSubCategories.length) && (
+        data?.length === slugsSelectedSubCategories.length) && (
         <div
           className={`h-full w-full bg-white flex flex-row flex-wrap content-start items-start ${
-            slugsSelectedSubCategories.length < 1
-              ? 'bg-slate-50 border border-dashed border-slate-200 rounded-3xl'
-              : ''
-          }`}
+            slugsSelectedSubCategories.length < 1 &&
+            'bg-slate-50 border border-dashed rounded-3xl '
+          } ${error ? 'border-red-500' : 'border-slate-300'}`}
         >
           {!selectSubCategories.isOpen &&
-          slugsSelectedSubCategories.length < 1 ? (
-            <div
-              className="w-full h-full flex justify-center items-center cursor-pointer"
-              onClick={() => dispatch(toggleSelectFilter(true))}
-            >
-              <p className="text-sm text-slate-400">
-                Selecionar sub-categorias
-              </p>
-            </div>
-          ) : (
-            ''
-          )}
+            slugsSelectedSubCategories.length < 1 && (
+              <div
+                className="w-full h-full flex justify-center items-center cursor-pointer"
+                onClick={() => dispatch(toggleSelectFilter(true))}
+              >
+                {isLoading ? (
+                  <Loading type="spinningBubbles" width={32} height={32} />
+                ) : (
+                  <p
+                    className={`text-sm ${
+                      error ? 'text-red-500' : 'text-slate-400'
+                    }`}
+                  >
+                    {error ? 'Algo deu errado...' : 'Selecionar sub-categorias'}
+                  </p>
+                )}
+              </div>
+            )}
           <p className="w-full text-sm text-slate-400">
             {((!selectSubCategories.isOpen &&
               slugsSelectedSubCategories.length !== 0) ||
               (slugsSelectedSubCategories.length > 0 &&
-                slugsSelectedSubCategories.length === subCategories.length)) &&
+                slugsSelectedSubCategories.length === data?.length)) &&
               'Subcategorias'}
           </p>
           {slugsSelectedSubCategories.map((value) => (
@@ -105,9 +115,8 @@ const SubCategories = ({ subCategories }: ISubCategories) => {
             >
               <p className="whitespace-nowrap text-sm">
                 {
-                  subCategories.find(
-                    ({ attributes }) => attributes.slug === value,
-                  )?.attributes.displayName
+                  data?.find(({ attributes }) => attributes.slug === value)
+                    ?.attributes.displayName
                 }
               </p>
               <button

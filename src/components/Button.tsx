@@ -1,5 +1,4 @@
 'use client';
-import { signOut } from 'next-auth/react';
 import React from 'react';
 
 interface IButton {
@@ -7,12 +6,8 @@ interface IButton {
   onClick?: () => void;
 }
 
-const Button = ({ text }: IButton) => {
-  return (
-    <button onClick={() => signOut({ redirect: true, callbackUrl: '/login' })}>
-      {text}
-    </button>
-  );
+const Button = ({ text, onClick }: IButton) => {
+  return <button onClick={onClick}>{text}</button>;
 };
 
 export default Button;

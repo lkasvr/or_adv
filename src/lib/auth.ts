@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ trigger, user, token }) {
       if (trigger === 'signIn' && user) {
-        const tokenExpirationTimestamp = getTime(add(new Date(), { hours: 4 }));
+        const tokenExpirationTimestamp = getTime(add(new Date(), { hours: 3 }));
 
         const {
           jwt,

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa6';
 
+import Checkbox from '../Article/Search/filters/SubCategories/Checkbox';
 import SearchInput from '../Article/Search/SearchInput';
 import Menu from './Menu';
 
@@ -39,7 +40,7 @@ const Banner = async ({ session }: { session: Session }) => {
             <Menu />
           </div>
 
-          <div className="mt-8">
+          <div className="relative mt-8">
             <h1 className="text-2xl font-bold text-white sm:text-3xl">
               Welcome Back, {user.firstName}!
             </h1>
@@ -48,6 +49,11 @@ const Banner = async ({ session }: { session: Session }) => {
               Your website has seen a 52% increase in traffic in the last month.
               Keep it up! 🚀
             </p>
+            {/* FILTERS CHECKBOX */}
+            <Checkbox
+              wrapperClass="absolute top-[75%] right-[25%] sm:top-[75%] sm:right-[5%]"
+              legendVisible
+            />
           </div>
         </div>
       </header>

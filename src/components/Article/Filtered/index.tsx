@@ -36,9 +36,9 @@ const Filtered = ({ articles }: Props) => {
         const matchTitle =
           searchByTitle.length === 0 ||
           title
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/\s/g, '')
+            .normalize('NFD') // converte caracteres acentuados (diacríticos) em sua forma equivalente sem acentos
+            .replace(/[\u0300-\u036f]/g, '') // remove todos os caracteres que não são letras (acentos, cedilhas e outros caracteres especiais) da string
+            .replace(/\s/g, '') // remove todos os espaços em branco da string, substituindo-os por uma string vazia ''
             .toUpperCase()
             .includes(
               searchByTitle

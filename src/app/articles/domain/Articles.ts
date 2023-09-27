@@ -1,5 +1,5 @@
-import { Categories } from '@/components/Article/Search/filters/domain/Categories';
-import { SubCategories } from '@/components/Article/Search/filters/domain/SubCategories';
+import { Categories } from '@/app/api/categories/domain';
+import { SubCategories } from '@/app/api/sub-categories/domain';
 
 // MAIN
 export type Articles = { data: Article[] };

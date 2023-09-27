@@ -19,7 +19,10 @@ export const SearchBar = ({ title }: { title: string }) => {
         </h1>
       </div>
       {/* FILTERS CHECKBOX */}
-      <Checkbox />
+      <Checkbox
+        wrapperClass="absolute top-[80%] right-[25%] sm:top-[75%] sm:right-[5%]"
+        legendVisible
+      />
     </div>
   );
 };

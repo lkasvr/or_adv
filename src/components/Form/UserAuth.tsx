@@ -14,9 +14,11 @@ type LoginForm = {
 
 const UserAuth = ({ title }: { title: string }) => {
   const [error, setError] = React.useState('');
+  const [isDisabled, setIsDisabled] = React.useState(false);
 
   const handleSubmit = async ({ identifier, password }: LoginForm) => {
     try {
+      setIsDisabled(true);
       const response = await signIn('credentials', {
         identifier,
         password,
@@ -31,6 +33,8 @@ const UserAuth = ({ title }: { title: string }) => {
       console.log(error);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsDisabled(false);
     }
   };
 
@@ -61,7 +65,7 @@ const UserAuth = ({ title }: { title: string }) => {
       />
       <FormButton
         text="Entrar"
-        // isDisabled={isDisabled}
+        isDisabled={isDisabled}
         extendClass="col-span-full w-2/5"
       />
     </Form>
