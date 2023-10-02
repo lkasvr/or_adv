@@ -1,5 +1,6 @@
 'use client';
 import { ArticlePreview } from '@/app/articles/domain/Articles';
+import { resetStringToCompare } from '@/components/Form/inputs/utils/formatters';
 import { IRootState } from '@/store';
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
@@ -35,18 +36,9 @@ const Filtered = ({ articles }: Props) => {
 
         const matchTitle =
           searchByTitle.length === 0 ||
-          title
-            .normalize('NFD') // converte caracteres acentuados (diacríticos) em sua forma equivalente sem acentos
-            .replace(/[\u0300-\u036f]/g, '') // remove todos os caracteres que não são letras (acentos, cedilhas e outros caracteres especiais) da string
-            .replace(/\s/g, '') // remove todos os espaços em branco da string, substituindo-os por uma string vazia ''
-            .toUpperCase()
-            .includes(
-              searchByTitle
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .replace(/\s/g, '')
-                .toUpperCase(),
-            );
+          resetStringToCompare(title).includes(
+            resetStringToCompare(searchByTitle),
+          );
 
         return hasCategory && hasSubCategory && matchTitle;
       }),

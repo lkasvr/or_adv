@@ -21,5 +21,9 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <div className="flex flex-row flex-nowrap justify-evenly p-4 xl:px-9 w-full h-full border rounded-2xl">
+      {children}
+    </div>
+  );
 }

@@ -135,7 +135,7 @@ const ContactForm = ({ title }: { title: string }) => {
       validationSchema={validationYupSchema}
       classStyles="w-full flex flex-row flex-wrap justify-center gap-2 lg:grid lg:grid-cols-2 overflow-y-auto"
     >
-      <h2 className="md:col-span-full self-start md:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-5xl">
+      <h2 className="md:col-span-full self-start md:mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-4xl">
         {title}
       </h2>
       <TextField

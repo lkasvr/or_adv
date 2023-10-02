@@ -1,11 +1,11 @@
 import GoogleMapsSkeleton from '@/components/Skeletons/GoogleMaps';
 import { Slider } from '@/components/Slider';
 import Image from 'next/image';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 
 export default function Page() {
   return (
-    <div className="w-full h-full flex flex-row flex-wrap 2xl:flex-nowrap justify-center gap-y-32 sm:gap-y-0 overflow-auto scrollbar-none">
+    <React.Fragment>
       <article className="p-4 2xl:p-9 w-full h-full 2xl:w-2/5 flex flex-row flex-wrap justify-center text-white">
         <h2 className="mb-6 ml-4 lg:text-xl font-bold text-center text-base">
           <span className="">OLIVEIRA & RIOS &ndash; ADVOGADOS</span>
@@ -62,6 +62,6 @@ export default function Page() {
           />
         </Suspense>
       </div>
-    </div>
+    </React.Fragment>
   );
 }

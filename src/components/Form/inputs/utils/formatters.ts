@@ -22,3 +22,11 @@ export const formatBRPhoneNumber = (value: string) => {
   // eslint-disable-next-line prettier/prettier
   return `(${digits.substring(0, 2)}) ${digits.substring(2, cut)}${digits.length >= 7 ? '-' : ''}${digits.substring(cut, max)}`;
 };
+
+export const resetStringToCompare = (value: string) => {
+  return value
+    .normalize('NFD') // converte caracteres acentuados (diacríticos) em sua forma equivalente sem acentos
+    .replace(/[\u0300-\u036f]/g, '') // remove todos os caracteres que não são letras (acentos, cedilhas e outros caracteres especiais) da string
+    .replace(/\s/g, '') // remove todos os espaços em branco da string, substituindo-os por uma string vazia ''
+    .toUpperCase();
+};

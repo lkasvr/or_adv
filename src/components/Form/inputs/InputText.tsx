@@ -1,10 +1,20 @@
 import { useField } from 'formik';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import { FieldInputProps } from './types';
 
-const InputText = ({ label, ...props }: FieldInputProps) => {
+interface Props extends FieldInputProps {
+  onInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const InputText = ({ label, onInputChange, ...props }: Props) => {
   const [field, meta] = useField(props);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    field.onChange(e);
+    if (onInputChange) onInputChange(e);
+  };
+
   return (
     <div className={`relative z-0 mt-2 mb-1 group ${props.wraperclass}`}>
       <label
@@ -17,6 +27,7 @@ const InputText = ({ label, ...props }: FieldInputProps) => {
           className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           {...field}
           {...props}
+          onChange={handleInputChange}
         />
       </label>
 

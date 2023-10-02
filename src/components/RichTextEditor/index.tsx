@@ -18,6 +18,7 @@ const TinyMCE = () => {
         init={{
           max_height: 600,
           height: 500,
+          width: '100%',
           menubar: true,
           plugins: [
             'advlist',

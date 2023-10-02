@@ -19,7 +19,8 @@ function FormButton({ text, isDisabled, extendClass, onClick }: IFormButton) {
       {isDisabled ? (
         <div className="w-full flex flex-row justify-center" role="status">
           <Loading type="spin" width={32} height={32} />
-          <span className="flex justify-center items-center">Enviando...</span>
+          &nbsp;
+          {/* <span className="flex justify-center items-center">Enviando...</span> */}
         </div>
       ) : (
         text

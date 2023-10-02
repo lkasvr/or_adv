@@ -3,7 +3,7 @@ export type SubCategories = {
 };
 
 export type SubCategory = {
-  id: string;
+  id: number;
   attributes: {
     name: string;
     displayName: string;

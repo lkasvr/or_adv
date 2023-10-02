@@ -3,7 +3,7 @@ import React from 'react';
 
 export default async function Page() {
   return (
-    <section className="articles-create-auth">
+    <section className="articles-auth-create">
       <ArticleForm />
     </section>
   );

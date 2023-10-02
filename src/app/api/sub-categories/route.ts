@@ -19,7 +19,9 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  console.log(req.headers.get('Authorization'));
   const requestBody = await req.json();
+  console.log(requestBody);
 
   const res = await fetch(
     `${process.env.ARTICLES_API_BASE_URL}/sub-categories`,
