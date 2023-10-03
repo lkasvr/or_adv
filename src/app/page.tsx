@@ -1,4 +1,8 @@
 import Preview from '@/components/Article/Preview';
+import ScrollDownIcon from '@/components/ScrollDownIcon';
+import Image from 'next/image';
+import Link from 'next/link';
+import temis from 'public/assets/images/temis.png';
 
 import { getArticlesPreview } from './articles/utils/get-articlesPreview';
 
@@ -7,14 +11,40 @@ export default async function Home() {
 
   return (
     <div className="p-10 w-full h-full flex flex-row flex-nowrap justify-center items-center">
+      {/* H1 FOR SEO */}
+      <h1 className="hidden">Oliveira e Rios Advogados</h1>
       <section className="home-page mt-14 md:mt-0 w-full h-full bg-white flex flex-row flex-nowrap rounded-3xl">
-        <div className="px-4 py-8 md:px-16 xl:px-20 w-1/2 h-full"></div>
+        {/* SECTION 1 */}
+        <section className="sub-section-1 w-1/2 h-full flex flex-row flex-nowrap justify-between items-start">
+          <div className="ml-4 w-1/2 h-full flex flex-row justify-between items-center">
+            <Image src={temis} alt="Deusa da Justiça Temis" />
+          </div>
+          <div className="w-1/2 flex flex-col">
+            <h2 className="pt-40 text-5xl text-primary font-extrabold leading-none tracking-tight">
+              Bem vindo,
+            </h2>
+            <span className="pt-3 pl-4 -indent-2 text-justify text-gray-500">
+              somos um escritório de advocacia <b>&#39;full service&#39;</b>{' '}
+              atuante no DF e em diversas capitais. Nos dedicamos ao ideal de
+              justiça, primamos pela liberdade, isonomia e temos como objetivo
+              fornecer supedâneo ao seu direito, prestando um serviço distinto,
+              eficiente e personalizado.
+            </span>
+          </div>
+        </section>
+        {/* SECTION 2 */}
+        <section className="sub-section-2  px-4 py-8 md:px-16 xl:px-20 w-1/2 h-full flex flex-col content-center items-center">
+          <div className="w-full flex flex-row flex-nowrap justify-between">
+            <h3 className="pt-2 pl-2 md:col-span-full md:mb-4 self-start text-2xl text-primary/80 font-extrabold leading-none tracking-tight">
+              <Link href="/articles">Artigos</Link>
+            </h3>
 
-        <div className="px-4 py-8 md:px-16 xl:px-20 w-1/2 h-full flex flex-col content-center items-center">
-          <h2 className="pt-2 pl-2 md:col-span-full md:mb-4 self-start text-3xl text-primary/80 font-extrabold leading-none tracking-tight">
-            Artigos
-          </h2>
-          <hr className="mb-2 h-[1px] w-full text-gray-400" />
+            <div className="self-end">
+              <ScrollDownIcon text="role para baixo" />
+            </div>
+          </div>
+
+          <hr className="mb-1 h-[1px] w-full text-gray-400" />
           <div className="w-full h-full scrollbar-none overflow-auto">
             {articlesPreview.map(({ attributes }) => (
               <Preview
@@ -24,7 +54,7 @@ export default async function Home() {
               />
             ))}
           </div>
-        </div>
+        </section>
       </section>
     </div>
   );

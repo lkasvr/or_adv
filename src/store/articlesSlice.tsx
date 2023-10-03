@@ -7,9 +7,15 @@ interface IArticlesInitialState {
     subCategoriesTotal: number;
     searchByTitle: string;
   };
+  articles: {
+    totalAmount: number;
+  };
 }
 
 const initialState: IArticlesInitialState = {
+  articles: {
+    totalAmount: 0,
+  },
   searchFilters: {
     selectSubCategories: { isOpen: false },
     slugsSelectedCategories: [],
@@ -23,6 +29,7 @@ const articlesSlice = createSlice({
   name: 'articlesSlice',
   initialState,
   reducers: {
+    // SEARCH FILTERS
     setSlugsSelectedCategories(state, { payload }: PayloadAction<string[]>) {
       state.searchFilters.slugsSelectedCategories = payload;
     },
@@ -35,20 +42,26 @@ const articlesSlice = createSlice({
     setSearchByTitle(state, { payload }: PayloadAction<string>) {
       state.searchFilters.searchByTitle = payload;
     },
-    // SEARCH FILTERS
     toggleSelectFilter(state, { payload }: PayloadAction<boolean>) {
       const { searchFilters } = state;
       searchFilters.selectSubCategories.isOpen = payload;
+    },
+    // ARTICLES
+    setArticlesTotalAmount(state, { payload }: PayloadAction<number>) {
+      state.articles.totalAmount = payload;
     },
   },
 });
 
 export const {
+  // SEARCH FILTERS
   toggleSelectFilter,
   setSlugsSelectedCategories,
   setSlugsSelectedSubCategories,
   setSubCategoriesTotalAmount,
   setSearchByTitle,
+  // ARTICLES
+  setArticlesTotalAmount,
 } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

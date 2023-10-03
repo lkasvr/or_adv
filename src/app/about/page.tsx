@@ -7,20 +7,20 @@ export default function Page() {
   return (
     <React.Fragment>
       <article className="p-4 2xl:p-9 w-full h-full 2xl:w-2/5 flex flex-row flex-wrap justify-center text-white">
-        <h2 className="mb-6 ml-4 lg:text-xl font-bold text-center text-base">
+        <h2 className="mb-2 ml-4 lg:text-xl font-bold text-center text-base">
           <span className="">OLIVEIRA & RIOS &ndash; ADVOGADOS</span>
         </h2>
 
-        <p className="max-md:mt-4 mb-4 text-justify indent-8">
+        <p className="max-md:mt-4 text-justify">
           Atuamos junto aos <b>Tribunais Superiores</b> (STF e STJ),{' '}
           <b>Justiça Federal</b> e <b>Tribunais de Justiça</b>, bem como no
           âmbito da <b>Administração Pública direta e indireta</b>.
         </p>
-        <p className="max-md:mt-4 mb-4 text-justify indent-8">
+        <p className="max-md:mt-4 text-justify">
           O escritório tem sede no Distrito Federal e é coordenado pelos sócios{' '}
           <b>André Viana de Oliveira</b> e <b>Lucimara Vieira Rios</b>.
         </p>
-        <p className="max-md:mt-4 mb-6 text-justify indent-8">
+        <p className="max-md:mt-4 mb-6 text-justify">
           Por ser um escritório <b>full service</b> e manter parceria com outros
           escritórios e advogados fora do DF, atendemos em todo o território
           nacional.
@@ -28,6 +28,7 @@ export default function Page() {
         {/* SWIPER SLIDE */}
         <Slider />
       </article>
+
       <hr className="max-2xl:px-4 2xl:py-9 w-10/12 h-[1px] max-2xl:my-4 2xl:w-[1px] 2xl:h-full bg-white" />
       <div className="p-4 2xl:p-9 w-full h-full 2xl:w-[66.6%] max-[280px]:mt-96 flex flex-row flex-wrap justify-center">
         <div className="mb-6 max-h-max flex flex-row flex-wrap justify-center">

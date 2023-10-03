@@ -2,8 +2,9 @@
 import { ArticlePreview } from '@/app/articles/domain/Articles';
 import { resetStringToCompare } from '@/components/Form/inputs/utils/formatters';
 import { IRootState } from '@/store';
+import { setArticlesTotalAmount } from '@/store/articlesSlice';
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Preview from '../Preview';
 
@@ -12,6 +13,10 @@ interface Props {
 }
 
 const Filtered = ({ articles }: Props) => {
+  const dispatch = useDispatch();
+
+  dispatch(setArticlesTotalAmount(articles.length));
+
   const { searchByTitle, slugsSelectedCategories, slugsSelectedSubCategories } =
     useSelector((state: IRootState) => state.articles.searchFilters);
 
