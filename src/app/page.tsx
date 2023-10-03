@@ -1,7 +1,5 @@
-import Preview from '@/components/Article/Preview';
-import ScrollDownIcon from '@/components/ScrollDownIcon';
+import SectionPreview from '@/components/Article/SectionPreview';
 import Image from 'next/image';
-import Link from 'next/link';
 import temis from 'public/assets/images/temis.png';
 
 import { getArticlesPreview } from './articles/utils/get-articlesPreview';
@@ -34,26 +32,7 @@ export default async function Home() {
         </section>
         {/* SECTION 2 */}
         <section className="sub-section-2  px-4 py-8 md:px-16 xl:px-20 w-1/2 h-full flex flex-col content-center items-center">
-          <div className="w-full flex flex-row flex-nowrap justify-between">
-            <h3 className="pt-2 pl-2 md:col-span-full md:mb-4 self-start text-2xl text-primary/80 font-extrabold leading-none tracking-tight">
-              <Link href="/articles">Artigos</Link>
-            </h3>
-
-            <div className="self-end">
-              <ScrollDownIcon text="role para baixo" />
-            </div>
-          </div>
-
-          <hr className="mb-1 h-[1px] w-full text-gray-400" />
-          <div className="w-full h-full scrollbar-none overflow-auto">
-            {articlesPreview.map(({ attributes }) => (
-              <Preview
-                key={attributes.slug}
-                wrapperClass="h-full py-4"
-                {...attributes}
-              />
-            ))}
-          </div>
+          <SectionPreview articlesPreview={articlesPreview} />
         </section>
       </section>
     </div>

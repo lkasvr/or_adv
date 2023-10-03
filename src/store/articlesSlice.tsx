@@ -7,15 +7,9 @@ interface IArticlesInitialState {
     subCategoriesTotal: number;
     searchByTitle: string;
   };
-  articles: {
-    totalAmount: number;
-  };
 }
 
 const initialState: IArticlesInitialState = {
-  articles: {
-    totalAmount: 0,
-  },
   searchFilters: {
     selectSubCategories: { isOpen: false },
     slugsSelectedCategories: [],
@@ -47,9 +41,6 @@ const articlesSlice = createSlice({
       searchFilters.selectSubCategories.isOpen = payload;
     },
     // ARTICLES
-    setArticlesTotalAmount(state, { payload }: PayloadAction<number>) {
-      state.articles.totalAmount = payload;
-    },
   },
 });
 
@@ -61,7 +52,6 @@ export const {
   setSubCategoriesTotalAmount,
   setSearchByTitle,
   // ARTICLES
-  setArticlesTotalAmount,
 } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

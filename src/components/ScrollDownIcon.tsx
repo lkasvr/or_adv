@@ -8,7 +8,7 @@ interface Props {
   distance?: number;
 }
 
-const ScrollDownIcon = ({ text }: Props) => {
+const ScrollDownIcon = ({ text, distance }: Props) => {
   const [isVisible, setIsVisible] = React.useState(true);
 
   const handleAnimationComplete = () => setIsVisible(false);
@@ -23,7 +23,7 @@ const ScrollDownIcon = ({ text }: Props) => {
               opacity: 1,
             },
             target: {
-              y: 30,
+              y: distance ?? 25,
               opacity: 0.2,
             },
           }}
