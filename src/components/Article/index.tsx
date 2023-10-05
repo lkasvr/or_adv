@@ -34,7 +34,7 @@ const Article = async ({ slug }: { slug: string }) => {
       <div className="m-2 pr-1 w-1/5 self-end">
         <ShareButtons slug={slug} title={title} />
       </div>
-      {/* SET UP IMAGES 1080 x 224 */}
+      {/* SET UP IMAGES 1640  x 224 */}
       <Image
         alt={alternativeText ?? 'Capa do Artigo'}
         src={large.url}

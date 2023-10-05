@@ -55,7 +55,7 @@ const Filtered = ({ articles }: Props) => {
       {filteredArticles.map(({ attributes }) => (
         <Preview
           key={attributes.slug}
-          wrapperClass="h-full py-2"
+          wrapperClass="h-full w-[48%]"
           {...attributes}
         />
       ))}

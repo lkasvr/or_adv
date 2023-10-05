@@ -31,7 +31,7 @@ export default async function Page() {
   return (
     <section className="articles-preview mt-14 md:mt-0 pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-t-lg rounded-b-3xl">
       <Search />
-      <div className="px-4 md:px-24 xl:px-28 w-full h-4/6 overflow-auto">
+      <div className="px-4 md:px-24 xl:px-28 pt-4 w-full h-4/6 flex flex-row flex-wrap justify-between overflow-auto">
         <Filtered articles={articlesPreview} />
       </div>
     </section>

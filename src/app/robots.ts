@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/dashboard/'],
+      disallow: ['/dashboard/', '/login/', '/register/', '/articles/create'],
     },
     sitemap: 'https://www.oliveirarios.adv.br/sitemap.xml',
   };
