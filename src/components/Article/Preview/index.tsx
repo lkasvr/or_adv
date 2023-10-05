@@ -1,4 +1,5 @@
 import { ArticlePreviewAttributes } from '@/app/articles/domain/Articles';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -12,17 +13,23 @@ interface Props extends ArticlePreviewAttributes {
 const Preview = ({
   slug,
   title,
-  imageRelated,
+  coverImage,
   categories,
   description,
   updatedAt,
   wrapperClass,
 }: Props) => {
+  const {
+    alternativeText,
+    formats: { large },
+  } = coverImage.data.attributes;
   return (
     <article className={`group ${wrapperClass} `}>
-      <img
-        alt="Lava"
-        src={imageRelated}
+      <Image
+        alt={alternativeText ?? 'Capa do artigo'}
+        src={large.url}
+        width={large.width}
+        height={large.height}
         className="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%] "
       />
 

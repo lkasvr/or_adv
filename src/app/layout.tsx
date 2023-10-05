@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Oliveira & Rios Advogados',
     description:
-      '“OR - Pro Bono” é um dos pilares da nossa atuação, cujo conceito prático é a realização gratuita da defesa daqueles que, atendendo aos critérios estabelecidos, se inscrevam no programa.',
+      'Bem-vindos ao nosso website, somos um escritório de advocacia que se dedica ao ideal de justiça, primamos pela liberdade, isonomia e temos como objetivo fornecer supedâneo ao seu direito, prestando um serviço distinto, eficiente e personalizado.',
     images: {
       url: '/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoFb.2024f082.png&w=1920&q=75',
       width: 260,
@@ -53,7 +53,7 @@ export default function RootLayout({
             <AlertsWrapper />
             <HeaderWithFooter />
             <StrictMode>
-              <main className="w-full md:w-8/12 xl:w-9/12 h-screen p-6 xl:p-24 bg-gradient-to-r from-primary/95 to-secondary/95">
+              <main className="w-full md:w-8/12 xl:w-9/12 h-screen p-6 xl:p-20 bg-gradient-to-r from-primary/95 to-secondary/95 overflow-auto">
                 <Template>{children}</Template>
               </main>
             </StrictMode>

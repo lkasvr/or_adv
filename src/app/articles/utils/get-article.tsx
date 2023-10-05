@@ -14,6 +14,7 @@ const query = (slug: string) =>
         metadata: {
           formatDetection: true,
         },
+        coverImage: true,
       },
       filters: {
         slug: { $eq: slug },
@@ -26,6 +27,7 @@ export const getArticle = cache(async (slug: string) => {
   const res = await fetch(
     `${process.env.ARTICLES_API_BASE_URL}/articles?${query(slug)}`,
   );
+
   const { data }: { data: Article[] } = await res.json();
   return data[0];
 });

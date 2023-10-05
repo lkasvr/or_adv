@@ -1,4 +1,5 @@
 import { getArticle } from '@/app/articles/utils/get-article';
+import Image from 'next/image';
 import React from 'react';
 
 import Badge from '../Badge';
@@ -17,19 +18,28 @@ const Article = async ({ slug }: { slug: string }) => {
       authors,
       categories,
       subCategories,
+      coverImage,
       updatedAt,
       publishedAt,
     },
   } = await getArticle(slug);
+
+  const {
+    alternativeText,
+    formats: { large },
+  } = coverImage.data.attributes;
 
   return (
     <article className="group flex flex-col">
       <div className="m-2 pr-1 w-1/5 self-end">
         <ShareButtons slug={slug} title={title} />
       </div>
-      <img
-        alt="Lava"
-        src="https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+      {/* SET UP IMAGES 1080 x 224 */}
+      <Image
+        alt={alternativeText ?? 'Capa do Artigo'}
+        src={large.url}
+        width={large.width}
+        height={large.height}
         className="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%]"
       />
 

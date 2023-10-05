@@ -1,9 +1,10 @@
+/* eslint-disable quotes */
 const theme = {
   theme: {
     extend: {
       backgroundImage: {
-        // eslint-disable-next-line quotes
         main: "url('/assets/images/planalto.jpg')",
+        'salao-stj': "url('/assets/images/salao_n_stj.jpg')",
       },
       colors: {
         primary: '#2c455b',

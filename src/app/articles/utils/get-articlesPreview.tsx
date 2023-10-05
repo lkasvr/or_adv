@@ -9,8 +9,9 @@ const query = qs.stringify(
     populate: {
       categories: true,
       subCategories: true,
+      coverImage: true,
     },
-    fields: ['slug', 'title', 'description', 'imageRelated', 'updatedAt'],
+    fields: ['slug', 'title', 'description', 'updatedAt'],
   },
   { encodeValuesOnly: true },
 );
@@ -25,5 +26,6 @@ export const getArticlesPreview = cache(async () => {
   );
 
   const { data }: ArticlesPreview = await res.json();
+
   return data;
 });

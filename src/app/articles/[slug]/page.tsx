@@ -1,5 +1,5 @@
 import Article from '@/components/Article';
-import type { Metadata } from 'next'; // ResolvingMetadata
+import type { Metadata, ResolvingMetadata } from 'next'; // ResolvingMetadata
 import qs from 'qs';
 
 import { ArticlesSlug } from '../domain/Articles';
@@ -13,23 +13,21 @@ type Props = {
 
 export async function generateMetadata(
   { params }: Props,
-  //parent: ResolvingMetadata,
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  // read route params
   const { slug } = params;
 
-  // fetch data
   const article = await getArticle(slug);
 
-  // optionally access and extend (rather than replace) parent metadata
-  //const previousImages = (await parent).openGraph?.images ?? [];
+  const previousImages = (await parent).openGraph?.images ?? [];
 
-  const { title, description, authors, metadata } = article.attributes;
-  const { applicationName, creator, publisher, keywords } =
-    metadata.data.attributes;
+  const { title, description, authors, metadata, coverImage, updatedAt } =
+    article.attributes;
+  const { publisher, keywords } = metadata;
+
+  const { thumbnail } = coverImage.data.attributes.formats;
 
   return {
-    applicationName,
     title: {
       absolute: title,
     },
@@ -39,20 +37,23 @@ export async function generateMetadata(
       name,
       url,
     })),
-    creator,
     publisher,
     openGraph: {
       title,
       description,
-      //images: ['/some-specific-page-image.jpg', ...previousImages],
-      images: {
-        url: '/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoFb.2024f082.png&w=1920&q=75',
-        width: 260,
-        height: 149,
-        alt: 'Logo Oliveira Rios Advogados',
-      },
+      authors: authors.data.map(({ attributes: { name } }) => name),
+      publishedTime: updatedAt,
+      images: [
+        {
+          url: thumbnail.url,
+          width: thumbnail.width,
+          height: thumbnail.height,
+          alt: 'Logo Oliveira Rios Advogados',
+        },
+        ...previousImages,
+      ],
       locale: 'pt_BR',
-      type: 'website',
+      type: 'article',
     },
   };
 }

@@ -14,21 +14,21 @@ export type Attributes = {
   title: string;
   description: string;
   content: string;
-  imageRelated: string;
-  authors: authors;
+  authors: Authors;
   categories: Categories;
   subCategories: SubCategories;
-  metadata: metadata;
+  metadata: Metadata;
+  coverImage: CoverImage;
   updatedAt: string;
   publishedAt: string;
   createdAt: string;
 };
 
-export type authors = {
-  data: author[];
+export type Authors = {
+  data: Author[];
 };
 
-export type author = {
+export type Author = {
   id: number;
   attributes: {
     slug: string;
@@ -41,20 +41,38 @@ export type author = {
   };
 };
 
-export type metadata = {
+export type Metadata = {
+  keywords: string;
+  referrer: string;
+  publisher: string;
+};
+
+export type CoverImage = {
   data: {
     id: number;
     attributes: {
-      createdAt: string;
-      updatedAt: string;
-      applicationName: string;
-      keywords: string;
-      creator: string;
-      referrer: string;
-      publisher: string;
-      category: string;
+      name: string;
+      alternativeText?: string;
+      caption?: string;
+      width: number;
+      height: number;
+      formats: ImageFormats;
+      url: string;
     };
   };
+};
+
+export type ImageFormats = {
+  thumbnail: ImageFormat;
+  small: ImageFormat;
+  medium: ImageFormat;
+  large: ImageFormat;
+};
+
+export type ImageFormat = {
+  width: number;
+  height: number;
+  url: string;
 };
 
 // SPECIFIC TYPE FOR USE CASE'S

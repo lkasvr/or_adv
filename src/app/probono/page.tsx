@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <React.Fragment>
       <div className="w-full 2xl:w-1/2">
-        <article className="px-2 xl:px-9 w-full flex flex-row flex-wrap justify-center content-center gap-0 text-sm text-white">
+        <article className="px-2 xl:px-9 w-full max-sm:h-full max-xl:h-screen flex flex-row flex-wrap justify-center content-center gap-0 text-sm text-white">
           <h1 className="max-[767px]:mt-16 md:col-span-full self-start md:mb-4 text-center text-4xl text-white font-extrabold leading-none tracking-tight">
             Programa OR Pro Bono
           </h1>

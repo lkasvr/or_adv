@@ -5,10 +5,11 @@ import { BsChevronDoubleDown } from 'react-icons/bs';
 
 interface Props {
   text?: string;
-  distance?: number;
+  initialY?: number;
+  targetY?: number;
 }
 
-const ScrollDownIcon = ({ text, distance }: Props) => {
+const ScrollDownIcon = ({ text, initialY, targetY }: Props) => {
   const [isVisible, setIsVisible] = React.useState(true);
 
   const handleAnimationComplete = () => setIsVisible(false);
@@ -19,11 +20,11 @@ const ScrollDownIcon = ({ text, distance }: Props) => {
         <motion.div
           variants={{
             initial: {
-              y: 0,
+              y: initialY ?? 0,
               opacity: 1,
             },
             target: {
-              y: distance ?? 25,
+              y: targetY ?? 25,
               opacity: 0.2,
             },
           }}
