@@ -1,21 +1,8 @@
-/* eslint-disable prettier/prettier */
-type Sitemap = Array<{
-  url: string;
-  lastModified?: string | Date;
-  changeFrequency?:
-  | 'always'
-  | 'hourly'
-  | 'daily'
-  | 'weekly'
-  | 'monthly'
-  | 'yearly'
-  | 'never';
-  priority?: number;
-}>;
+import { MetadataRoute } from 'next';
 
 const baseUrl = `https://${process.env.WEBSITE_DOMAIN}`;
 
-export default function sitemap(): Sitemap {
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: `${baseUrl}`,
@@ -42,7 +29,7 @@ export default function sitemap(): Sitemap {
       priority: 0.7,
     },
     {
-      url: 'https://acme.com/articles',
+      url: `${baseUrl}/articles`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.6,
