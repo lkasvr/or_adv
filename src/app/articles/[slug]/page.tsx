@@ -1,5 +1,5 @@
 import Article from '@/components/Article';
-import type { Metadata, ResolvingMetadata } from 'next'; // ResolvingMetadata
+import type { Metadata, ResolvingMetadata } from 'next';
 import qs from 'qs';
 
 import { ArticlesSlug } from '../domain/Articles';
@@ -23,7 +23,10 @@ export async function generateMetadata(
 
   const { title, description, authors, metadata, coverImage, updatedAt } =
     article.attributes;
-  const { publisher, keywords } = metadata;
+  const {
+    keywords,
+    robots: { index, follow, noimageindex, maxSnippet },
+  } = metadata;
 
   const { thumbnail } = coverImage.data.attributes.formats;
 
@@ -37,7 +40,7 @@ export async function generateMetadata(
       name,
       url,
     })),
-    publisher,
+    publisher: authors.data[0].attributes.name,
     openGraph: {
       title,
       description,
@@ -48,12 +51,30 @@ export async function generateMetadata(
           url: thumbnail.url,
           width: thumbnail.width,
           height: thumbnail.height,
-          alt: 'Logo Oliveira Rios Advogados',
+          alt: 'Capa do Artigo',
         },
         ...previousImages,
       ],
       locale: 'pt_BR',
       type: 'article',
+    },
+    robots: {
+      index,
+      follow,
+      nocache: false,
+      'max-snippet': maxSnippet,
+      'max-image-preview': 'large',
+      'max-video-preview': 15,
+      noimageindex,
+      googleBot: {
+        index,
+        follow,
+        noimageindex,
+        nocache: false,
+        'max-snippet': maxSnippet,
+        'max-image-preview': 'large',
+        'max-video-preview': 15,
+      },
     },
   };
 }

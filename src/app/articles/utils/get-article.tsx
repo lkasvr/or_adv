@@ -12,7 +12,7 @@ const query = (slug: string) =>
         categories: true,
         subCategories: true,
         metadata: {
-          formatDetection: true,
+          populate: { robots: true },
         },
         coverImage: true,
       },
@@ -29,5 +29,6 @@ export const getArticle = cache(async (slug: string) => {
   );
 
   const { data }: { data: Article[] } = await res.json();
+
   return data[0];
 });

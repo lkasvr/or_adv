@@ -17,8 +17,8 @@ export type Attributes = {
   authors: Authors;
   categories: Categories;
   subCategories: SubCategories;
-  metadata: Metadata;
   coverImage: CoverImage;
+  metadata: Metadata;
   updatedAt: string;
   publishedAt: string;
   createdAt: string;
@@ -39,12 +39,6 @@ export type Author = {
     updatedAt: string;
     createdAt: string;
   };
-};
-
-export type Metadata = {
-  keywords: string;
-  referrer: string;
-  publisher: string;
 };
 
 export type CoverImage = {
@@ -73,6 +67,18 @@ export type ImageFormat = {
   width: number;
   height: number;
   url: string;
+};
+
+export type Metadata = {
+  keywords: string;
+  robots: Robots;
+};
+
+export type Robots = {
+  index: boolean;
+  follow: boolean;
+  noimageindex: false;
+  maxSnippet: number;
 };
 
 // SPECIFIC TYPE FOR USE CASE'S

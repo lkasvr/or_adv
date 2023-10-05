@@ -21,8 +21,9 @@ export const metadata: Metadata = {
   description:
     process.env.WEBSITE_DESCRIPTION ??
     'Escritório de Advocia em Brasília-DF, Plano Piloto',
-  authors: { name: 'Lucas Vieira', url: 'https://github.com/lkasvr' },
   creator: 'Lucas Vieira',
+  keywords: ['law', 'direito', 'advocacia', 'escritorio', 'brasilia', 'plano'],
+  referrer: 'strict-origin-when-cross-origin',
   openGraph: {
     title: 'Oliveira & Rios Advogados',
     description:
@@ -35,6 +36,24 @@ export const metadata: Metadata = {
     },
     locale: 'pt_BR',
     type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    noimageindex: false,
+    nocache: false,
+    'max-video-preview': 15,
+    'max-image-preview': 'large',
+    'max-snippet': 55,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      nocache: false,
+      'max-video-preview': 15,
+      'max-image-preview': 'large',
+      'max-snippet': 55,
+    },
   },
 };
 
