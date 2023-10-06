@@ -14,13 +14,13 @@ export const SearchBar = ({ title }: { title: string }) => {
       />
 
       <div className="w-full mt-2">
-        <h1 className="text-xl sm:text-2xl text-white text-center font-bold">
+        <h1 className="text-sm sm:text-xl md:text-2xl text-white text-center font-bold">
           {title}
         </h1>
       </div>
       {/* FILTERS CHECKBOX */}
       <Checkbox
-        wrapperClass="absolute top-[80%] right-[25%] sm:top-[75%] sm:right-[5%]"
+        wrapperClass="absolute top-[80%] right-[28%] sm:top-[75%] xl:top-[70%] sm:right-[10%] 2xl:right-[5%]"
         legendVisible
       />
     </div>

@@ -52,13 +52,15 @@ const Filtered = ({ articles }: Props) => {
 
   return (
     <React.Fragment>
-      {filteredArticles.map(({ attributes }) => (
-        <Preview
-          key={attributes.slug}
-          wrapperClass="h-full 2xl:w-[48%]"
-          {...attributes}
-        />
-      ))}
+      <div className="h-full w-full flex flex-row flex-wrap 2xl:gap-4">
+        {filteredArticles.map(({ attributes }) => (
+          <Preview
+            key={attributes.slug}
+            wrapperClass="h-full 2xl:w-[48%]"
+            {...attributes}
+          />
+        ))}
+      </div>
     </React.Fragment>
   );
 };

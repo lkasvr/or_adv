@@ -44,12 +44,12 @@ const SubCategories = () => {
   };
 
   return (
-    <fieldset className="relative max-md:mt-1 w-full h-full xl:w-1/2">
+    <fieldset className="w-full xl:w-1/2 flex">
       {/* SELECT */}
       {selectSubCategories.isOpen &&
         data?.length !== slugsSelectedSubCategories.length && (
           <select
-            className="p-1 absolute w-full h-full flex flex-row flex-wrap bg-transparent cursor-pointer overflow-y-auto scrollbar-none"
+            className="p-1 w-full h-full flex flex-row flex-wrap bg-transparent cursor-pointer overflow-y-auto scrollbar-none"
             multiple
             value={slugsSelectedSubCategories}
             onChange={(e) => toggleOption(e.target.value)}
@@ -63,7 +63,7 @@ const SubCategories = () => {
                 <option
                   key={id}
                   value={slug}
-                  className={`ml-1 inline-flex items-center justify-center px-2.5 py-0.5 m-1 ${
+                  className={`ml-1 inline-flex items-center justify-center px-2.5 py-0.5 m-1 text-xs sm:text-sm ${
                     selected && '!hidden'
                   }`}
                 >

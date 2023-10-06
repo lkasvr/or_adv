@@ -31,11 +31,11 @@ const Preview = ({
         src={large.url}
         width={large.width}
         height={large.height}
-        className="w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%] hover:cursor-pointer"
+        className="max-h-48 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%] hover:cursor-pointer"
       />
       <div className="p-2 sm:p-4">
-        <div className="flex flex-row flex-wrap">
-          <h3 className="m-1 text-sm sm:text-lg md:text-base lg:text-lg font-medium text-gray-900">
+        <div className="flex flex-row flex-wrap lg:flex-nowrap">
+          <h3 className="m-1 text-sm sm:text-lg md:text-base font-medium text-gray-900">
             {title}
           </h3>
           &nbsp;&nbsp;

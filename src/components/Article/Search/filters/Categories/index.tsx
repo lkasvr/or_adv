@@ -36,7 +36,7 @@ const Categories = () => {
   };
 
   return (
-    <fieldset className="w-full h-full xl:w-1/2">
+    <fieldset className="w-full xl:w-1/2">
       {isLoading ? (
         <div className="w-full h-full flex flex-row justify-center items-center">
           <Loading type="spinningBubbles" width={42} height={42} />

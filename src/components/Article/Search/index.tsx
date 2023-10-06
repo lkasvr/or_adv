@@ -17,7 +17,14 @@ const Search = async () => {
         <Banner session={session} />
       )}
 
-      <div className="mt-1 px-1 md:px-10 lg:px-24 xl:px-28 w-full h-1/6 flex flex-row flex-wrap xl:flex-nowrap pb-1 border-b border-gray-100 overflow-x-hidden overflow-y-auto">
+      <div
+        className="
+        mt-1 pb-1 px-4 sm:px-8 md:px-10 lg:px-24 xl:px-28
+        w-full h-1/6
+        flex flex-row flex-wrap xl:flex-nowrap
+        border-b border-gray-100
+        overflow-x-hidden overflow-y-auto"
+      >
         {/* CATEGORY */}
         <Categories />
         {/* SUB-CATEGORY */}
