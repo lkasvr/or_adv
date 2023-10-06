@@ -10,9 +10,9 @@ export default async function Home() {
     <div className="p-10 w-full h-full flex flex-row flex-nowrap justify-center items-center">
       {/* H1 FOR SEO */}
       <h1 className="hidden">Oliveira e Rios Advogados</h1>
-      <div className="home-page mt-14 md:mt-0 w-full h-full flex flex-row flex-wrap xl:flex-nowrap rounded-3xl overflow-auto">
+      <div className="home-page mt-14 md:mt-0 w-full h-full flex flex-row flex-wrap 2xl:flex-nowrap rounded-3xl overflow-auto">
         {/* SECTION 1 */}
-        <section className="sub-section-1 relative px-4 py-8 md:px-16 xl:px-20 w-full xl:w-1/2 h-full flex flex-row flex-wrap content-center ">
+        <section className="sub-section-1 relative px-4 py-8 md:px-16 xl:px-20 w-full 2xl:w-1/2 h-full flex flex-row flex-wrap content-center ">
           <Image
             src="/assets/images/salao_n_stj.jpg"
             alt="Salão Nobre STJ"
@@ -32,7 +32,7 @@ export default async function Home() {
           </span>
         </section>
         {/* SECTION 2 */}
-        <section className="sub-section-2 px-4 md:px-16 w-full xl:w-1/2 h-full bg-white flex flex-col content-center items-center">
+        <section className="sub-section-2 p-4 md:px-16 w-full 2xl:w-1/2 h-full bg-white flex flex-col content-center items-center">
           <SectionPreview articlesPreview={articlesPreview} />
         </section>
       </div>

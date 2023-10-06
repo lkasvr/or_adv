@@ -11,9 +11,9 @@ interface ILastUpdate {
 const DateIndicator = ({ legend, date, wrapperClass }: ILastUpdate) => {
   return (
     <span
-      className={`mt-4 text-sm font-medium  ${
-        !wrapperClass ? 'text-primary' : wrapperClass
-      }`}
+      className={
+        !wrapperClass ? 'mt-4 text-sm font-medium text-primary' : wrapperClass
+      }
     >
       {legend}{' '}
       {formatDistance(new Date(date), new Date(), {

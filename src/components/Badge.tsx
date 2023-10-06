@@ -9,7 +9,7 @@ interface IBadge {
 const Badge = ({ text, extendedClass }: IBadge) => {
   return (
     <span
-      className={`whitespace-nowrap max-h-6 flex justify-center items-center rounded-md px-2 py-0.5 text-sm ${extendedClass}`}
+      className={`whitespace-nowrap max-h-6 rounded-md px-2 py-0.5 text-xs md:text-sm/relaxed ${extendedClass}`}
     >
       {text}
     </span>
