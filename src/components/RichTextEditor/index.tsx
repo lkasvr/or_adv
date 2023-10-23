@@ -1,9 +1,10 @@
 'use client';
 import { Editor } from '@tinymce/tinymce-react';
 import React from 'react';
+import { Editor as TinyMCEEditor } from 'tinymce';
 
 const TinyMCE = () => {
-  const editorRef = React.useRef<HTMLTextAreaElement>(null);
+  const editorRef = React.useRef<TinyMCEEditor | null>(null);
   const log = () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
