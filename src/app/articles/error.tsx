@@ -1,5 +1,6 @@
 'use client';
 
+import WarningCard from '@/components/WarningCard';
 import React from 'react';
 
 export default function Erro({
@@ -15,9 +16,10 @@ export default function Erro({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button onClick={() => reset()}>Try again</button>
-    </div>
+    <WarningCard title="Opa, algum erro ocorreu..">
+      <b>{error.name}</b>
+      <br />
+      {error.message.toString()}
+    </WarningCard>
   );
 }
