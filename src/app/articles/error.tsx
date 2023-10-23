@@ -11,7 +11,7 @@ export default function Erro({
 }) {
   React.useEffect(() => {
     console.warn('On blog path...');
-    console.error(error);
+    console.error(error.message);
   }, [error]);
 
   return (
