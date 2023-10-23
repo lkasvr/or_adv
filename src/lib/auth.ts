@@ -2,6 +2,9 @@ import { add, getTime } from 'date-fns';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+const baseUrl =
+  process.env.DEVAPI_BASE_URL ?? process.env.ARTICLES_API_BASE_URL;
+
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
@@ -68,14 +71,11 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const response = await fetch(
-            `${process.env.ARTICLES_API_BASE_URL}/auth/local`,
-            {
-              method: 'POST',
-              body: JSON.stringify(credentials),
-              headers: { 'Content-Type': 'application/json' },
-            },
-          );
+          const response = await fetch(`${baseUrl}/auth/local`, {
+            method: 'POST',
+            body: JSON.stringify(credentials),
+            headers: { 'Content-Type': 'application/json' },
+          });
 
           if (response.ok) {
             const { jwt, user } = await response.json();

@@ -7,6 +7,9 @@ import { getArticle } from '../utils/get-article';
 
 const query = qs.stringify({ fields: ['slug'] }, { encodeValuesOnly: true });
 
+const baseUrl =
+  process.env.DEVAPI_BASE_URL ?? process.env.ARTICLES_API_BASE_URL;
+
 type Props = {
   params: { slug: string };
 };
@@ -81,7 +84,7 @@ export async function generateMetadata(
 
 export async function generateStaticParams() {
   const articlesSlugs: Omit<ArticlesSlug, 'id'> = await fetch(
-    `${process.env.ARTICLES_API_BASE_URL}/articles?${query}`,
+    `${baseUrl}/articles?${query}`,
   ).then((res) => res.json());
 
   return articlesSlugs.data.map(({ attributes: { slug } }) => ({ slug }));
