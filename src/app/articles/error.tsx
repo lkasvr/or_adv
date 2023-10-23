@@ -1,6 +1,7 @@
 'use client';
 
 import WarningCard from '@/components/WarningCard';
+import logger from '@/services/logger/winston';
 import React from 'react';
 
 export default function Erro({
@@ -11,14 +12,18 @@ export default function Erro({
   reset: () => void;
 }) {
   React.useEffect(() => {
-    console.error(error.message);
+    logger.error({ error });
   }, [error]);
 
   return (
-    <WarningCard title="Opa, algum erro ocorreu.." resetFunction={reset}>
+    <WarningCard
+      title="Opa, algum erro ocorreu.."
+      button={{ text: 'reset' }}
+      resetFunction={reset}
+    >
       <b>{error.name}</b>
       <br />
-      {error.message.toString()}
+      <p> {error.message.toString()}</p>
     </WarningCard>
   );
 }
