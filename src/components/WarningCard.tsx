@@ -9,11 +9,17 @@ interface IWarningCard {
   button?: {
     icon?: boolean;
     text: string;
-    link: string;
+    link?: string;
   };
+  resetFunction?: () => void;
 }
 
-const WarningCard = ({ title, children, button }: IWarningCard) => {
+const WarningCard = ({
+  title,
+  children,
+  button,
+  resetFunction,
+}: IWarningCard) => {
   return (
     <div className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
       <div className="flex flex-row flex-nowrap items-center">
@@ -25,7 +31,7 @@ const WarningCard = ({ title, children, button }: IWarningCard) => {
 
       {children}
 
-      {button ? (
+      {button?.link && (
         <div className="mt-4">
           <Link href={button.link}>
             <button
@@ -38,8 +44,18 @@ const WarningCard = ({ title, children, button }: IWarningCard) => {
             </button>
           </Link>
         </div>
-      ) : (
-        ''
+      )}
+
+      {resetFunction && !button?.link && (
+        <button
+          type="button"
+          className="inline-flex justify-center items-center rounded-md border border-transparent bg-blue-200 px-4 py-2 text-sm font-medium text-primary duration-300 hover:bg-primary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+          onClick={() => resetFunction()}
+        >
+          {button?.icon ? <FaArrowLeftLong /> : ''}
+          &nbsp;
+          {button?.text}
+        </button>
       )}
     </div>
   );

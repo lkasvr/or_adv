@@ -11,12 +11,11 @@ export default function Erro({
   reset: () => void;
 }) {
   React.useEffect(() => {
-    console.warn('On blog path...');
     console.error(error.message);
   }, [error]);
 
   return (
-    <WarningCard title="Opa, algum erro ocorreu..">
+    <WarningCard title="Opa, algum erro ocorreu.." resetFunction={reset}>
       <b>{error.name}</b>
       <br />
       {error.message.toString()}
