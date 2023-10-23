@@ -1,8 +1,3 @@
-'use client';
-import MenuButton from '@/components/MenuButton';
-import { useDimensions } from '@/hooks/use-dimensions';
-import { IRootState } from '@/store';
-import { motion, useCycle } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import logoFb from 'public/assets/logoFb.png';
@@ -15,29 +10,9 @@ import {
   FiMapPin,
   FiMail,
 } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
 
-import { MenuToggle } from './MenuToggle';
-
-const sidebar = {
-  open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-    transition: {
-      type: 'spring',
-      stiffness: 20,
-      restDelta: 2,
-    },
-  }),
-  closed: {
-    clipPath: 'circle(30px at 40px 40px)',
-    transition: {
-      delay: 0.5,
-      type: 'spring',
-      stiffness: 400,
-      damping: 40,
-    },
-  },
-};
+import Animation from './Animation';
+import MenuButtons from './MenuButtons';
 
 const menuLinks = [
   { text: 'Escritório', href: '/about' },
@@ -47,28 +22,8 @@ const menuLinks = [
 ];
 
 const HeaderWithFooter = () => {
-  const { isMobile } = useSelector((state: IRootState) => state.app);
-  const containerRef = React.useRef(null);
-  const { height } = useDimensions(containerRef);
-  const [isOpen, toggleOpen] = useCycle(false, true);
-
-  React.useEffect(() => (!isMobile ? toggleOpen() : () => {}), []);
-
-  const animateVariant = isOpen ? 'open' : 'closed';
-
   return (
-    <motion.header
-      initial={isMobile}
-      animate={isMobile ? animateVariant : 'open'}
-      custom={height}
-      variants={sidebar}
-      ref={containerRef}
-      className="absolute md:static p-6 xl:p-10 z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white flex flex-row flex-wrap justify-between overflow-auto scrollbar-none"
-    >
-      <MenuToggle
-        className="absolute md:hidden top-[31px] left-[29px]"
-        toggle={() => toggleOpen()}
-      />
+    <Animation wrapperClass="absolute md:static p-6 xl:p-10 z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white flex flex-row flex-wrap justify-between overflow-auto scrollbar-none">
       <nav className="w-full max-md:h-4/5 flex flex-wrap justify-center md:gap-14">
         <Link
           href="/"
@@ -82,17 +37,7 @@ const HeaderWithFooter = () => {
             alt="Logo OR Advogados"
           />
         </Link>
-
-        <ul className="w-full flex flex-row flex-wrap justify-center text-lg">
-          {menuLinks.map(({ text, href }) => (
-            <MenuButton
-              key={text}
-              onClick={() => (isMobile ? toggleOpen() : null)}
-              text={text}
-              href={href}
-            />
-          ))}
-        </ul>
+        <MenuButtons links={menuLinks} />
       </nav>
 
       <div className="w-full max-sm:h-[15%] max-sm:mb-0 mt-12 h-6 mb-6 p-4 flex flex-row flex-nowrap justify-center border-t border-primary/25">
@@ -157,7 +102,7 @@ const HeaderWithFooter = () => {
           Copyright &copy; {new Date().getFullYear()} | Oliveira Rios Advogados
         </p>
       </footer>
-    </motion.header>
+    </Animation>
   );
 };
 
