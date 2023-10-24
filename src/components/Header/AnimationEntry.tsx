@@ -52,9 +52,9 @@ const AnimationEntry = ({
       <motion.header
         initial={isMobile}
         animate={isMobile ? animateVariant : 'open'}
-        custom={height}
-        variants={sidebar}
         ref={containerRef}
+        variants={sidebar}
+        custom={height > 0 ? height : 1000}
         className={wrapperClass ?? ''}
       >
         {children}
