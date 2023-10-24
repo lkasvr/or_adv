@@ -10,12 +10,11 @@ import {
 } from 'react-share';
 
 interface Props {
-  slug: string;
   title?: string;
+  url: string;
 }
 
-const ShareButtons = ({ slug, title }: Props) => {
-  const url = `${process.env.NEXTAUTH_URL}/${slug}`;
+const ShareButtons = ({ title, url }: Props) => {
   return (
     <div className="flex flex-row flex-nowrap justify-end gap-2">
       <FacebookShareButton url={url} title={title}>

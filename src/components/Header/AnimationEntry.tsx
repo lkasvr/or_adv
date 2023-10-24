@@ -27,7 +27,7 @@ const sidebar = {
   },
 };
 
-const Animation = ({
+const AnimationEntry = ({
   children,
   wrapperClass,
 }: {
@@ -61,4 +61,4 @@ const Animation = ({
   );
 };
 
-export default Animation;
+export default AnimationEntry;

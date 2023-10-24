@@ -11,6 +11,8 @@ export const preload = (slug: string) => {
 };
 
 const Article = async ({ slug }: { slug: string }) => {
+  const url = `${process.env.NEXTAUTH_URL}/${slug}`;
+
   const {
     attributes: {
       title,
@@ -32,7 +34,7 @@ const Article = async ({ slug }: { slug: string }) => {
   return (
     <article className="group flex flex-col">
       <div className="m-2 pr-1 w-1/5 self-end">
-        <ShareButtons slug={slug} title={title} />
+        <ShareButtons url={url} title={title} />
       </div>
       {/* SET UP IMAGES 1640  x 224 */}
       <Image

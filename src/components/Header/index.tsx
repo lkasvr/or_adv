@@ -11,7 +11,7 @@ import {
   FiMail,
 } from 'react-icons/fi';
 
-import Animation from './Animation';
+import AnimationEntry from './AnimationEntry';
 import MenuButtons from './MenuButtons';
 
 const menuLinks = [
@@ -23,7 +23,7 @@ const menuLinks = [
 
 const HeaderWithFooter = () => {
   return (
-    <Animation wrapperClass="absolute md:static p-6 xl:p-10 z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white flex flex-row flex-wrap justify-between overflow-auto scrollbar-none">
+    <AnimationEntry wrapperClass="absolute md:static p-6 xl:p-10 z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white flex flex-row flex-wrap justify-between overflow-auto scrollbar-none">
       <nav className="w-full max-md:h-4/5 flex flex-wrap justify-center md:gap-14">
         <Link
           href="/"
@@ -102,7 +102,7 @@ const HeaderWithFooter = () => {
           Copyright &copy; {new Date().getFullYear()} | Oliveira Rios Advogados
         </p>
       </footer>
-    </Animation>
+    </AnimationEntry>
   );
 };
 
