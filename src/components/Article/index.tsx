@@ -50,7 +50,7 @@ const Article = async ({ slug }: { slug: string }) => {
           <DateIndicator
             legend="última atualização"
             date={updatedAt}
-            wrapperClass="mt-1 md:mt-4 text-[12px] max-md:leading-4 md:text-sm font-medium text-primary"
+            wrapperClass="mt-1 mb-2 md:mt-4 text-[12px] max-md:leading-4 md:text-sm font-medium text-primary"
           />
         </div>
         <div className="flex flex-row flex-wrap">
