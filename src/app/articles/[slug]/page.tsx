@@ -50,13 +50,13 @@ export async function generateMetadata(
       authors: authors.data.map(({ attributes: { name } }) => name),
       publishedTime: updatedAt,
       images: [
+        ...previousImages,
         {
           url: thumbnail.url,
           width: thumbnail.width,
           height: thumbnail.height,
           alt: 'Capa do Artigo',
         },
-        ...previousImages,
       ],
       locale: 'pt_BR',
       type: 'article',
