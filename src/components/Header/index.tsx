@@ -13,6 +13,7 @@ import {
 
 import AnimationEntry from './AnimationEntry';
 import MenuButtons from './MenuButtons';
+import { MenuToggleButton } from './MenuToggleButton';
 
 const menuLinks = [
   { text: 'Escritório', href: '/about' },
@@ -24,6 +25,7 @@ const menuLinks = [
 const HeaderWithFooter = () => {
   return (
     <AnimationEntry wrapperClass="absolute md:static p-6 xl:p-10 z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white flex flex-row flex-wrap justify-between overflow-auto scrollbar-none">
+      <MenuToggleButton className="absolute md:hidden top-[31px] left-[29px]" />
       <nav className="w-full max-md:h-4/5 flex flex-wrap justify-center md:gap-14">
         <Link
           href="/"

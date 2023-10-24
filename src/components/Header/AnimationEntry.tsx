@@ -2,10 +2,10 @@
 import { useDimensions } from '@/hooks/use-dimensions';
 import { IRootState } from '@/store';
 import { motion, useCycle } from 'framer-motion';
-import React from 'react';
+import React, { useMemo, createContext } from 'react';
 import { useSelector } from 'react-redux';
 
-import { MenuButtonToggle } from './MenuButtonToggle';
+export const AnimationContext = createContext(() => {});
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -37,29 +37,29 @@ const AnimationEntry = ({
   const { isMobile } = useSelector((state: IRootState) => state.app);
   const containerRef = React.useRef(null);
   const { height } = useDimensions(containerRef);
-  const [isOpen, toggleOpen] = useCycle(false, true);
+  const [isOpen, toggle] = useCycle(false, true);
 
-  React.useEffect(() => (!isMobile ? toggleOpen() : () => {}), []);
+  React.useEffect(() => (isMobile ? toggle() : () => {}), []);
 
   const animateVariant = isOpen ? 'open' : 'closed';
 
-  console.log(isMobile, isOpen, animateVariant);
+  const contextValue = useMemo(() => {
+    return () => toggle();
+  }, []);
 
   return (
-    <motion.header
-      initial={isMobile}
-      animate={isMobile ? animateVariant : 'open'}
-      custom={height}
-      variants={sidebar}
-      ref={containerRef}
-      className={wrapperClass ?? ''}
-    >
-      <MenuButtonToggle
-        className="absolute md:hidden top-[31px] left-[29px]"
-        toggle={() => toggleOpen()}
-      />
-      {children}
-    </motion.header>
+    <AnimationContext.Provider value={contextValue}>
+      <motion.header
+        initial={isMobile}
+        animate={isMobile ? animateVariant : 'open'}
+        custom={height}
+        variants={sidebar}
+        ref={containerRef}
+        className={wrapperClass ?? ''}
+      >
+        {children}
+      </motion.header>
+    </AnimationContext.Provider>
   );
 };
 
