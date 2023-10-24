@@ -1,3 +1,4 @@
+'use client';
 import { motion, SVGMotionProps } from 'framer-motion';
 import * as React from 'react';
 
