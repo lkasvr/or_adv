@@ -17,7 +17,7 @@ interface IMenuToggle {
   className?: string;
 }
 
-export const MenuToggle = ({ toggle, className }: IMenuToggle) => (
+export const MenuButtonToggle = ({ toggle, className }: IMenuToggle) => (
   <button className={className} onClick={toggle}>
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path

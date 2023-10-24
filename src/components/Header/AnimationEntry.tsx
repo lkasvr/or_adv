@@ -5,7 +5,7 @@ import { motion, useCycle } from 'framer-motion';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { MenuToggle } from './MenuToggle';
+import { MenuButtonToggle } from './MenuButtonToggle';
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -43,6 +43,8 @@ const AnimationEntry = ({
 
   const animateVariant = isOpen ? 'open' : 'closed';
 
+  console.log(isMobile, isOpen, animateVariant);
+
   return (
     <motion.header
       initial={isMobile}
@@ -52,7 +54,7 @@ const AnimationEntry = ({
       ref={containerRef}
       className={wrapperClass ?? ''}
     >
-      <MenuToggle
+      <MenuButtonToggle
         className="absolute md:hidden top-[31px] left-[29px]"
         toggle={() => toggleOpen()}
       />

@@ -92,8 +92,8 @@ export async function generateStaticParams() {
 
 export default function Page({ params }: Props) {
   return (
-    <div className="mt-14 md:mt-0 pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-3xl overflow-y-auto">
-      <div className="px-28 py-12 ">
+    <div className="md:mt-0 pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-3xl overflow-y-auto">
+      <div className="px-2 py-1 md:px-28 md:py-12">
         <Article slug={params.slug} />
       </div>
       <hr className="mt-1 mb-6 ml-[25%] w-[50%] h-[1px] text-gray-400" />

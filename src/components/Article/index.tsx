@@ -47,10 +47,16 @@ const Article = async ({ slug }: { slug: string }) => {
 
       <div className="p-2 w-full">
         <div className="w-full flex flex-row flex-wrap justify-end items-start">
-          <DateIndicator legend="última atualização" date={updatedAt} />
+          <DateIndicator
+            legend="última atualização"
+            date={updatedAt}
+            wrapperClass="mt-1 md:mt-4 text-[12px] max-md:leading-4 md:text-sm font-medium text-primary"
+          />
         </div>
         <div className="flex flex-row flex-wrap">
-          <h3 className="text-3xl font-medium text-gray-900">{title}</h3>
+          <h3 className="text-2xl md:text-3xl font-medium text-gray-900">
+            {title}
+          </h3>
           &nbsp;&nbsp;
           {categories.data.map(({ attributes: { slug, displayName } }) => (
             <Badge
@@ -59,37 +65,42 @@ const Article = async ({ slug }: { slug: string }) => {
               extendedClass="font-bold bg-slate-200 text-slate-600"
             />
           ))}
-          <div className="ml-6 mt-2 w-full flex flex-row flex-wrap justify-start">
-            <span className="w-full text-base text-primary">
-              Temas relacionados:
-            </span>
-            <div className="py-2 px-10 w-full flex flex-row flex-wrap justify-start">
-              {subCategories.data.map(
-                ({ attributes: { slug, displayName } }) => (
-                  <Badge
-                    key={slug}
-                    text={displayName}
-                    extendedClass="bg-transparent text-slate-500"
-                  />
-                ),
-              )}
+          {subCategories.data.length > 0 && (
+            <div className="ml-6 mt-4 md:mt-2 w-full flex flex-row flex-wrap justify-start">
+              <span className="w-full text-base text-primary">
+                Temas relacionados:
+              </span>
+              <div className="py-2 px-10 w-full flex flex-row flex-wrap justify-start">
+                {subCategories.data.map(
+                  ({ attributes: { slug, displayName } }) => (
+                    <Badge
+                      key={slug}
+                      text={displayName}
+                      extendedClass="bg-transparent text-slate-500"
+                    />
+                  ),
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div
-          className="mt-4 p-4 text-justify text-lg/relaxed text-gray-500"
+          className="mt-2 p-2 md:mt-4 md:p-4 text-justify text-lg/relaxed text-gray-500"
           dangerouslySetInnerHTML={{ __html: content }}
         />
         <div className="w-full flex flex-row justify-between items-end ">
           <DateIndicator
             legend="publicado"
             date={publishedAt}
-            wrapperClass="text-primary/75"
+            wrapperClass="max-md:text-[12px] max-md:leading-4 text-primary/75"
           />
           <div className="w-1/3 flex flex-row flex-wrap justify-end">
             {authors.data.map(({ attributes: { slug, displayName } }, i) => (
-              <span key={slug} className="text-slate-500 text-sm italic">
+              <span
+                key={slug}
+                className="text-slate-500 text-sm italic max-md:text-[12px] max-md:leading-4"
+              >
                 {!displayName ? 'desconhecido' : displayName}
                 {authors.data.length === i + 1 ? '' : ','}&nbsp;
               </span>
