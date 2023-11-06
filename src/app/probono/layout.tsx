@@ -8,7 +8,9 @@ export const metadata: Metadata = {
   description,
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="flex flex-row flex-wrap 2xl:flex-nowrap justify-evenly w-full h-full">
       {children}

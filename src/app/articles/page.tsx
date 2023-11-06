@@ -17,7 +17,7 @@ export default async function Page() {
   const articlesPreview = await getArticlesPreview();
 
   return (
-    <div className="md:p-4 xl:p-5 2xl:p-10 w-full h-full flex flex-row flex-nowrap justify-center items-center">
+    <div className="md:px-4 xl:px-5 2xl:p-10 w-full h-full flex flex-row flex-nowrap justify-center items-center">
       {' '}
       <section className="articles-preview pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-t-lg rounded-b-3xl overflow-hidden">
         <Search />
