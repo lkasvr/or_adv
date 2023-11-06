@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import logoFb from 'public/assets/logoFb.png';
 import React from 'react';
 import { BsWhatsapp } from 'react-icons/bs';
 import {
@@ -24,7 +26,18 @@ const HeaderWithFooter = () => {
     <AnimationEntry wrapperClass="absolute md:static p-6 xl:p-10 z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white flex flex-row flex-wrap justify-between overflow-auto scrollbar-none">
       <MenuToggleButton className="absolute md:hidden top-[31px] left-[29px]" />
 
-      <Menu links={menuLinks} />
+      <Menu
+        logo={
+          <Image
+            src={logoFb}
+            priority
+            sizes="100vw"
+            className="appearance-none"
+            alt="Logo OR Advogados"
+          />
+        }
+        links={menuLinks}
+      />
 
       <div className="w-full max-sm:h-[15%] max-sm:mb-0 mt-12 h-6 mb-6 p-4 flex flex-row flex-nowrap justify-center border-t border-primary/25">
         <a
