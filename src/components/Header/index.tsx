@@ -1,6 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import logoFb from 'public/assets/logoFb.png';
 import React from 'react';
 import { BsWhatsapp } from 'react-icons/bs';
 import {
@@ -12,7 +9,7 @@ import {
 } from 'react-icons/fi';
 
 import AnimationEntry from './AnimationEntry';
-import MenuButtons from './MenuButtons';
+import Menu from './Menu';
 import { MenuToggleButton } from './MenuToggleButton';
 
 const menuLinks = [
@@ -26,21 +23,8 @@ const HeaderWithFooter = () => {
   return (
     <AnimationEntry wrapperClass="absolute md:static p-6 xl:p-10 z-40 h-screen w-full md:w-4/12 xl:w-3/12 bg-white flex flex-row flex-wrap justify-between overflow-auto scrollbar-none">
       <MenuToggleButton className="absolute md:hidden top-[31px] left-[29px]" />
-      <nav className="w-full max-md:h-4/5 flex flex-wrap justify-center md:gap-14">
-        <Link
-          href="/"
-          className="grow w-auto h-auto max-w-[260px] max-h-[149px]"
-        >
-          <Image
-            src={logoFb}
-            priority
-            sizes="100vw"
-            className="appearance-none"
-            alt="Logo OR Advogados"
-          />
-        </Link>
-        <MenuButtons links={menuLinks} />
-      </nav>
+
+      <Menu links={menuLinks} />
 
       <div className="w-full max-sm:h-[15%] max-sm:mb-0 mt-12 h-6 mb-6 p-4 flex flex-row flex-nowrap justify-center border-t border-primary/25">
         <a

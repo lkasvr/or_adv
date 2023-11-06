@@ -6,7 +6,7 @@ import React, { Suspense } from 'react';
 export default function Page() {
   return (
     <React.Fragment>
-      <article className="p-4 2xl:p-9 w-full h-full 2xl:w-2/5 flex flex-row flex-wrap justify-center text-white">
+      <article className="px-8 w-full h-full 2xl:w-2/5 flex flex-row flex-wrap justify-center text-white">
         <h2 className="mb-2 ml-4 lg:text-xl font-bold text-center text-base">
           <span className="">OLIVEIRA & RIOS &ndash; ADVOGADOS</span>
         </h2>
@@ -29,8 +29,8 @@ export default function Page() {
         <Slider />
       </article>
 
-      <hr className="max-2xl:px-4 2xl:py-9 w-10/12 h-[1px] max-2xl:my-4 2xl:w-[1px] 2xl:h-full bg-white" />
-      <div className="p-4 2xl:p-9 w-full h-full 2xl:w-[66.6%] max-[280px]:mt-96 flex flex-row flex-wrap justify-center">
+      <hr className="mx-4 w-10/12 h-[1px] 2xl:w-[1px] 2xl:h-full bg-white" />
+      <div className="p-1 w-full h-full 2xl:w-[66.6%] max-[280px]:mt-96 flex flex-row flex-wrap justify-center">
         <div className="mb-6 max-h-max flex flex-row flex-wrap justify-center">
           <Image
             alt="Brasil 21"

@@ -7,7 +7,7 @@ export default async function Home() {
   const articlesPreview = await getArticlesPreview();
 
   return (
-    <div className="p-10 w-full h-full flex flex-row flex-nowrap justify-center items-center">
+    <div className="md:p-4 xl:p-5 2xl:p-10 w-full h-full flex flex-row flex-nowrap justify-center items-center">
       {/* H1 FOR SEO */}
       <h1 className="hidden">Oliveira e Rios Advogados</h1>
       <div className="home-page mt-14 md:mt-0 w-full h-full flex flex-row flex-wrap 2xl:flex-nowrap rounded-3xl overflow-auto">
