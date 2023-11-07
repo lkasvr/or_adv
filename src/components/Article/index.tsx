@@ -11,7 +11,7 @@ export const preload = (slug: string) => {
 };
 
 const Article = async ({ slug }: { slug: string }) => {
-  const url = `${process.env.NEXTAUTH_URL}/${slug}`;
+  const url = `${process.env.NEXTAUTH_URL}/articles/${slug}`;
 
   const {
     attributes: {

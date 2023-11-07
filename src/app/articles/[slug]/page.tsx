@@ -90,7 +90,7 @@ export async function generateStaticParams() {
   return articlesSlugs.data.map(({ attributes: { slug } }) => ({ slug }));
 }
 
-export default function Page({ params }: Props) {
+export default function Page({ params }: Readonly<Props>) {
   return (
     <div className="md:mt-0 pb-2 w-full h-full bg-white flex flex-col flex-nowrap rounded-3xl overflow-y-auto">
       <div className="px-2 py-1 md:px-10 md:py-6 xl:px-20 xl:py-8 2xl:px-28 2xl:py-12">

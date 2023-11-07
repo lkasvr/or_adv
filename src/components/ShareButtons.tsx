@@ -15,6 +15,7 @@ interface Props {
 }
 
 const ShareButtons = ({ title, url }: Props) => {
+  console.log('->' + url);
   return (
     <div className="flex flex-row flex-nowrap justify-end gap-2">
       <FacebookShareButton url={url} title={title}>
