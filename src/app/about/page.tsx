@@ -29,8 +29,9 @@ export default function Page() {
         <Slider />
       </article>
 
-      <hr className="mx-4 w-10/12 h-[1px] 2xl:w-[1px] 2xl:h-full bg-white" />
-      <div className="p-1 w-full h-full 2xl:w-[66.6%] max-[280px]:mt-96 flex flex-row flex-wrap justify-center">
+      <hr className="max-[375px]:hidden max-2xl:my-10 mx-4 w-10/12 h-[1px] 2xl:w-[1px] 2xl:h-full bg-white" />
+
+      <div className="max-[375px]:mt-16 p-1 w-full h-full 2xl:w-[66.6%] flex flex-row flex-wrap justify-center">
         <div className="mb-6 max-h-max flex flex-row flex-wrap justify-center">
           <Image
             alt="Brasil 21"

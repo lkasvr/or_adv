@@ -11,7 +11,7 @@ const Search = async () => {
 
   return (
     <React.Fragment>
-      <div className="top-bar max-[375px]:h-1/6 h-1/6 max-xl:h-[15%] xl:h-1/6 ">
+      <div className="top-bar w-full max-[375px]:h-1/6 h-1/6 max-xl:h-[15%] xl:h-1/6 flex flex-row flex-nowrap justify-end">
         {!session ? (
           <SearchBar title="ARTIGOS JURÍDICOS" />
         ) : (
