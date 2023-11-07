@@ -33,6 +33,17 @@ export async function generateMetadata(
 
   const { thumbnail } = coverImage.data.attributes.formats;
 
+  const images = thumbnail
+    ? [
+        {
+          url: thumbnail.url,
+          width: thumbnail.width,
+          height: thumbnail.height,
+          alt: 'Capa do Artigo',
+        },
+      ]
+    : [...previousImages];
+
   return {
     title: {
       absolute: title,
@@ -49,15 +60,7 @@ export async function generateMetadata(
       description,
       authors: authors.data.map(({ attributes: { name } }) => name),
       publishedTime: updatedAt,
-      images: [
-        ...previousImages,
-        {
-          url: thumbnail.url,
-          width: thumbnail.width,
-          height: thumbnail.height,
-          alt: 'Capa do Artigo',
-        },
-      ],
+      images,
       locale: 'pt_BR',
       type: 'article',
     },
