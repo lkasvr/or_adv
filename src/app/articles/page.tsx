@@ -23,8 +23,8 @@ export default async function Page() {
         <Search />
         <div
           className="
-        px-4 md:px-12 lg:px-20 xl:px-28 pt-4
-        w-full h-4/6
+        px-4 md:px-12 lg:px-20 xl:px-28 pt-12 xl:pt-4 2xl:pt-2
+        w-full max-[375px]:h-4/6 h-4/6 max-lg:h-[55%] lg:h-4/6
         overflow-x-hidden overflow-auto"
         >
           <Filtered articles={articlesPreview} />

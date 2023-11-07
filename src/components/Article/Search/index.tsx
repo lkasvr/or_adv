@@ -11,16 +11,18 @@ const Search = async () => {
 
   return (
     <React.Fragment>
-      {!session ? (
-        <SearchBar title="ARTIGOS JURÍDICOS" />
-      ) : (
-        <Banner session={session} />
-      )}
+      <div className="top-bar max-[375px]:h-1/6 h-1/6 max-xl:h-[15%] xl:h-1/6 ">
+        {!session ? (
+          <SearchBar title="ARTIGOS JURÍDICOS" />
+        ) : (
+          <Banner session={session} />
+        )}
+      </div>
 
       <div
-        className="
+        className="filters-bar
         mt-1 pb-1 px-4 sm:px-8 md:px-10 lg:px-24 xl:px-28
-        w-full h-1/6
+        w-full max-[375px]:h-1/6 h-1/6 max-xl:h-[30%] lx:h-1/6
         flex flex-row flex-wrap xl:flex-nowrap
         border-b border-gray-100
         overflow-x-hidden overflow-y-auto"

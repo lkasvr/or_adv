@@ -74,7 +74,7 @@ const Preview = ({
           />
         </div>
       </div>
-      <hr className="mt-1 max-2xl:mb-6 h-[1px] w-full text-gray-400" />
+      <hr className="my-1 h-[1px] w-full text-gray-400" />
     </article>
   );
 };

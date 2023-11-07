@@ -12,7 +12,7 @@ const Banner = async ({ session }: { session: Session }) => {
 
   return (
     session && (
-      <header className="h-1/3 bg-gradient-to-r from-primary/95 to-secondary/95 rounded-b-3xl">
+      <header className="h-full bg-gradient-to-r from-primary/95 to-secondary/95 rounded-b-3xl">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex items-center justify-end gap-4">
             <div className="flex items-center gap-4">

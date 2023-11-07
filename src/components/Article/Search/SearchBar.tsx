@@ -5,7 +5,7 @@ import SearchInput from './SearchInput';
 
 export const SearchBar = ({ title }: { title: string }) => {
   return (
-    <div className="relative p-2 w-5/6 md:w-full h-1/6 bg-gradient-to-r from-primary/95 to-secondary/95 rounded-b-[100px] max-md:rounded-br-none flex flex-row flex-wrap self-end">
+    <div className="relative p-2 h-full w-5/6 sm:w-[94%] md:w-full bg-gradient-to-r from-primary/95 to-secondary/95 rounded-b-[100px] max-md:rounded-br-none flex flex-row flex-wrap self-end">
       <SearchInput
         wrapperStyle="w-full"
         placeHolder="Título do artigo ..."
